@@ -1,0 +1,36 @@
+html,
+body {
+  /* 字体规则(显示效果最优)：各平台特定最佳字体 > 通用的系统字体 > 常见的跨平台字体 > 通用的字体族 > 表情符号字体以支持表情符号 */
+  font-family:
+    'PingFang SC',
+    'Microsoft YaHei',
+    'Hiragino Sans GB',
+    'Noto Sans SC',
+    'SimSun',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Ubuntu',
+    'DejaVu Sans',
+    'Liberation Sans',
+    'Helvetica Neue',
+    Arial,
+    'Noto Sans',
+    ui-sans-serif,
+    system-ui,
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji';
+  font-size: 14px;
+  line-height: 1.6;
+  /* tabular-nums是一种数字呈现方式，用于让数字在等宽字体中以等宽的形式显示，这对于数字排列整齐对齐很有用，比如在表格中显示数字时。这种样式通常被用于提高数字在视觉上的对齐性。 */
+  font-variant: tabular-nums;
+}
+
+html[data-theme='dark'] {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #18181c;
+}

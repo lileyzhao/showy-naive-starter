@@ -1,0 +1,50 @@
+welcome:
+  morning: 日安，朝气少年
+  night: 夜安，玛卡巴卡
+author: 秀雨
+team: 西江绣雨
+intro: 撒旦的女儿动了心，走的时候也红了眼，爱上了哪个穿着白衬衫的男孩，妄想着成为人类，便是禁忌。
+login:
+  title: 登录
+menu:
+  project:
+    title: 项目
+    hello: 你好
+    world: 世界
+    surprise: 惊喜
+  about:
+    title: 关于
+    author: 作者
+    project: 项目
+  profile: 个人
+  settings: 设置
+tips:
+  menuState:
+    normal: 点击隐藏图标下方标题
+    iconLabel: 点击展开主栏菜单
+    onlyIcon: 点击收缩主栏菜单
+theme:
+  themeDrawerTitle: 主题与布局
+  themeMode:
+    title: 主题模式
+    light: 浅色
+    dark: 深色
+    system: 跟随系统
+page:
+  about:
+    title: 关于
+    introduction: 绣雨
+    projectInfo:
+      title: 项目信息
+      version: 当前版本
+      latestBuildTime: 构建时间
+      githubLink: 项目地址
+      previewLink: 预览地址
+    prdDep: 生产依赖
+    devDep: 开发以来
+profileMenu:
+  profile: 个人资料
+  settings: 设置
+  logout: 退出
+common:
+  backToHome: 返回首页

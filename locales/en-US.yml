@@ -1,0 +1,50 @@
+welcome:
+  morning: Morning, sunshine.
+  night: Night, moonlight knights.
+author: Rainie
+team: Showy
+intro: Satan's daughter fell in love, tears in her eyes as she left. She loved the boy in the white shirt, dreaming of becoming human, a forbidden desire.
+login:
+  title: Login
+menu:
+  project:
+    title: Project
+    hello: Hello
+    world: World
+    surprise: Surprise
+  about:
+    title: About
+    author: Author
+    project: Project
+  profile: Profile
+  settings: Settings
+tips:
+  menuState:
+    normal: Click to hide the title below the icon
+    iconLabel: Click to expand the main menu
+    onlyIcon: Click to collapse the main menu
+theme:
+  themeDrawerTitle: Theme & Layout
+  themeMode:
+    title: Theme Schema
+    light: Light
+    dark: Dark
+    system: System
+page:
+  about:
+    title: About
+    introduction: Showy
+    projectInfo:
+      title: Project Information
+      version: Current Version
+      latestBuildTime: Build Time
+      githubLink: Project
+      previewLink: Preview
+    prdDep: Production Dependency
+    devDep: Development Dependency
+profileMenu:
+  profile: Profile
+  settings: Setting
+  logout: Logout
+common:
+  backToHome: Back to Home

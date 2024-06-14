@@ -1,0 +1,106 @@
+<script setup lang="ts" name="Layout-SubSidebar">
+import type { MenuInst, MenuOption } from 'naive-ui'
+import type { RouteRecordRaw } from 'vue-router'
+import { useAppStore } from '@/store'
+import Logo from '@/layout/components/Logo.vue'
+import { MenuButtonEnum, MenuPositionEnum } from '@/shared'
+import { mapRoutes } from '@/utils/menuUtil'
+import { getFullRoutes } from '@/utils'
+
+const props = defineProps({ parentMenuKey: { type: String, required: false } })
+
+const emit = defineEmits(['collapsed'])
+
+// Variables 变量
+const { t } = useI18n()
+const app = useAppStore()
+const route = useRoute()
+const fullRoutes = getFullRoutes()
+
+/** Menu setting 菜单设置 */
+const menuSetting = computed(() => app.MenuSetting)
+
+// Reference to component 组件引用
+const subMenuRef = ref<MenuInst | null>()
+
+/** Selected Item in sub-menu 副栏菜单选中项 */
+const subMenuKey = computed<string>({
+  get: () => route.name as string,
+  set: () => { },
+})
+
+/** Collapsed State of sub-menu 副栏菜单收缩状态 */
+const collSubMenu = computed({
+  get: () => menuSetting.value.subMenu.collapsed,
+  set: (val) => {
+    if (menuSetting.value.subMenu.collapsed !== val)
+      app.setMenuSetting({ subMenu: { collapsed: val } })
+  },
+})
+
+const subMenuRoutes = ref<RouteRecordRaw[]>([])
+const subMenuOptions = ref<MenuOption[]>([])
+const getSubMenuOptions = (mainMenuKey: string) => {
+  return fullRoutes.filter(route => route.meta.parentName === mainMenuKey).map(route => mapRoutes(route, fullRoutes, t, true))
+}
+
+/** Refresh the sub-menu 刷新副栏菜单 */
+const refreshSubMenu = (mainMenuRootKey?: string) => {
+  subMenuRoutes.value = fullRoutes.filter(r => r.meta.parentName === (mainMenuRootKey || route.matched[1].name))
+
+  // 更新副栏菜单 Update the sub-menu
+  if (!collSubMenu.value && subMenuRoutes.value.length > 0) {
+    subMenuOptions.value = getSubMenuOptions(mainMenuRootKey || route.matched[1].name as string)
+    subMenuKey.value = route.name as string
+  }
+  else { subMenuOptions.value = [] }
+  // Delay showing the sub-menu (to solve the problem that the sub-menu cannot expand the hierarchy)
+  // 延迟显示副栏菜单(解决副栏菜单不能展开层级问题)
+  setTimeout(() => subMenuRef.value?.showOption(subMenuKey.value), 128)
+}
+
+/** Toggle sub-menu status 切换副栏菜单状态 */
+const handleToggleSub = (status: boolean) => {
+  collSubMenu.value = status
+  emit('collapsed', toRaw(collSubMenu.value))
+  refreshSubMenu()
+}
+
+// Do not delete: Removing onMounted will cause the menu to be blank during hot refresh
+// 勿删：删掉onMounted会导致热刷新时菜单空白
+onMounted(async () => {
+  refreshSubMenu()
+})
+
+// 监控主菜单变化
+watch(() => props.parentMenuKey, (_val) => {
+  refreshSubMenu(props.parentMenuKey)
+})
+
+/** Exposes 公开对象 */
+defineExpose({ refreshSubMenu })
+</script>
+
+<template>
+  <!-- Sidebar (desktop): Sub-sidebar 侧边栏(电脑端):副栏 -->
+  <n-layout-sider
+    v-if="subMenuRoutes.length > 0" collapse-mode="width" :width="menuSetting.subMenu.width"
+    :collapsed-width="0" :collapsed="collSubMenu"
+    :show-trigger="menuSetting.buttons.includes(MenuButtonEnum.SubMenuStatus) && app.MenuSetting.menuPosition === MenuPositionEnum.SIDEBAR ? 'arrow-circle' : false"
+    :bordered="!collSubMenu" content-class="of-x-hidden!" z-2 @collapse="handleToggleSub(true)"
+    @expand="handleToggleSub(false)"
+  >
+    <n-layout-header bordered>
+      <Logo
+        v-if="app.MenuSetting.menuPosition === MenuPositionEnum.TOP_BAR && app.MenuSetting.topMenu.showSubMenu"
+        flex-y-center p-l-5
+      />
+      <Logo v-else hide-logo :hide-title="!menuSetting.mainMenu.collapsed" flex-y-center p-l-5 />
+    </n-layout-header>
+    <!-- Sub-menu 副栏菜单 -->
+    <n-menu
+      ref="subMenuRef" v-model:value="subMenuKey" :options="subMenuOptions" :collapsed-icon-size="16" :indent="16"
+      :icon-size="16" accordion
+    />
+  </n-layout-sider>
+</template>

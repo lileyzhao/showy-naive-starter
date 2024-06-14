@@ -1,0 +1,50 @@
+welcome:
+  morning: 日安，朝氣少年
+  night: 夜安，瑪卡巴卡
+author: 繡雨
+team: 西江繡雨
+intro: 撒旦的女兒動了心，走的時候也紅了眼，愛上了那個穿著白襯衫的男孩，妄想着成為人類，便是禁忌。
+login:
+  title: 登入
+menu:
+  project:
+    title: 專案
+    hello: 你好
+    world: 世界
+    surprise: 驚喜
+  about:
+    title: 關於
+    author: 作者
+    project: 專案
+  profile: 個人
+  settings: 設定
+tips:
+  menuState:
+    normal: 點擊隱藏圖示下方標題
+    iconLabel: 點擊展開主欄菜單
+    onlyIcon: 點擊收縮主欄菜單
+theme:
+  themeDrawerTitle: 主題與佈局
+  themeMode:
+    title: 主題模式
+    light: 淺色
+    dark: 深色
+    system: 跟隨系統
+page:
+  about:
+    title: 關於
+    introduction: 繡雨
+    projectInfo:
+      title: 專案信息
+      version: 當前版本
+      latestBuildTime: 建置時間
+      githubLink: 專案網址
+      previewLink: 預覽網址
+    prdDep: 生產依賴
+    devDep: 開發依賴
+profileMenu:
+  profile: 個人資料
+  settings: 設定
+  logout: 登出
+common:
+  backToHome: 返回首頁
