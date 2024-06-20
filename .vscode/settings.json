@@ -11,7 +11,7 @@
     ".editorconfig": ".eslintignore,.prettierignore,.stylelintignore,.commitlintrc.*,.prettierrc.*,.stylelintrc.*,eslint.config.*,commitlint.config.*",
     "auto-import.d.ts": "components.d.ts,vite-env.d.ts",
     "tsconfig.json": "tsconfig.node.json",
-    "dockerfile": ".dockerignore"
+    "dockerfile": ".dockerignore,netlify.*"
   },
   "cSpell.words": [
     "antfu",
