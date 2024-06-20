@@ -108,7 +108,7 @@ const handleAction = (op: string, _val: any) => {
 </script>
 
 <template>
-  <n-layout has-sider position="absolute" text-white>
+  <n-layout has-sider position="absolute">
     <!-- Sidebar (Desktop): Main Sidebar. 侧边栏(电脑端):主栏。 -->
     <MainSidebar
       v-if="!app.isMobile && !isTopBar" ref="mainSidebarRef" :menu-key="mainMenuKey"
