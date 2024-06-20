@@ -19,9 +19,7 @@
   },
   "website": "https://naive-admin.showy.cn",
   "scripts": {
-    "predev": "node -e \"if (parseInt(process.versions.node.split('.')[0]) < 20) { console.error('Error: Node.js version must be >= 20.0.0'); process.exit(1); }\"",
     "dev": "pnpm vite",
-    "prebuild": "node -e \"if (parseInt(process.versions.node.split('.')[0]) < 20) { console.error('Error: Node.js version must be >= 20.0.0'); process.exit(1); }\"",
     "build": "vue-tsc && cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=8192 pnpm vite build",
     "build:docker": "vite build --mode docker",
     "preview": "npm run build && vite preview",
