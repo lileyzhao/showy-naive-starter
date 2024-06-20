@@ -2,11 +2,12 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import { useOsTheme } from 'naive-ui'
 import type { LocaleSetting, MenuButtonEnum, MenuSetting } from '@/shared'
 import { LocaleEnum, MenuPositionEnum, ThemeModeEnum } from '@/shared'
-import { darkMode, localeSetting, menuSetting } from '@/setting/appSetting'
+import { darkMode, localeSetting, menuSetting, version } from '@/setting/appSetting'
 import { deepMergeObjects, typedLocalStorage, updateLocale, updateThemeMode } from '@/utils'
 import { availableLocales } from '@/modules/i18n'
 import type { DeepPartial } from '@/shared/types'
 
+export const APP_SETTING_VERSION = '__APP__SETTING__VERSION__'
 export const APP_THEME_SCHEMA_KEY = '__APP__DARK__MODE__'
 export const APP_LOCALE_KEY = '__APP__LOCALE__MODE__'
 export const APP_MENU_KEY = '__APP__MENU__SETTING__'
@@ -16,6 +17,8 @@ export const APP_MENU_KEY = '__APP__MENU__SETTING__'
  * 应用的基础设置
  */
 interface AppSettingState {
+  /** Application setting version 应用设置版本 */
+  version?: string
   /** Theme mode 主题模式 */
   themeMode?: ThemeModeEnum
   /** Locale settings 本地化设置 */
@@ -28,6 +31,7 @@ interface AppSettingState {
 
 export const useAppStore = defineStore('appSetting', {
   state: (): AppSettingState => ({
+    version: undefined,
     themeMode: undefined,
     localeSetting: undefined,
     menuSetting: undefined,
@@ -36,6 +40,13 @@ export const useAppStore = defineStore('appSetting', {
   getters: {
     /** Raw theme mode (original configuration: dark, light, system) 主题模式(原始配置 dark light system) */
     ThemeModeRaw(state): ThemeModeEnum {
+      // Verify version cache 验证版本缓存
+      if ((this.version || typedLocalStorage.getItem(APP_SETTING_VERSION)) !== version) {
+        typedLocalStorage.removeItems(APP_THEME_SCHEMA_KEY, APP_LOCALE_KEY, APP_MENU_KEY)
+        this.version = version
+        typedLocalStorage.setItem(APP_SETTING_VERSION, version)
+      }
+
       return state.themeMode || typedLocalStorage.getItem(APP_THEME_SCHEMA_KEY) || darkMode
     },
     /** Theme mode (system will convert to dark or light) 主题模式(system会根据转为dark或light) */
@@ -50,6 +61,13 @@ export const useAppStore = defineStore('appSetting', {
     },
     /** Locale settings 本地化设置 */
     LocaleSetting(state): LocaleSetting {
+      // Verify version cache 验证版本缓存
+      if ((this.version || typedLocalStorage.getItem(APP_SETTING_VERSION)) !== version) {
+        typedLocalStorage.removeItems(APP_THEME_SCHEMA_KEY, APP_LOCALE_KEY, APP_MENU_KEY)
+        this.version = version
+        typedLocalStorage.setItem(APP_SETTING_VERSION, version)
+      }
+
       const setting = state.localeSetting || typedLocalStorage.getItem(APP_LOCALE_KEY) || localeSetting
       if (!setting.locale)
         // Default to use browser language 默认使用浏览器语言
@@ -58,6 +76,13 @@ export const useAppStore = defineStore('appSetting', {
     },
     /** Menu settings 菜单设置 */
     MenuSetting(state): MenuSetting {
+      // Verify version cache 验证版本缓存
+      if ((this.version || typedLocalStorage.getItem(APP_SETTING_VERSION)) !== version) {
+        typedLocalStorage.removeItems(APP_THEME_SCHEMA_KEY, APP_LOCALE_KEY, APP_MENU_KEY)
+        this.version = version
+        typedLocalStorage.setItem(APP_SETTING_VERSION, version)
+      }
+
       const mset = state.menuSetting || typedLocalStorage.getItem(APP_MENU_KEY) || menuSetting
       if (!mset.menuState) {
         if (mset.mainMenu.collapsed && mset.mainMenu.showLabel) {

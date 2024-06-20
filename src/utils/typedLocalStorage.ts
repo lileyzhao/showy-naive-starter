@@ -63,6 +63,23 @@ export class typedLocalStorage {
   }
 
   /**
+   * Removes specified data from localStorage by keys
+   * 从 localStorage 中移除指定Keys集合的数据
+   *
+   * @param keys The keys of the data to remove. 要移除的数据的键名集合。
+   */
+  static removeItems(...keys: string[]): void {
+    try {
+      keys.forEach((key) => {
+        localStorage.removeItem(key)
+      })
+    }
+    catch (error) {
+      console.error('Error removing from localStorage. 从localStorage移除数据时发生错误。', error)
+    }
+  }
+
+  /**
    * Clears all data from localStorage
    * 清空 localStorage 中所有的数据
    */

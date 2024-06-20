@@ -55,13 +55,6 @@ export enum MenuStateEnum {
  * @interface Menu Settings 菜单设置
  */
 export interface MenuSetting {
-  /**
-   * Menu setting version, mainly used to clear the client configuration cache,
-   * if the version is different, the client cache will be cleared.
-   * 菜单配置版本，主要用于清除客户端配置缓存，版本不同时则清除客户端缓存。
-   */
-  version: string
-
   /** Displayed menu button set 显示的菜单按钮集合 */
   buttons: MenuButtonEnum[]
 

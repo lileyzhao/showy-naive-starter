@@ -1,6 +1,12 @@
 import { type LocaleSetting, MenuButtonEnum, MenuPositionEnum, type MenuSetting, ThemeModeEnum } from '@/shared'
 
 /**
+ * Application setting version, mainly used to clear the client configuration cache,
+ * 应用设置版本，主要用于清除客户端配置缓存，
+ */
+export const version = '0.1.0'
+
+/**
  * Default theme mode 默认主题模式
  */
 export const darkMode = ThemeModeEnum.LIGHT
@@ -18,7 +24,7 @@ export const localeSetting: LocaleSetting = {
 
   // Whether to include the language option in the route
   // 是否把语言选项包含在路由中
-  inRoute: true,
+  inRoute: false,
 
   // The language option that is not included in the route
   // 不包含在路由的语言选项
@@ -29,11 +35,6 @@ export const localeSetting: LocaleSetting = {
  * Default menu Setting 默认菜单设置
  */
 export const menuSetting: MenuSetting = {
-  // Menu setting version, mainly used to clear the client configuration cache,
-  // if the version is different, the client cache will be cleared.
-  // 菜单配置版本，主要用于清除客户端配置缓存，版本不同时则清除客户端缓存。
-  version: '1.0.0',
-
   // Displayed menu button set 显示的菜单按钮集合
   buttons: [
     MenuButtonEnum.ThemeDrawer,
