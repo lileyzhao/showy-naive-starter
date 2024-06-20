@@ -8,18 +8,23 @@
   "author": "lileyzhao@gmail.com",
   "license": "MIT",
   "homepage": "https://github.com/lileyzhao/vue-showy-naive",
-  "website": "https://naive-admin.showy.cn",
   "repository": {
     "url": "https://github.com/lileyzhao/vue-showy-naive.git"
   },
   "bugs": {
     "url": "https://github.com/lileyzhao/vue-showy-naive/issues"
   },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "website": "https://naive-admin.showy.cn",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "predev": "node -e \"if (parseInt(process.versions.node.split('.')[0]) < 20) { console.error('Error: Node.js version must be >= 20.0.0'); process.exit(1); }\"",
+    "dev": "pnpm vite",
+    "prebuild": "node -e \"if (parseInt(process.versions.node.split('.')[0]) < 20) { console.error('Error: Node.js version must be >= 20.0.0'); process.exit(1); }\"",
+    "build": "vue-tsc && cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=8192 pnpm vite build",
     "build:docker": "vite build --mode docker",
-    "preview": "vite preview",
+    "preview": "npm run build && vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:view": "npx eslint-flat-config-viewer",
