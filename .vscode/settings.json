@@ -7,7 +7,7 @@
     "*.tsx": "$(capture).test.ts, $(capture).test.tsx",
     "*.env": "$(capture).env.*",
     "CHANGELOG.md": "CHANGELOG*",
-    "package.json": "pnpm-*.yaml,LICENSE,.gitattributes,.gitignore,.gitpod.yml,CNAME,README*,.npmrc,.browserslistrc",
+    "package.json": "package-lock.json,pnpm-*.yaml,LICENSE,.gitattributes,.gitignore,.gitpod.yml,CNAME,README*,.npmrc,.browserslistrc",
     ".editorconfig": ".eslintignore,.prettierignore,.stylelintignore,.commitlintrc.*,.prettierrc.*,.stylelintrc.*,eslint.config.*",
     "auto-import.d.ts": "components.d.ts,vite-env.d.ts",
     "tsconfig.json": "tsconfig.node.json",
