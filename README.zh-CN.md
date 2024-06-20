@@ -16,7 +16,7 @@
 <br>
 
 <p align='center'>
-<a href="/lileyzhao/showy-naive-template/blob/main/README.md">English</a> | <b>简体中文</b>
+<a href="./README.md">English</a> | <b>简体中文</b>
 </p>
 
 ## 提示
