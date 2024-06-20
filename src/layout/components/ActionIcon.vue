@@ -30,11 +30,11 @@ const iconClass = computed(() => `${defaultIconClass} ${props.class ?? ''} ${pro
 </script>
 
 <template>
-  <NTag v-if="props.button" checkable size="large" :class="buttonClass">
+  <n-tag v-if="props.button" checkable size="large" :class="buttonClass">
     <div flex-y-center flex-row gap-x-2>
       <div :class="iconClass" />
       <span v-if="text" :class="props.textClass">{{ props.text }}</span>
     </div>
-  </NTag>
+  </n-tag>
   <div v-else :class="iconClass" />
 </template>

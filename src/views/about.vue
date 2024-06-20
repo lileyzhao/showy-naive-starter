@@ -46,52 +46,52 @@ const latestBuildTime = BUILD_TIME
 
 <template>
   <n-card content-class="!p-8px" :bordered="false">
-    <NSpace vertical :size="14">
-      <NCard :title="t('page.about.title')" :bordered="false" size="small" segmented class="card-wrapper">
+    <n-space vertical :size="14">
+      <n-card :title="t('page.about.title')" :bordered="false" size="small" segmented class="card-wrapper">
         <p>{{ t('page.about.introduction') }}</p>
-      </NCard>
-      <NCard :title="t('page.about.projectInfo.title')" :bordered="false" size="small" segmented class="card-wrapper">
-        <NDescriptions label-placement="left" bordered size="small" :column="column">
-          <NDescriptionsItem :label="t('page.about.projectInfo.version')">
-            <NTag type="primary">
+      </n-card>
+      <n-card :title="t('page.about.projectInfo.title')" :bordered="false" size="small" segmented class="card-wrapper">
+        <n-descriptions label-placement="left" bordered size="small" :column="column">
+          <n-descriptions-item :label="t('page.about.projectInfo.version')">
+            <n-tag type="primary">
               {{ pkgJson.version }}
-            </NTag>
-          </NDescriptionsItem>
-          <NDescriptionsItem :label="t('page.about.projectInfo.latestBuildTime')">
-            <NTag type="primary">
+            </n-tag>
+          </n-descriptions-item>
+          <n-descriptions-item :label="t('page.about.projectInfo.latestBuildTime')">
+            <n-tag type="primary">
               {{ latestBuildTime }}
-            </NTag>
-          </NDescriptionsItem>
-          <NDescriptionsItem :label="t('page.about.projectInfo.githubLink')">
+            </n-tag>
+          </n-descriptions-item>
+          <n-descriptions-item :label="t('page.about.projectInfo.githubLink')">
             <a
               :style="`color:${themeVars.primaryColor}`" :href="pkg.homepage" target="_blank"
               rel="noopener noreferrer"
             >
               {{ t('page.about.projectInfo.githubLink') }}
             </a>
-          </NDescriptionsItem>
-          <NDescriptionsItem :label="t('page.about.projectInfo.previewLink')">
+          </n-descriptions-item>
+          <n-descriptions-item :label="t('page.about.projectInfo.previewLink')">
             <a :style="`color:${themeVars.primaryColor}`" :href="pkg.website" target="_blank" rel="noopener noreferrer">
               {{ t('page.about.projectInfo.previewLink') }}
             </a>
-          </NDescriptionsItem>
-        </NDescriptions>
-      </NCard>
-      <NCard :title="t('page.about.prdDep')" :bordered="false" size="small" segmented class="card-wrapper">
-        <NDescriptions label-placement="left" bordered size="small" :column="column">
-          <NDescriptionsItem v-for="item in pkgJson.dependencies" :key="item.name" :label="item.name">
+          </n-descriptions-item>
+        </n-descriptions>
+      </n-card>
+      <n-card :title="t('page.about.prdDep')" :bordered="false" size="small" segmented class="card-wrapper">
+        <n-descriptions label-placement="left" bordered size="small" :column="column">
+          <n-descriptions-item v-for="item in pkgJson.dependencies" :key="item.name" :label="item.name">
             {{ item.version }}
-          </NDescriptionsItem>
-        </NDescriptions>
-      </NCard>
-      <NCard :title="t('page.about.devDep')" :bordered="false" size="small" segmented class="card-wrapper">
-        <NDescriptions label-placement="left" bordered size="small" :column="column">
-          <NDescriptionsItem v-for="item in pkgJson.devDependencies" :key="item.name" :label="item.name">
+          </n-descriptions-item>
+        </n-descriptions>
+      </n-card>
+      <n-card :title="t('page.about.devDep')" :bordered="false" size="small" segmented class="card-wrapper">
+        <n-descriptions label-placement="left" bordered size="small" :column="column">
+          <n-descriptions-item v-for="item in pkgJson.devDependencies" :key="item.name" :label="item.name">
             {{ item.version }}
-          </NDescriptionsItem>
-        </NDescriptions>
-      </NCard>
-    </NSpace>
+          </n-descriptions-item>
+        </n-descriptions>
+      </n-card>
+    </n-space>
   </n-card>
 </template>
 

@@ -35,39 +35,33 @@ defineExpose({ show })
 </script>
 
 <template>
-  <NDrawer
+  <n-drawer
     v-model:show="drawerActive" display-directive="show" :width="325"
     :on-after-leave="() => drawerActive = false"
   >
-    <NDrawerContent :title="t('theme.themeDrawerTitle')" :native-scrollbar="false" closable>
-      <NDivider title-placement="left" dashed>
+    <n-drawer-content :title="t('theme.themeDrawerTitle')" :native-scrollbar="false" closable>
+      <n-divider title-placement="left" dashed>
         {{ t('theme.themeMode.title') }}
-      </NDivider>
+      </n-divider>
       <div class="flex-col-stretch gap-16px">
         <div class="i-flex-center">
-          <NTabs
+          <n-tabs
             :key="app.ThemeModeRaw" type="segment" size="small" class="relative w-214px"
             :value="app.ThemeModeRaw" @update:value="handleDarkModeChange"
           >
-            <NTab v-for="(_, key) in icons" :key="key" :name="key">
+            <n-tab v-for="(_, key) in icons" :key="key" :name="key">
               <div flex items-center justify-center gap-8px>
                 <div :class="`${icons[key]} text-icon-small h-23px`" />
                 <span>{{ t(texts[key]) }}</span>
               </div>
-            </NTab>
-          </NTabs>
+            </n-tab>
+          </n-tabs>
         </div>
         <div v-if="app.ThemeModeRaw !== ThemeModeEnum.DARK" m-y-12px flex-y-center gap-8px>
           <span>深色侧边栏</span>
-          <NSwitch v-model:value="mainMenuInverted" />
+          <n-switch v-model:value="mainMenuInverted" />
         </div>
       </div>
-      <!-- <LayoutMode />
-      <ThemeColor />
-      <PageFun />
-      <template #footer>
-        <ConfigOperation />
-      </template> -->
-    </NDrawerContent>
-  </NDrawer>
+    </n-drawer-content>
+  </n-drawer>
 </template>

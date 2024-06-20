@@ -21,17 +21,17 @@ const themeOverrides: GlobalThemeOverrides = {
 </script>
 
 <template>
-  <NConfigProvider :theme="theme" :locale="locale" :date-locale="dateLocale" :theme-overrides="themeOverrides" inline-theme-disabled>
-    <!-- <NThemeEditor> -->
-    <NModalProvider>
-      <NDialogProvider>
-        <NNotificationProvider>
-          <NMessageProvider>
-            <RouterView />
-          </NMessageProvider>
-        </NNotificationProvider>
-      </NDialogProvider>
-    </NModalProvider>
-    <!-- </NThemeEditor> -->
-  </NConfigProvider>
+  <n-config-provider :theme="theme" :locale="locale" :date-locale="dateLocale" :theme-overrides="themeOverrides" inline-theme-disabled>
+    <!-- <n-theme-editor> -->
+    <n-modal-provider>
+      <n-dialog-provider>
+        <n-notification-provider>
+          <n-message-provider>
+            <router-view />
+          </n-message-provider>
+        </n-notification-provider>
+      </n-dialog-provider>
+    </n-modal-provider>
+    <!-- </n-theme-editor> -->
+  </n-config-provider>
 </template>
