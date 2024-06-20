@@ -6,7 +6,7 @@
 <br>
 
 <p align='center'>
-<a href="#">在线 Demo</a>
+<a href="#">在线 Demo</a> | <a href="#">在线文档</a>
 </p>
 
 <br>
@@ -19,11 +19,9 @@
 <a href="https://github.com/lileyzhao/showy-naive-template/blob/main/README.md">English</a> | <b>简体中文</b>
 </p>
 
-<br>
+## 提示
 
-<p align='center'>
-<a href="#">在线文档</a>
-</p>
+这仅仅是一个管理后台的模板项目，并不会去实现完整的后台功能。你可以基于模板创建仓库后自行实现你自己的管理后台。
 
 ## 特性
 
@@ -31,7 +29,7 @@
 - 🚀 **Vite** - 超快的开发构建工具
 - 🎨 **NaiveUI** - 一个有点意思的 Vue 3 组件库
 - 💅 **UnoCSS** - 高性能且极具灵活性的即时原子化 CSS 引擎
-- 💅 **ESlint** - 基于[@antfu/eslint-config](https://github.com/antfu/eslint-config)的预置规则库
+- 🧹 **ESlint** - 基于[@antfu/eslint-config](https://github.com/antfu/eslint-config)的预置规则库
 
 ## 预配置
 

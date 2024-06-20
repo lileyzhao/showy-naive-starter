@@ -6,7 +6,7 @@
 <br>
 
 <p align='center'>
-<a href="#">Online Demo</a>
+<a href="#">Online Demo</a> | <a href="#">Online Document</a>
 </p>
 
 <br>
@@ -19,11 +19,9 @@
 <b>English</b> | <a href="https://github.com/lileyzhao/showy-naive-template/blob/main/README.zh-CN.md">简体中文</a>
 </p>
 
-<br>
+## Notice
 
-<p align='center'>
-<a href="#">Online Documentation</a>
-</p>
+This is merely a template project for an admin dashboard and does not implement full backend functionality. You can create a repository based on this template and implement your own admin dashboard.
 
 ## Features
 
@@ -31,7 +29,7 @@
 - 🚀 **Vite** - Super fast development build tool
 - 🎨 **NaiveUI** - An interesting Vue 3 component library
 - 💅 **UnoCSS** - High-performance and extremely flexible instant atomic CSS engine
-- 💅 **ESLint** - Pre-configured rule set based on [@antfu/eslint-config](https://github.com/antfu/eslint-config)
+- 🧹 **ESLint** - Pre-configured rule set based on [@antfu/eslint-config](https://github.com/antfu/eslint-config)
 
 ## Pre-configured
 
