@@ -1,6 +1,4 @@
 <script setup lang="ts" name="Layout-ActionIcon">
-import { useAppStore } from '@/store/modules/app'
-
 const props = defineProps<{
   /** it is a button? 是否显示为按钮 */
   button?: boolean
