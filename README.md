@@ -82,10 +82,10 @@ pnpm i # If you haven't installed pnpm, run: npm install -g pnpm
 When using this template, try to update your own information correctly according to the checklist:
 
 - [ ] Change the author name in `LICENSE`
-- [ ] Change the title in `App.vue`
-- [ ] Change the hostname in `vite.config.ts`
+- [ ] Change the title in `index.html`
+- [ ] Change the project name and author in `package.json`
 - [ ] Change the favicon in the `public` directory
-- [ ] Clean up the README and remove irrelevant information
+- [ ] Clean up the README and CHANGELOG and remove irrelevant information
 
 Then, enjoy :)
 
@@ -96,6 +96,7 @@ Then, enjoy :)
 To see it in action at http://localhost:4318, just run:
 
 ```bash
+pnpm i
 pnpm dev
 ```
 

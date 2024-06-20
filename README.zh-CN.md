@@ -82,10 +82,10 @@ pnpm i # 如果你没装过 pnpm, 可以先运行: npm install -g pnpm
 使用此模板时，请尝试按照清单正确更新您自己的信息
 
 - [ ] 在 `LICENSE` 中改变作者名
-- [ ] 在 `App.vue` 中改变标题
-- [ ] 在 `vite.config.ts` 更改主机名
+- [ ] 在 `index.html` 中改变标题
+- [ ] 在 `package.json` 更改项目名和作者
 - [ ] 在 `public` 目录下改变 favicon
-- [ ] 整理 README 并删除无关信息
+- [ ] 整理 README 与 CHANGELOG 并删除无关信息
 
 紧接着, 享受吧 :)
 
@@ -96,6 +96,7 @@ pnpm i # 如果你没装过 pnpm, 可以先运行: npm install -g pnpm
 只需要执行以下命令就可以在 http://localhost:4318 中看到
 
 ```bash
+pnpm i
 pnpm dev
 ```
 
