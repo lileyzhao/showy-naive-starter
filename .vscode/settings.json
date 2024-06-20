@@ -22,6 +22,7 @@
     "DSEG",
     "iconify",
     "intlify",
+    "Liley",
     "Makabaka",
     "nums",
     "pinia",
@@ -35,7 +36,8 @@
     "unref",
     "Vite",
     "vueuse",
-    "watsonx"
+    "watsonx",
+    "Zhao"
   ],
 
   // Enable the ESlint flat config support

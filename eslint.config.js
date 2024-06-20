@@ -5,6 +5,7 @@ export default showy(
     vue: true,
     unocss: true,
     formatters: true,
+    ignores: ['dist', 'node_modules', 'public', 'README.md', 'README.*.md', 'LICENSE'],
   },
   {
     rules: {
@@ -30,6 +31,7 @@ export default showy(
       // ],
       // 'max-len': ['warn', { code: 128 }],
       'no-console': ['off'],
+      'md041/first-line-heading/first-line-h1': ['off'],
     },
   },
 )
