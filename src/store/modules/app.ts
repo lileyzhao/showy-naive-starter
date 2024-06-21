@@ -1,5 +1,4 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { useOsTheme } from 'naive-ui'
 import type { LocaleSetting, MenuButtonEnum, MenuSetting } from '@/shared'
 import { LocaleEnum, MenuPositionEnum, ThemeModeEnum } from '@/shared'
 import { darkMode, localeSetting, menuSetting, version } from '@/setting/appSetting'
@@ -52,8 +51,8 @@ export const useAppStore = defineStore('appSetting', {
     /** Theme mode (system will convert to dark or light) 主题模式(system会根据转为dark或light) */
     ThemeMode(): ThemeModeEnum {
       const mode = this.ThemeModeRaw
-      const osTheme = useOsTheme()
-      return mode === ThemeModeEnum.SYSTEM ? (osTheme.value === 'dark' ? ThemeModeEnum.DARK : ThemeModeEnum.LIGHT) : mode
+      const darkOsTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      return mode === ThemeModeEnum.SYSTEM ? (darkOsTheme ? ThemeModeEnum.DARK : ThemeModeEnum.LIGHT) : mode
     },
     /** Is dark mode 是否深色模式 */
     IsDarkMode(): boolean {
