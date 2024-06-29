@@ -45,9 +45,6 @@ importers:
       '@iconify-json/line-md':
         specifier: ^1.1.38
         version: 1.1.38
-      '@iconify-json/lucide':
-        specifier: ^1.1.196
-        version: 1.1.196
       '@intlify/unplugin-vue-i18n':
         specifier: ^4.0.0
         version: 4.0.0(rollup@4.13.0)(vue-i18n@9.13.1(vue@3.4.31(typescript@5.5.2)))
@@ -659,9 +656,6 @@ packages:
 
   '@iconify-json/line-md@1.1.38':
     resolution: {integrity: sha512-W+y4G/7QqO1sTGUypwsm0UUwjbGt/BjRg4kZylek7BwH5EG8f1uUJgcZwRASjsH4xGL+LVQbw6FAGbQ1UHNCow==}
-
-  '@iconify-json/lucide@1.1.196':
-    resolution: {integrity: sha512-yYIeBbe1cdDfXoaocr7Na4QI8Up3h7gtVvITKarGUcJCaj1AdJf8lUS8LNtHFfVyEHxqSVDjfGsTL05L81aKSg==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -3906,10 +3900,6 @@ snapshots:
       '@iconify/types': 2.0.0
 
   '@iconify-json/line-md@1.1.38':
-    dependencies:
-      '@iconify/types': 2.0.0
-
-  '@iconify-json/lucide@1.1.196':
     dependencies:
       '@iconify/types': 2.0.0
 
