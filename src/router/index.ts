@@ -40,7 +40,7 @@ export const PublicRoutes: RouteRecordRaw[] = [
     path: `${LOCALE_PARAM}/login`,
     name: 'login',
     component: () => import('@/views/login.vue'),
-    meta: { title: t('menu.login') },
+    meta: { title: t('login.title') },
   },
 ]
 

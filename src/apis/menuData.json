@@ -10,9 +10,9 @@
         { "path": "hello", "name": "hello", "title": "menu.project.hello", "component": "@/views/welcome", "icon": "i-carbon:face-wink" },
         { "path": "world", "name": "world", "title": "menu.project.world", "component": "@/views/welcome", "icon": "i-carbon:earth-southeast-asia" },
         { "path": "surprise", "name": "surprise", "title": "menu.project.surprise", "component": "@/views/welcome", "icon": "i-carbon:face-cool" },
-        { "path": "e403", "name": "e403", "title": "menu.project.surprise", "component": "@/views/builtin/e403/index.vue", "icon": "i-carbon:face-cool" },
-        { "path": "e404", "name": "e404", "title": "menu.project.surprise", "component": "@/views/builtin/e404/index.vue", "icon": "i-carbon:face-cool" },
-        { "path": "e500", "name": "e500", "title": "menu.project.surprise", "component": "@/views/builtin/e500/index.vue", "icon": "i-carbon:face-cool" }
+        { "path": "403", "name": "403", "title": "menu.project.surprise", "component": "403", "icon": "i-carbon:face-cool" },
+        { "path": "404", "name": "404", "title": "menu.project.surprise", "component": "404", "icon": "i-carbon:face-cool" },
+        { "path": "500", "name": "500", "title": "menu.project.surprise", "component": "500", "icon": "i-carbon:face-cool" }
       ]
     },
     {
