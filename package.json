@@ -4,20 +4,20 @@
   "version": "0.1.0-alpha",
   "private": true,
   "packageManager": "pnpm@9.4.0",
-  "description": "Showy Naive Template",
+  "description": "An admin dashboard UI template based on Vue 3, Vite, Naive UI, and UnoCSS. 基于 Vue 3、Vite、Naive UI 和 UnoCSS 的管理后台UI模板。",
   "author": "lileyzhao@gmail.com",
   "license": "MIT",
-  "homepage": "https://github.com/lileyzhao/vue-showy-naive",
+  "homepage": "https://github.com/lileyzhao/showy-naive-template",
   "repository": {
-    "url": "https://github.com/lileyzhao/vue-showy-naive.git"
+    "url": "https://github.com/lileyzhao/showy-naive-template.git"
   },
   "bugs": {
-    "url": "https://github.com/lileyzhao/vue-showy-naive/issues"
+    "url": "https://github.com/lileyzhao/showy-naive-template/issues"
   },
   "engines": {
     "node": ">=20.0.0"
   },
-  "website": "https://naive-admin.showy.cn",
+  "website": "https://naive-template.git.showyou.dev",
   "scripts": {
     "dev": "pnpm vite",
     "build": "vue-tsc && cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=8192 pnpm vite build",
