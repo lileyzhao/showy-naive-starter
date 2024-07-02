@@ -1,11 +1,11 @@
 // Built-in pages 内置的页面
-export const builtInViews: Record<string, () => Promise<Recordable>> = import.meta.glob('@/layout/built-in/**/*.{vue,tsx}')
+const builtInViews: Record<string, () => Promise<Recordable>> = import.meta.glob('@/layout/built-in/**/*.{vue,tsx}')
 
 // Dynamic import of view modules 动态导入视图模块
-export const userViews: Record<string, () => Promise<Recordable>> = import.meta.glob('@/views/**/*.{vue,tsx}')
+const userViews: Record<string, () => Promise<Recordable>> = import.meta.glob('@/views/**/*.{vue,tsx}')
 
 // Merge built-in views into dynamic view 合并内置页面到动态视图
-const dynamicViews = { ...builtInViews, ...userViews }
+export const dynamicViews = { ...builtInViews, ...userViews }
 
 console.log('%c 组件表 ', 'color:white;background-color:blue;', dynamicViews)
 

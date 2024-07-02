@@ -42,7 +42,21 @@ export const PublicRoutes: RouteRecordRaw[] = [
     component: () => import('@/views/login.vue'),
     meta: { title: t('login.title') },
   },
+  // Catch all unmatched routes, must be placed at the end.
+  // 捕获所有未匹配的路由，必须放在最后一个。
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('@/layout/built-in/404.vue'),
+  },
 ]
+
+// Catch all unmatched routes 捕获所有未匹配的路由
+export const NotFoundRoute: RouteRecordRaw = {
+  path: '/:pathMatch(.*)*',
+  name: 'NotFound',
+  component: () => import('@/layout/built-in/404.vue'),
+}
 
 /**
  * Combine RootRoute and PublicRoutes.
@@ -129,6 +143,7 @@ async function setDynamicRoutes() {
   const publicRoutes = transformJsonRoutes(Array.isArray(menuData) ? [] : menuData.publicRoutes ?? [])
   publicRoutes.forEach((route: RouteRecordRaw) => router.addRoute(route))
 
+  console.log(router.getRoutes())
   // Return Vue Router instance. 返回 Vue Router 实例。
   return router
 }
