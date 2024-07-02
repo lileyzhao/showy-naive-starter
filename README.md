@@ -1,5 +1,5 @@
 <p align='center'>
-  <b>Admin Dashboard UI Template Based on Vue + Vite + Naive + UnoCSS</b>
+  <b>Admin Dashboard UI Template Based on Vue + Vite + NaiveUI + UnoCSS</b>
   <br>Create beautiful and simple admin dashboard UI projects quickly
 </p>
 
@@ -11,7 +11,9 @@
 
 <br>
 
-> This is an open-source project based on the latest technology stack, aimed at providing a simple admin dashboard template. The project was initially created for educational purposes, featuring a clean design without complex encapsulations and advanced techniques, making it an excellent project for learning front-end technologies. The author is originally a backend developer who had to learn front-end development out of necessity, and hopes this project can be helpful to you.
+> This is an open-source project based on the latest technology stack, aimed at providing a simple admin dashboard template.
+> The project was initially created for educational purposes, featuring a clean design without complex encapsulations and advanced techniques, making it an excellent project for learning front-end technologies.
+> The author is originally a backend developer who had to learn front-end development out of necessity, and hopes this project can be helpful to you.
 
 <br>
 
