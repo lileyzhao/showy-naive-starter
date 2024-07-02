@@ -46,7 +46,7 @@ export function asyncImportRoute(routes: AppRouteRecordRaw[] | undefined) {
         item.component = layoutFound
       }
       else {
-        item.component = dynamicImport(dynamicViewsModules, component as string)
+        item.component = dynamicImport(component as string)
       }
     }
     else if (name) {

@@ -20,7 +20,7 @@
   "website": "https://naive-template.git.showyou.dev",
   "scripts": {
     "dev": "pnpm vite",
-    "build": "vue-tsc && cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=8192 pnpm vite build",
+    "build": "pnpm vite build",
     "build:docker": "vite build --mode docker",
     "preview": "npm run build && vite preview",
     "lint": "eslint .",
