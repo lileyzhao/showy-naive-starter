@@ -124,10 +124,12 @@ defineExpose({ refreshTopMenu })
         <div :class="menuStateIcon" cursor-pointer text-5 @click="toggleMainMenu" />
         <span v-if="!app.isMobile" font-size-3 text-gray>←{{ t(MENU_STATE_TEXT[menuSetting.menuState!]) }}</span>
       </div>
+      <!-- Top logo 顶栏Logo -->
+      <Logo v-if="isTopBarLayout && !menuSetting.topMenu.showSubMenu" flex-nowrap b-r-1 px-28px />
       <!-- Top menu 顶栏菜单 -->
-      <div v-else-if="!app.isMobile && isTopBarLayout" h-full flex flex-1 items-center>
-        <Logo v-if="isTopBarLayout && !menuSetting.topMenu.showSubMenu" flex-nowrap b-r-1 px-28px />
+      <div flex-1>
         <n-menu
+          v-if="!app.isMobile && isTopBarLayout"
           ref="topMenuRef" v-model:value="topMenuKey" mode="horizontal" :options="topMenuOptions"
           :icon-size="20.5" responsive :indent="16" @update:value="onTopMenuKeyChange"
         />
