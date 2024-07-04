@@ -13,9 +13,6 @@ const route = useRoute()
 const fullRoutes = getFullRoutes()
 const mainMenuRoutes = fullRoutes.filter(route => route.meta.parentName === 'root').filter(route => !route.meta?.hidden) ?? []
 
-/** Reference to component 组件引用 */
-const mainMenuRef = ref<MenuInst | null>()
-
 /** Selected Item in main-menu 主栏菜单选中项 */
 const mainMenuKey = ref<string>()
 
@@ -30,6 +27,9 @@ const mainMenuInverted = computed({
   get: () => app.MenuSetting.mainMenu.inverted,
   set: val => app.setMenuSetting({ mainMenu: { inverted: val } }),
 })
+
+/** Reference to component 组件引用 */
+const mainMenuRef = ref<MenuInst | null>()
 
 /** main-menu data 主栏菜单数据 */
 const mainMenuOptions = computed(() => {
@@ -46,16 +46,12 @@ const refreshMainMenu = () => {
   mainMenuRef.value?.showOption(mainMenuKey.value)
 }
 
-onMounted(() => {
-  refreshMainMenu()
-})
-
-watch(() => app.MenuSetting.subMenu.collapsed, (_val) => {
-  refreshMainMenu()
-})
-
 /** Style class for logo logo的样式类 */
 const logoClass = computed(() => !app.IsDarkMode && app.MenuSetting.mainMenu.inverted ? 'b-bl-gray2! b-b-1!' : '')
+
+onMounted(refreshMainMenu)
+
+watch(() => app.MenuSetting.subMenu.collapsed, refreshMainMenu)
 
 /** Exposes 公开对象 */
 defineExpose({ refreshMainMenu })

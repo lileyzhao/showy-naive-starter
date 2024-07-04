@@ -64,8 +64,8 @@ const restoreSubMenu = useDebounceFn(() => {
       else if (!app.isMobile)
         topBarRef.value?.refreshTopMenu()
     }
-  }, 650)
-}, 500)
+  }, 350)
+}, 350)
 
 /** Cancel the restore of the sub-menu. 取消复原副栏菜单。 */
 const cancelRestoreSubMenu = () => {
@@ -110,10 +110,7 @@ const handleAction = (op: string, _val: any) => {
 <template>
   <n-layout has-sider position="absolute">
     <!-- Sidebar (Desktop): Main Sidebar. 侧边栏(电脑端):主栏。 -->
-    <MainSidebar
-      v-if="!app.isMobile && !isTopBar" ref="mainSidebarRef" :menu-key="mainMenuKey"
-      @key-change="handleMainMenuKeyChange"
-    />
+    <MainSidebar v-if="!app.isMobile && !isTopBar" ref="mainSidebarRef" @key-change="handleMainMenuKeyChange" />
     <!-- Sidebar (Desktop): Sub Sidebar. 侧边栏(电脑端):副栏。 -->
     <SubSidebar
       v-if="!app.isMobile && (!isTopBar || menuSetting.topMenu.showSubMenu)"

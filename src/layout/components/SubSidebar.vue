@@ -16,18 +16,10 @@ const { t } = useI18n()
 const app = useAppStore()
 const route = useRoute()
 const fullRoutes = getFullRoutes()
+const subMenuRoutes = ref<RouteRecordRaw[]>([])
 
 /** Menu setting 菜单设置 */
 const menuSetting = computed(() => app.MenuSetting)
-
-// Reference to component 组件引用
-const subMenuRef = ref<MenuInst | null>()
-
-/** Selected Item in sub-menu 副栏菜单选中项 */
-const subMenuKey = computed<string>({
-  get: () => route.name as string,
-  set: () => { },
-})
 
 /** Collapsed State of sub-menu 副栏菜单收缩状态 */
 const collSubMenu = computed({
@@ -38,7 +30,16 @@ const collSubMenu = computed({
   },
 })
 
-const subMenuRoutes = ref<RouteRecordRaw[]>([])
+// Reference to component 组件引用
+const subMenuRef = ref<MenuInst | null>()
+
+/** Selected Item in sub-menu 副栏菜单选中项 */
+const subMenuKey = computed<string>({
+  get: () => route.name as string,
+  set: () => { },
+})
+
+/** sub-menu data 副栏菜单数据 */
 const subMenuOptions = ref<MenuOption[]>([])
 const getSubMenuOptions = (mainMenuKey: string) => {
   return fullRoutes.filter(route => route.meta.parentName === mainMenuKey).map(route => mapRoutes(route, fullRoutes, t, true))
