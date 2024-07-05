@@ -6,7 +6,7 @@
 <br>
 
 <p align='center'>
-<a href="#">Online Demo</a> | <a href="#">Online Document</a>
+<a href="https://showy-naive-template.netlify.app">Online Demo</a> | <a href="#">Online Document</a>
 </p>
 
 <br>

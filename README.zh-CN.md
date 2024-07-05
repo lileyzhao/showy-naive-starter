@@ -6,7 +6,7 @@
 <br>
 
 <p align='center'>
-<a href="#">在线 Demo</a> | <a href="#">在线文档</a>
+<a href="https://showy-naive-template.netlify.app">在线 Demo</a> | <a href="#">在线文档</a>
 </p>
 
 <br>
