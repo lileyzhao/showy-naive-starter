@@ -27,6 +27,15 @@ This is merely a template project for an admin dashboard and does not implement 
 
 ## Features
 
+- 🌟 **Built with the latest and most popular front-end technologies**
+- 📐 **Includes a comprehensive collection of common layout patterns**
+- 🔄 **All layout patterns can be dynamically switched**
+- 🧩 **Code structure is straightforward and easy to understand**
+- 📝 **Fully documented with clear and comprehensive comments in both Chinese and English**
+- 🎨 **Preserves the original characteristics of the component library (no theme overwriting, keeping the original style)**
+
+## Characteristics
+
 - ⚡️ **Vue 3** - The latest version of Vue
 - 🚀 **Vite** - Super fast development build tool
 - 🎨 **NaiveUI** - An interesting Vue 3 component library
