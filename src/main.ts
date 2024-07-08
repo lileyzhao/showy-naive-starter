@@ -35,7 +35,13 @@ async function bootstrap() {
   meta.name = 'naive-ui-style'
   document.head.appendChild(meta)
 
-  app.mount('#app')
+  // 应用挂载后移除加载效果
+  app.mount('#app').$nextTick(() => {
+    const loadingElement = document.getElementById('loading')
+    if (loadingElement) {
+      loadingElement.style.display = 'none'
+    }
+  })
 }
 
 // 执行应用设置
