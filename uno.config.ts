@@ -41,8 +41,8 @@ export default defineConfig({
   },
   shortcuts: {
     // 定义自定义快捷方式
-    'h-header': 'h-16',
-    'lh-header': 'lh-16',
+    'h-header': 'h-15',
+    'lh-header': 'lh-15',
     'flex-center': 'flex items-center justify-center',
     'flex-right-center': 'flex items-center justify-right',
     'flex-x-center': 'flex justify-center',
