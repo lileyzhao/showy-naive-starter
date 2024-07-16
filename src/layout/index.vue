@@ -13,7 +13,8 @@ const app = useAppStore()
 const route = useRoute()
 const fullRoutes = getFullRoutes()
 
-const mountTimeout = ref()
+const mountTimeout = ref<any[]>([])
+const stopTimeout = ref<boolean>(false)
 const mainSidebarRef = ref<InstanceType<typeof MainSidebar>>()
 const topBarRef = ref<InstanceType<typeof TopBar>>()
 const mobileDrawerRef = ref<InstanceType<typeof MobileDrawer>>()
@@ -46,17 +47,11 @@ const mainMenuRootKey = computed(() => {
   else return findRootRoute(currRoute.meta.parentName as string)
 })
 
-/** Main menu selected item changed. 主栏菜单选中项改变。 */
-const handleMainMenuKeyChange = (key: string) => {
-  if (mainMenuKey.value === key)
-    return
-  mainMenuKey.value = key
-  clearTimeout(mountTimeout.value)
-}
-
 /** Restore the sub-menu when the mouse enters the content area. 复原副栏菜单(当鼠标移入内容区时)。 */
 const restoreSubMenu = useDebounceFn(() => {
-  mountTimeout.value = setTimeout(() => {
+  const tt = setTimeout(() => {
+    if (stopTimeout.value)
+      return
     if (!menuSetting.value.subMenu.collapsed) {
       // 刷新主栏菜单
       if (!app.isMobile && !isTopBar.value)
@@ -64,12 +59,25 @@ const restoreSubMenu = useDebounceFn(() => {
       else if (!app.isMobile)
         topBarRef.value?.refreshTopMenu()
     }
-  }, 350)
+  }, 700)
+  mountTimeout.value?.push(tt)
 }, 350)
 
 /** Cancel the restore of the sub-menu. 取消复原副栏菜单。 */
 const cancelRestoreSubMenu = () => {
-  clearTimeout(mountTimeout.value)
+  stopTimeout.value = true
+  while (mountTimeout.value.length > 0) {
+    const tt = mountTimeout.value.shift()
+    clearTimeout(tt)
+  }
+}
+
+/** Main menu selected item changed. 主栏菜单选中项改变。 */
+const handleMainMenuKeyChange = (key: string) => {
+  if (mainMenuKey.value === key)
+    return
+  mainMenuKey.value = key
+  cancelRestoreSubMenu()
 }
 
 /** Sub-menu collapse state changed. 副栏菜单折叠状态改变。 */
@@ -110,11 +118,15 @@ const handleAction = (op: string, _val: any) => {
 <template>
   <n-layout has-sider position="absolute">
     <!-- Sidebar (Desktop): Main Sidebar. 侧边栏(电脑端):主栏。 -->
-    <MainSidebar v-if="!app.isMobile && !isTopBar" ref="mainSidebarRef" @key-change="handleMainMenuKeyChange" />
+    <MainSidebar
+      v-if="!app.isMobile && !isTopBar" ref="mainSidebarRef" @key-change="handleMainMenuKeyChange" @mouseenter="cancelRestoreSubMenu"
+      @mouseleave="stopTimeout = false"
+    />
     <!-- Sidebar (Desktop): Sub Sidebar. 侧边栏(电脑端):副栏。 -->
     <SubSidebar
       v-if="!app.isMobile && (!isTopBar || menuSetting.topMenu.showSubMenu)"
-      :parent-menu-key="mainMenuRootKey" @collapsed="handleSubCollapsed"
+      :parent-menu-key="mainMenuRootKey" @collapsed="handleSubCollapsed" @mouseenter="cancelRestoreSubMenu"
+      @mouseleave="stopTimeout = false"
     />
 
     <!-- Right main area. 右侧主体区。 -->
@@ -122,10 +134,10 @@ const handleAction = (op: string, _val: any) => {
       <!-- Top bar area. 头部横栏区。 -->
       <TopBar
         ref="topBarRef" @action="handleAction" @key-change="handleMainMenuKeyChange"
-        @mouseenter="cancelRestoreSubMenu"
+        @mouseenter="cancelRestoreSubMenu" @mouseleave="stopTimeout = false"
       />
       <!-- Content area. 内容区。 -->
-      <n-layout has-sider @mouseenter="restoreSubMenu" @mouseleave="cancelRestoreSubMenu">
+      <n-layout has-sider @mouseenter="restoreSubMenu">
         <n-layout-content :native-scrollbar="false" flex-1 :style="app.IsDarkMode ? 'background-color: #18181c;' : ''">
           <div p-8px :style="{ backgroundColor: app.IsDarkMode ? '#26262a' : '#f7fafc' }">
             <router-view v-slot="{ Component, route: r }">
