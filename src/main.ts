@@ -1,12 +1,14 @@
 import { createApp } from 'vue'
-import '@unocss/reset/tailwind.css'
-import 'virtual:uno.css'
-import '@/assets/styles/index.scss'
-import App from './App.vue'
+
 import { router, setupRouter } from './router'
+import App from './App.vue'
 // import type { CustomModule } from './shared/types'
 import { setupStore } from '@/store'
 import { setupI18n } from '@/modules/i18n'
+
+import '@unocss/reset/tailwind.css'
+import '@/assets/styles/main.scss'
+import 'virtual:uno.css'
 
 async function bootstrap() {
   console.log('%c DevTeam ', 'color:white;background-color:blue;', 'Showy')
