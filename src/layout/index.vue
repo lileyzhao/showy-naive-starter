@@ -4,11 +4,12 @@ import SubSidebar from './components/SubSidebar.vue'
 import ThemeDrawer from './components/ThemeDrawer.vue'
 import MobileDrawer from './components/MobileDrawer.vue'
 import TopBar from './components/TopBar.vue'
-import { useAppStore } from '@/store/app'
-import { MenuButtonEnum, MenuPositionEnum, ScreenEnum } from '@/shared'
+import { MenuButtonEnum, MenuPositionEnum } from '@/shared'
 import { getFullRoutes } from '@/utils'
+import { isDark } from '@/shared/composable/dark'
+import { isMobile } from '@/shared/composable/mediaQuery'
 
-const app = useAppStore()
+const appSetting = useAppSettingStore()
 const route = useRoute()
 const fullRoutes = getFullRoutes()
 
@@ -20,7 +21,7 @@ const mobileDrawerRef = ref<InstanceType<typeof MobileDrawer>>()
 const themeDrawerRef = ref<InstanceType<typeof ThemeDrawer>>()
 
 // Get menu settings from the app store. 从应用存储中获取菜单设置。
-const menuSetting = computed(() => app.MenuSetting)
+const menuSetting = computed(() => appSetting.menuSetting)
 
 /** Whether the menu is in the top bar layout. 是否顶栏菜单布局。 */
 const isTopBar = computed(() => menuSetting.value.menuPosition === MenuPositionEnum.TOP_BAR)
@@ -53,9 +54,9 @@ const restoreSubMenu = useDebounceFn(() => {
       return
     if (!menuSetting.value.subMenu.collapsed) {
       // 刷新主栏菜单
-      if (!app.isMobile && !isTopBar.value)
+      if (!isMobile && !isTopBar.value)
         mainSidebarRef.value?.refreshMainMenu()
-      else if (!app.isMobile)
+      else if (!isMobile)
         topBarRef.value?.refreshTopMenu()
     }
   }, 700)
@@ -85,24 +86,9 @@ const handleSubCollapsed = (collSubMenu: boolean) => {
   mainMenuKey.value = (collSubMenu ? route.name : route.matched[1].name) as string
 }
 
-/** Trigger mobile mode. 触发移动端模式。 */
-const triggerMobileMode = () => {
-  if (document.body.clientWidth <= ScreenEnum.MD)
-    app.isMobile = true
-  else app.isMobile = false
-}
-
 onMounted(async () => {
-  // Trigger mobile detection and add a listener. 触发移动端检测并添加监听事件。
-  triggerMobileMode()
-  window.addEventListener('resize', triggerMobileMode)
-
   // Update the main menu. 更新主栏菜单。
   mainMenuKey.value = (menuSetting.value.subMenu.collapsed ? route.name : route.matched[1].name) as string
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', triggerMobileMode)
 })
 
 /** Handle various actions like toggling drawers. 处理各种操作，如切换抽屉。 */
@@ -118,12 +104,12 @@ const handleAction = (op: string, _val: any) => {
   <n-layout has-sider position="absolute">
     <!-- Sidebar (Desktop): Main Sidebar. 侧边栏(电脑端):主栏。 -->
     <MainSidebar
-      v-if="!app.isMobile && !isTopBar" ref="mainSidebarRef" @key-change="handleMainMenuKeyChange" @mouseenter="cancelRestoreSubMenu"
+      v-if="isMobile && !isTopBar" ref="mainSidebarRef" @key-change="handleMainMenuKeyChange" @mouseenter="cancelRestoreSubMenu"
       @mouseleave="stopTimeout = false"
     />
     <!-- Sidebar (Desktop): Sub Sidebar. 侧边栏(电脑端):副栏。 -->
     <SubSidebar
-      v-if="!app.isMobile && (!isTopBar || menuSetting.topMenu.showSubMenu)"
+      v-if="!isMobile && (!isTopBar || menuSetting.topMenu.showSubMenu)"
       :parent-menu-key="mainMenuRootKey" @collapsed="handleSubCollapsed" @mouseenter="cancelRestoreSubMenu"
       @mouseleave="stopTimeout = false"
     />
@@ -137,8 +123,8 @@ const handleAction = (op: string, _val: any) => {
       />
       <!-- Content area. 内容区。 -->
       <n-layout has-sider @mouseenter="restoreSubMenu">
-        <n-layout-content :native-scrollbar="false" flex-1 :style="app.IsDarkMode ? 'background-color: #18181c;' : ''">
-          <div p-8px :style="{ backgroundColor: app.IsDarkMode ? '#26262a' : '#f7fafc' }">
+        <n-layout-content :native-scrollbar="false" flex-1 :style="isDark ? 'background-color: #18181c;' : ''">
+          <div p-8px :style="{ backgroundColor: isDark ? '#26262a' : '#f7fafc' }">
             <router-view v-slot="{ Component, route: r }">
               <transition name="fade">
                 <keep-alive :max="25">
@@ -153,10 +139,10 @@ const handleAction = (op: string, _val: any) => {
     </n-layout>
 
     <!-- Drawer (Mobile). 抽屉栏(手机端)。 -->
-    <MobileDrawer v-if="app.isMobile" ref="mobileDrawerRef" />
+    <MobileDrawer v-if="isMobile" ref="mobileDrawerRef" />
 
     <!-- Theme settings drawer. 主题设置抽屉栏。 -->
-    <ThemeDrawer v-if="!app.isMobile && app.hasMenuButton(MenuButtonEnum.ThemeDrawer)" ref="themeDrawerRef" />
+    <ThemeDrawer v-if="!isMobile && appSetting.hasMenuButton(MenuButtonEnum.ThemeDrawer)" ref="themeDrawerRef" />
   </n-layout>
 </template>
 
