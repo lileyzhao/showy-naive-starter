@@ -1,0 +1,50 @@
+author: 슈유
+intro: 사탄의 딸은 감동을 받아 떠날 때 눈이 붉어졌습니다. 그녀는 흰 셔츠를 입은 소년과 사랑에 빠졌고, 인간이 되는 꿈은 금기였습니다.
+team: 시장 슈유
+common:
+  backToHome: 홈페이지로 돌아가기
+login:
+  title: 로그인
+menu:
+  profile: 개인의
+  settings: 설정
+  about:
+    author: 작가
+    project: 프로젝트
+    title: ~에 대한
+  project:
+    hello: 안녕하세요
+    surprise: 놀라다
+    title: 프로젝트
+    world: 세계
+page:
+  about:
+    devDep: 개발 종속성
+    introduction: 수 놓은 비
+    prdDep: 생산 의존성
+    title: ~에 대한
+    projectInfo:
+      githubLink: 프로젝트 주소
+      latestBuildTime: 빌드 시간
+      previewLink: 미리보기 주소
+      title: 프로젝트 정보
+      version: 현재 버전
+profileMenu:
+  logout: 그만두다
+  profile: 개인 정보
+  settings: 설정
+theme:
+  themeMode:
+    dark: 어두운
+    light: 밝은 색
+    system: 시스템을 따르세요
+    title: 테마 모드
+  themeDrawerTitle: 테마 및 레이아웃
+tips:
+  menuState:
+    iconLabel: 클릭하면 메인 메뉴가 펼쳐집니다
+    normal: 숨기기 아이콘 아래의 제목을 클릭하세요.
+    onlyIcon: 메인 열 메뉴를 축소하려면 클릭하세요.
+welcome:
+  morning: 좋은 하루, 활력 넘치는 청년
+  night: 잘 자, 마카바카

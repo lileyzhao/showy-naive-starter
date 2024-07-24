@@ -3,6 +3,7 @@ import { createI18n } from 'vue-i18n'
 import type { App } from 'vue'
 import type { NDateLocale, NLocale } from 'naive-ui'
 import { dateZhCN, dateZhTW, zhCN, zhTW } from 'naive-ui'
+import type { UserModule } from '@/shared/types'
 
 // Create an i18n instance. 创建一个 i18n 实例。
 export const i18n = createI18n({
@@ -79,15 +80,6 @@ export async function setOrLoadLanguageAsync(lang: string): Promise<Locale | nul
 }
 
 /**
- * Setup i18n internationalization
- * 挂载i18n国际化
- * @param app Vue application instance. Vue 应用实例。
- */
-export function setupI18n(app: App<Element>) {
-  app.use(i18n)
-}
-
-/**
  * Get Naive UI locale configuration based on the provided locale string
  * 根据提供的语言代码获取 Naive UI 的语言配置
  * @param locale Language code (e.g., 'zh-CN', 'zh-TW'). 语言代码（例如 'zh-CN', 'zh-TW'）。
@@ -113,4 +105,13 @@ export const getNaiveDateLocale = (locale: string | undefined | null): NDateLoca
   if (locale === 'zh-TW')
     return dateZhTW
   return null
+}
+
+/**
+ * Setup i18n internationalization
+ * 挂载i18n国际化
+ * @param app Vue application instance. Vue 应用实例。
+ */
+export const install: UserModule = (app) => {
+  app.use(i18n)
 }

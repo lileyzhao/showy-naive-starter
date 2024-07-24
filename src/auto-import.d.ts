@@ -9,6 +9,7 @@ declare global {
   const APP_MENU_KEY: typeof import('./shared/composables/menu')['APP_MENU_KEY']
   const APP_STORE_VERSION: typeof import('./shared/composables/app')['APP_STORE_VERSION']
   const APP_THEME_SCHEMA_KEY: typeof import('./shared/composables/dark')['APP_THEME_SCHEMA_KEY']
+  const BeautifyLog: typeof import('./shared/composables/beautifyLog')['BeautifyLog']
   const EffectScope: typeof import('vue')['EffectScope']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']

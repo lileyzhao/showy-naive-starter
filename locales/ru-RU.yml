@@ -1,0 +1,52 @@
+author: Сюйюй
+intro: >-
+  Дочь сатаны была тронута, и ее глаза покраснели, когда она ушла. Она влюбилась
+  в мальчика в белой рубашке, и мечта стать человеком была табу.
+team: Сицзян Сюйюй
+common:
+  backToHome: Вернуться на домашнюю страницу
+login:
+  title: Авторизоваться
+menu:
+  profile: личный
+  settings: настраивать
+  about:
+    author: автор
+    project: проект
+    title: о
+  project:
+    hello: Привет
+    surprise: сюрприз
+    title: проект
+    world: мир
+page:
+  about:
+    devDep: Зависимости развития
+    introduction: вышитый дождь
+    prdDep: производственная зависимость
+    title: о
+    projectInfo:
+      githubLink: адрес проекта
+      latestBuildTime: Время сборки
+      previewLink: Предварительный адрес
+      title: Информационный проект
+      version: текущая версия
+profileMenu:
+  logout: покидать
+  profile: персональная информация
+  settings: настраивать
+theme:
+  themeMode:
+    dark: Темный
+    light: светлый цвет
+    system: Следуйте системе
+    title: режим темы
+  themeDrawerTitle: Тема и макет
+tips:
+  menuState:
+    iconLabel: Нажмите, чтобы развернуть главное меню
+    normal: Нажмите на заголовок под значком скрытия.
+    onlyIcon: Нажмите, чтобы сжать главное меню столбца
+welcome:
+  morning: Добрый день, энергичный молодой человек.
+  night: Спокойной ночи, Макабака

@@ -41,7 +41,7 @@ page:
       githubLink: 项目地址
       previewLink: 预览地址
     prdDep: 生产依赖
-    devDep: 开发以来
+    devDep: 开发依赖
 profileMenu:
   profile: 个人资料
   settings: 设置

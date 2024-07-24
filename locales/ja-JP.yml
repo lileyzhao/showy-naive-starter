@@ -1,0 +1,50 @@
+author: シウユ
+intro: サタンの娘は感動し、帰り際に目を赤くしました。彼女は白いシャツを着た少年に恋をしました。人間になることを夢見ることはタブーでした。
+team: 西江秀宇
+common:
+  backToHome: ホームページに戻る
+login:
+  title: ログイン
+menu:
+  profile: 個人的
+  settings: 設定
+  about:
+    author: 著者
+    project: プロジェクト
+    title: について
+  project:
+    hello: こんにちは
+    surprise: 驚き
+    title: プロジェクト
+    world: 世界
+page:
+  about:
+    devDep: 開発の依存関係
+    introduction: 刺繍された雨
+    prdDep: 生産依存性
+    title: について
+    projectInfo:
+      githubLink: プロジェクトアドレス
+      latestBuildTime: ビルド時間
+      previewLink: プレビューアドレス
+      title: プロジェクト情報
+      version: 現行版
+profileMenu:
+  logout: やめる
+  profile: 個人情報
+  settings: 設定
+theme:
+  themeMode:
+    dark: 暗い
+    light: 明色
+    system: システムに従ってください
+    title: テーマモード
+  themeDrawerTitle: テーマとレイアウト
+tips:
+  menuState:
+    iconLabel: クリックしてメインメニューを展開します
+    normal: 非表示アイコンの下にあるタイトルをクリックします
+    onlyIcon: クリックしてメイン列メニューを縮小します
+welcome:
+  morning: こんにちは、元気な若者です
+  night: おやすみ、マカバカ
