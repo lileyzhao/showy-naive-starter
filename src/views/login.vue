@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAppStore } from '@/store/app'
-import ActionIcon from '@/layout/components/ActionIcon.vue'
+import SyIconButton from '@/shared/components/SyIconButton.vue'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -23,11 +23,11 @@ const onLogin = () => router.push('/')
         </n-form-item>
         <div flex items-center justify-between>
           <div flex-right-center gap-x-5>
-            <ActionIcon
+            <SyIconButton
               :icon-class="`i-line-md:${app.IsDarkMode ? 'sunny-filled' : 'moon-filled'}`"
               hover-class-dark="text-yellow" hover-class-light="text-purple" @click="app.toggleThemeMode"
             />
-            <ActionIcon v-if="app.LocaleSetting.showButton" i-carbon-language @click="app.toggleLanguage" />
+            <SyIconButton v-if="app.LocaleSetting.showButton" i-carbon-language @click="app.toggleLanguage" />
           </div>
           <n-button type="primary" style="width: 120px" @click="onLogin">
             登 录

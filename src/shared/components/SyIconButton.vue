@@ -1,4 +1,4 @@
-<script setup lang="ts" name="Layout-ActionIcon">
+<script setup lang="ts" name="SyIconButton">
 const props = defineProps<{
   /** it is a button? 是否显示为按钮 */
   button?: boolean

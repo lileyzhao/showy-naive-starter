@@ -3,7 +3,7 @@ import type { MenuInst } from 'naive-ui'
 import Logo from '@/layout/components/Logo.vue'
 import { useAppStore } from '@/store/app'
 import { MENU_STATE_TEXT, MenuButtonEnum, MenuPositionEnum } from '@/shared'
-import ActionIcon from '@/layout/components/ActionIcon.vue'
+import SyIconButton from '@/shared/components/SyIconButton.vue'
 import { mapRoutes } from '@/utils/menuUtil'
 import { availableLocales } from '@/modules/i18n'
 import { getFullRoutes, renderProfileHeader, renderUnoIcon } from '@/utils'
@@ -136,16 +136,16 @@ defineExpose({ refreshTopMenu })
       </div>
       <!-- Right section of the top bar 头部右侧区 -->
       <div h-full flex-right-center p-r-3>
-        <ActionIcon
+        <SyIconButton
           v-if="menuSetting.topMenu.showSubMenu && isTopBarLayout && !app.isMobile" button
           icon-class="i-carbon:side-panel-close" @click="app.toggleMenuPosition"
         />
-        <ActionIcon
+        <SyIconButton
           v-else-if="!app.isMobile" button
           :icon-class="`i-carbon:align-${isTopBarLayout ? 'horizontal-left' : 'vertical-top'}`"
           @click="app.toggleMenuPosition"
         />
-        <ActionIcon
+        <SyIconButton
           v-if="menuSetting.buttons.includes(MenuButtonEnum.ThemeMode)" button
           :icon-class="`i-line-md:${app.IsDarkMode ? 'sunny-filled' : 'moon-filled '}`" hover-class-dark="text-yellow!"
           @click="app.toggleThemeMode"
@@ -155,15 +155,15 @@ defineExpose({ refreshTopMenu })
           :show-arrow="true" @select="(key: string) => toggleLanguage(key)"
         >
           <div>
-            <ActionIcon button icon-class="i-carbon:language" />
+            <SyIconButton button icon-class="i-carbon:language" />
           </div>
         </n-dropdown>
-        <ActionIcon
+        <SyIconButton
           v-if="!app.isMobile && menuSetting.buttons.includes(MenuButtonEnum.ThemeDrawer)" button
           icon-class="i-carbon:cookie" @click="toggleThemeDrawer"
         />
         <n-dropdown :options="profileOptions" trigger="click" @select="profileSelect">
-          <ActionIcon button icon-class="i-carbon:user-avatar text-6" :text="t('author')" />
+          <SyIconButton button icon-class="i-carbon:user-avatar text-6" :text="t('author')" />
         </n-dropdown>
       </div>
     </div>
