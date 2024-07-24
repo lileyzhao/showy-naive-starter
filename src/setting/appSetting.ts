@@ -1,15 +1,9 @@
-import { type LocaleSetting, MenuButtonEnum, MenuPositionEnum, type MenuSetting, ThemeModeEnum } from '@/shared'
+import { DarkSchemeEnum, type LocaleSetting, MenuButtonEnum, MenuPositionEnum, type MenuSetting } from '@/shared'
 
 /**
- * Application setting version, mainly used to clear the client configuration cache,
- * 应用设置版本，主要用于清除客户端配置缓存，
+ * Default dark-scheme 默认主题方案
  */
-export const version = '0.1.1'
-
-/**
- * Default theme mode 默认主题模式
- */
-export const darkMode = ThemeModeEnum.AUTO
+export const darkScheme = DarkSchemeEnum.AUTO
 
 /**
  * Default locale setting 默认区域设置

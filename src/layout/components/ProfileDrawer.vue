@@ -1,23 +1,23 @@
 <script setup lang="ts" name="Layout-ProfileDrawer">
-import { useAppStore } from '@/store/modules/app'
-import { ThemeModeEnum } from '@/shared'
+import { useAppStore } from '@/store/app'
+import { DarkSchemeEnum } from '@/shared'
 
 const { t } = useI18n()
 const app = useAppStore()
 
-const icons: Record<ThemeModeEnum, string> = {
-  [ThemeModeEnum.LIGHT]: 'i-line-md:sunny-filled',
-  [ThemeModeEnum.DARK]: 'i-line-md:moon-filled',
-  [ThemeModeEnum.AUTO]: 'i-carbon:contrast',
+const icons: Record<DarkSchemeEnum, string> = {
+  [DarkSchemeEnum.LIGHT]: 'i-line-md:sunny-filled',
+  [DarkSchemeEnum.DARK]: 'i-line-md:moon-filled',
+  [DarkSchemeEnum.AUTO]: 'i-carbon:contrast',
 }
 
-const texts: Record<ThemeModeEnum, string> = {
-  [ThemeModeEnum.LIGHT]: 'theme.themeMode.light',
-  [ThemeModeEnum.DARK]: 'theme.themeMode.dark',
-  [ThemeModeEnum.AUTO]: 'theme.themeMode.system',
+const texts: Record<DarkSchemeEnum, string> = {
+  [DarkSchemeEnum.LIGHT]: 'theme.themeMode.light',
+  [DarkSchemeEnum.DARK]: 'theme.themeMode.dark',
+  [DarkSchemeEnum.AUTO]: 'theme.themeMode.system',
 }
 
-function handleDarkModeChange(value: ThemeModeEnum) {
+function handleDarkModeChange(value: DarkSchemeEnum) {
   app.setThemeMode(value)
 }
 
@@ -54,7 +54,7 @@ defineExpose({ show })
             </n-tab>
           </n-tabs>
         </div>
-        <div v-if="app.ThemeModeRaw !== ThemeModeEnum.DARK" m-y-12px flex-y-center gap-8px>
+        <div v-if="app.ThemeModeRaw !== DarkSchemeEnum.DARK" m-y-12px flex-y-center gap-8px>
           <span>深色侧边栏</span>
           <n-switch v-model:value="mainMenuInverted" />
         </div>

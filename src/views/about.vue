@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useThemeVars } from 'naive-ui'
-import { useAppStore } from '@/store/modules/app'
+import { useAppStore } from '@/store/app'
 import pkg from '@/../package.json'
 
 const app = useAppStore()

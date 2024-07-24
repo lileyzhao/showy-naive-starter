@@ -4,7 +4,7 @@ import SubSidebar from './components/SubSidebar.vue'
 import ThemeDrawer from './components/ThemeDrawer.vue'
 import MobileDrawer from './components/MobileDrawer.vue'
 import TopBar from './components/TopBar.vue'
-import { useAppStore } from '@/store'
+import { useAppStore } from '@/store/app'
 import { MenuButtonEnum, MenuPositionEnum, ScreenEnum } from '@/shared'
 import { getFullRoutes } from '@/utils'
 

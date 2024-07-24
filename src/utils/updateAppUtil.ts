@@ -1,6 +1,6 @@
 import { availableLocales, i18n, setOrLoadLanguageAsync } from '@/modules/i18n'
 import { localeSetting } from '@/setting/appSetting'
-import { LocaleEnum, type LocaleSetting, ThemeModeEnum } from '@/shared'
+import { DarkSchemeEnum, LocaleEnum, type LocaleSetting } from '@/shared'
 import { router } from '@/router'
 
 /**
@@ -9,8 +9,8 @@ import { router } from '@/router'
  *
  * @param mode - The theme mode to set. 主题模式。
  */
-export async function updateThemeMode(mode: ThemeModeEnum | null = ThemeModeEnum.LIGHT) {
-  document.documentElement.classList.toggle('dark', mode === ThemeModeEnum.DARK)
+export async function updateThemeMode(mode: DarkSchemeEnum | null = DarkSchemeEnum.LIGHT) {
+  document.documentElement.classList.toggle('dark', mode === DarkSchemeEnum.DARK)
 }
 
 /**

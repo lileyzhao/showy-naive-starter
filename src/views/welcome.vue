@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Type } from 'naive-ui/es/button/src/interface'
-import { useAppStore } from '@/store/modules/app'
+import { useAppStore } from '@/store/app'
 
 const { t } = useI18n()
 const app = useAppStore()

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAppStore } from '@/store/modules/app'
+import { useAppStore } from '@/store/app'
 import ActionIcon from '@/layout/components/ActionIcon.vue'
 
 const { t } = useI18n()

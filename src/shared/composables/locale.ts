@@ -2,6 +2,7 @@ import type { NDateLocale, NLocale } from 'naive-ui'
 import {
   arDZ,
   dateArDZ,
+  dateDeDE,
   dateEnUS,
   dateItIT,
   dateJaJP,
@@ -9,6 +10,7 @@ import {
   dateRuRU,
   dateZhCN,
   dateZhTW,
+  deDE,
   enUS,
   itIT,
   jaJP,
@@ -36,6 +38,7 @@ interface NaiveLocale {
 export const localeMap: Record<string, NaiveLocale> = {
   'ar-DZ': { locale: arDZ, dateLocale: dateArDZ },
   'ar-KW': { locale: arDZ, dateLocale: dateArDZ },
+  'de-DE': { locale: deDE, dateLocale: dateDeDE },
   'en-US': { locale: enUS, dateLocale: dateEnUS },
   'it-IT': { locale: itIT, dateLocale: dateItIT },
   'ja-JP': { locale: jaJP, dateLocale: dateJaJP },
@@ -55,7 +58,29 @@ export const localeMap: Record<string, NaiveLocale> = {
 export function getNaiveLocale(locale: string = 'en-US'): NaiveLocale {
   locale = locale.replace('_', '-')
 
-  // Get locale setting from the mapping object, use default value if not found
-  // 从映射对象中获取 locale 设置，如果不存在则使用默认值
-  return localeMap[locale] || { locale: enUS, dateLocale: dateEnUS }
+  // Attempt to get the locale directly from the map
+  // 尝试直接从映射中获取本地化设置
+  if (localeMap[locale]) {
+    return localeMap[locale]
+  }
+
+  // Split the locale into parts
+  // 将本地化代码拆分成部分
+  const [language] = locale.split('-')
+
+  // Try to find the first matching locale for the simple language code
+  // 尝试找到第一个匹配的简单语言代码的本地化设置
+  for (const key in localeMap) {
+    if (key.startsWith(language)) {
+      return localeMap[key]
+    }
+  }
+
+  return { locale: enUS, dateLocale: dateEnUS }
 }
+
+/**
+ * Browser language
+ * 浏览器语言
+ */
+export const browserLanguage = useNavigatorLanguage()
