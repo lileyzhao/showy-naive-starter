@@ -1,0 +1,53 @@
+author: Xiuyu
+common:
+  backToHome: Zur Startseite zurückkehren
+intro: >-
+  Die Tochter Satans war bewegt und ihre Augen waren rot, als sie ging. Sie
+  verliebte sich in einen Jungen, der ein weißes Hemd trug, und der Traum, ein
+  Mensch zu werden, war ein Tabu.
+login:
+  title: Anmeldung
+menu:
+  about:
+    author: Autor
+    project: Projekt
+    title: um
+  profile: persönlich
+  project:
+    hello: Hallo
+    surprise: Überraschung
+    title: Projekt
+    world: Welt
+  settings: aufstellen
+page:
+  about:
+    devDep: Entwicklungsabhängigkeiten
+    introduction: gestickter Regen
+    prdDep: Produktionsabhängigkeit
+    projectInfo:
+      githubLink: Projektadresse
+      latestBuildTime: Bauzeit
+      previewLink: Vorschauadresse
+      title: Projekt Information
+      version: aktuelle Version
+    title: um
+profileMenu:
+  logout: aufhören
+  profile: Persönliche Angaben
+  settings: aufstellen
+team: Xijiang Xiuyu
+theme:
+  themeDrawerTitle: Thema und Layout
+  themeMode:
+    dark: Dunkel
+    light: helle Farbe
+    system: Folgen Sie dem System
+    title: Themenmodus
+tips:
+  menuState:
+    iconLabel: Klicken Sie, um das Hauptmenü zu erweitern
+    normal: Klicken Sie auf den Titel unter dem Ausblenden-Symbol
+    onlyIcon: Klicken Sie, um das Hauptspaltenmenü zu verkleinern
+welcome:
+  morning: Guten Tag, energischer junger Mann
+  night: Gute Nacht, Makabaka

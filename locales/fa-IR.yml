@@ -1,0 +1,52 @@
+author: Xiuyu
+common:
+  backToHome: بازگشت به صفحه اصلی
+intro: >-
+  دختر شیطان متاثر شد و چشمانش سرخ شده بود و عاشق پسری شد که پیراهن سفید پوشیده
+  بود و آرزوی انسان شدن یک تابو بود.
+login:
+  title: وارد شدن
+menu:
+  about:
+    author: نویسنده
+    project: پروژه
+    title: در باره
+  profile: شخصی
+  project:
+    hello: سلام
+    surprise: تعجب
+    title: پروژه
+    world: جهان
+  settings: برپایی
+page:
+  about:
+    devDep: وابستگی های توسعه
+    introduction: باران گلدوزی شده
+    prdDep: وابستگی تولید
+    projectInfo:
+      githubLink: آدرس پروژه
+      latestBuildTime: ساخت زمان
+      previewLink: پیش نمایش آدرس
+      title: اطلاعات پروژه
+      version: نسخه فعلی
+    title: در باره
+profileMenu:
+  logout: ترک کردن
+  profile: اطلاعات شخصی
+  settings: برپایی
+team: Xijiang Xiuyu
+theme:
+  themeDrawerTitle: تم و طرح
+  themeMode:
+    dark: تاریک
+    light: رنگ روشن
+    system: سیستم را دنبال کنید
+    title: حالت تم
+tips:
+  menuState:
+    iconLabel: برای گسترش منوی اصلی کلیک کنید
+    normal: روی عنوان زیر نماد پنهان کلیک کنید
+    onlyIcon: برای کوچک کردن منوی ستون اصلی کلیک کنید
+welcome:
+  morning: روز بخیر جوان پرانرژی
+  night: شب بخیر ماکاباکا
