@@ -106,7 +106,7 @@ onMounted(() => {
   topMenuRef.value?.showOption(topMenuKey.value)
 })
 
-const langs = computed(() => availableLocales.map(locale => ({ label: locale, key: locale })))
+const langs = computed(() => availableLocales.map(locale => ({ label: getLanguageName(locale), key: locale })))
 
 /** Exposes 公开对象 */
 defineExpose({ refreshTopMenu })
@@ -151,17 +151,13 @@ defineExpose({ refreshTopMenu })
           @click="app.toggleThemeMode"
         />
         <n-dropdown
-          v-if="app.LocaleSetting.showButton && langs.length > 2" trigger="click" :options="langs"
+          v-if="app.LocaleSetting.showButton" trigger="click" :options="langs"
           :show-arrow="true" @select="(key: string) => toggleLanguage(key)"
         >
           <div>
             <ActionIcon button icon-class="i-carbon:language" />
           </div>
         </n-dropdown>
-        <ActionIcon
-          v-if="app.LocaleSetting.showButton && langs.length === 2" button icon-class="i-carbon:language"
-          @click="toggleLanguage"
-        />
         <ActionIcon
           v-if="!app.isMobile && menuSetting.buttons.includes(MenuButtonEnum.ThemeDrawer)" button
           icon-class="i-carbon:cookie" @click="toggleThemeDrawer"

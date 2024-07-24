@@ -40,6 +40,7 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getLanguageName: typeof import('./shared/composables/locale')['getLanguageName']
   const getNaiveLocale: typeof import('./shared/composables/locale')['getNaiveLocale']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
