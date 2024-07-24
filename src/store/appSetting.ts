@@ -67,7 +67,15 @@ export const useAppSettingStore = defineStore('appSetting', () => {
     return menuSetting.value.buttons.includes(button)
   }
 
-  return { themeScheme: darkScheme, themeMode: darkMode, localeSetting, menuSetting, setLocaleSetting, setMenuSetting, hasMenuButton }
+  return {
+    darkScheme,
+    darkMode,
+    localeSetting,
+    menuSetting,
+    setLocaleSetting,
+    setMenuSetting,
+    hasMenuButton,
+  }
 })
 
 // HMR hot reload HMR热重载

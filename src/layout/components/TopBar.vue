@@ -4,6 +4,7 @@ import Logo from '@/layout/components/Logo.vue'
 import { useAppStore } from '@/store/app'
 import { MENU_STATE_TEXT, MenuButtonEnum, MenuPositionEnum } from '@/shared'
 import SyIconButton from '@/shared/components/SyIconButton.vue'
+import NewIconButton from '@/shared/components/NewIconButton.vue'
 import { mapRoutes } from '@/utils/menuUtil'
 import { availableLocales } from '@/modules/i18n'
 import { getFullRoutes, renderProfileHeader, renderUnoIcon } from '@/utils'
@@ -144,6 +145,14 @@ defineExpose({ refreshTopMenu })
           v-else-if="!app.isMobile" button
           :icon-class="`i-carbon:align-${isTopBarLayout ? 'horizontal-left' : 'vertical-top'}`"
           @click="app.toggleMenuPosition"
+        />
+        <NewIconButton
+          icon="i-carbon:side-panel-close"
+          :size="24"
+          button
+          text="Close"
+          class="my-custom-class"
+          style="color: #ff0000; background-color: #f0f0f0;"
         />
         <SyIconButton
           v-if="menuSetting.buttons.includes(MenuButtonEnum.ThemeMode)" button

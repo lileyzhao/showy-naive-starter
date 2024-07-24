@@ -4,8 +4,10 @@ import SubSidebar from './components/SubSidebar.vue'
 import ThemeDrawer from './components/ThemeDrawer.vue'
 import MobileDrawer from './components/MobileDrawer.vue'
 import TopBar from './components/TopBar.vue'
+import type { MenuSetting } from '@/shared'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared'
-import { getFullRoutes } from '@/utils'
+import { menuSetting as menuDefault } from '@/setting/appSetting'
+import { getFullRoutes, typedLocalStorage } from '@/utils'
 import { isDark } from '@/shared/composable/dark'
 import { isMobile } from '@/shared/composable/mediaQuery'
 
@@ -20,8 +22,12 @@ const topBarRef = ref<InstanceType<typeof TopBar>>()
 const mobileDrawerRef = ref<InstanceType<typeof MobileDrawer>>()
 const themeDrawerRef = ref<InstanceType<typeof ThemeDrawer>>()
 
+console.log('APP_MENU_KEY', typedLocalStorage.getItem<MenuSetting>(APP_MENU_KEY) || menuDefault)
+
 // Get menu settings from the app store. 从应用存储中获取菜单设置。
 const menuSetting = computed(() => appSetting.menuSetting)
+
+console.log(menuSetting.value)
 
 /** Whether the menu is in the top bar layout. 是否顶栏菜单布局。 */
 const isTopBar = computed(() => menuSetting.value.menuPosition === MenuPositionEnum.TOP_BAR)
