@@ -36,7 +36,7 @@ profileMenu:
   profile: معلومات شخصية
   settings: يثبت
 theme:
-  themeMode:
+  darkMode:
     dark: مظلم
     light: لون فاتح
     system: اتبع النظام

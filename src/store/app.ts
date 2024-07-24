@@ -14,7 +14,7 @@ interface AppSettingState {
   /** Application setting version 应用设置版本 */
   version?: string
   /** Theme mode 主题模式 */
-  themeMode?: DarkSchemeEnum
+  darkScheme?: DarkSchemeEnum
   /** Locale settings 本地化设置 */
   localeSetting?: LocaleSetting
   /** Menu settings 菜单设置 */
@@ -25,7 +25,7 @@ interface AppSettingState {
 
 function verifyVersionCache(version: string = '0.0.1') {
   if ((version || typedLocalStorage.getItem(APP_STORE_VERSION)) !== version) {
-    typedLocalStorage.removeItems(APP_THEME_SCHEMA_KEY, APP_LOCALE_KEY, APP_MENU_KEY)
+    typedLocalStorage.removeItems(APP_DARK_SCHEMA_KEY, APP_LOCALE_KEY, APP_MENU_KEY)
     typedLocalStorage.setItem(APP_STORE_VERSION, version)
   }
 }
@@ -33,7 +33,7 @@ function verifyVersionCache(version: string = '0.0.1') {
 export const useAppStore = defineStore('appSetting', {
   state: (): AppSettingState => ({
     version: undefined,
-    themeMode: undefined,
+    darkScheme: undefined,
     localeSetting: undefined,
     menuSetting: undefined,
     isMobile: false,
@@ -43,7 +43,7 @@ export const useAppStore = defineStore('appSetting', {
     ThemeModeRaw(state): DarkSchemeEnum {
       verifyVersionCache(this.version) // Verify version cache 验证版本缓存
 
-      return state.themeMode || typedLocalStorage.getItem(APP_THEME_SCHEMA_KEY) || darkScheme
+      return state.darkScheme || typedLocalStorage.getItem(APP_DARK_SCHEMA_KEY) || darkScheme
     },
     /** Theme mode (auto will convert to dark or light) 主题模式(auto会根据转为dark或light) */
     ThemeMode(): DarkSchemeEnum {
@@ -86,8 +86,8 @@ export const useAppStore = defineStore('appSetting', {
   actions: {
     /** Set theme mode 设置主题模式 */
     setThemeMode(mode: DarkSchemeEnum) {
-      this.themeMode = mode
-      typedLocalStorage.setItem(APP_THEME_SCHEMA_KEY, this.themeMode)
+      this.darkScheme = mode
+      typedLocalStorage.setItem(APP_DARK_SCHEMA_KEY, this.darkScheme)
       // updateThemeMode(unref(this.ThemeMode))
       toggleDark()
     },

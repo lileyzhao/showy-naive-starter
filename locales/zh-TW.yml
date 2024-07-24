@@ -25,7 +25,7 @@ tips:
     onlyIcon: 點擊收縮主欄菜單
 theme:
   themeDrawerTitle: 主題與佈局
-  themeMode:
+  darkMode:
     title: 主題模式
     light: 淺色
     dark: 深色

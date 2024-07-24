@@ -25,7 +25,7 @@ tips:
     onlyIcon: Click to collapse the main menu
 theme:
   themeDrawerTitle: Theme & Layout
-  themeMode:
+  darkMode:
     title: Theme Schema
     light: Light
     dark: Dark

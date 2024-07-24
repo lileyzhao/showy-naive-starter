@@ -25,7 +25,7 @@ tips:
     onlyIcon: 点击收缩主栏菜单
 theme:
   themeDrawerTitle: 主题与布局
-  themeMode:
+  darkMode:
     title: 主题模式
     light: 浅色
     dark: 深色

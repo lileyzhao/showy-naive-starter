@@ -34,7 +34,7 @@ profileMenu:
   profile: 개인 정보
   settings: 설정
 theme:
-  themeMode:
+  darkMode:
     dark: 어두운
     light: 밝은 색
     system: 시스템을 따르세요

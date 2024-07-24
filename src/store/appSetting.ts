@@ -6,17 +6,17 @@ import { deepMergeObjects, typedLocalStorage, updateLocale, updateThemeMode } fr
 import type { DeepPartial } from '@/shared/types'
 
 export const useAppSettingStore = defineStore('appSetting', () => {
-  /** Theme scheme: Includes light, dark, and auto. 主题方案：包括 light、dark 和 auto。 */
-  const themeScheme = computed(() => typedLocalStorage.getItem<DarkSchemeEnum>(APP_THEME_SCHEMA_KEY))
+  /** Dark scheme: Includes light, dark, and auto. 主题方案：包括 light、dark 和 auto。 */
+  const darkScheme = computed(() => typedLocalStorage.getItem<DarkSchemeEnum>(APP_DARK_SCHEMA_KEY))
 
   /**
-   * Theme mode: Excludes "auto". When theme-scheme is set to "auto", it will return the theme-mode of the operating system.
+   * Dark mode: Excludes "auto". When theme-scheme is set to "auto", it will return the theme-mode of the operating system.
    * 主题模式：不包括 auto。当 theme-scheme 设置为 auto 时，将返回操作系统的主题模式。
    */
-  const themeMode = computed(() => {
-    if (themeScheme.value === DarkSchemeEnum.AUTO)
+  const darkMode = computed(() => {
+    if (darkScheme.value === DarkSchemeEnum.AUTO)
       return preferredDark.value ? DarkSchemeEnum.DARK : DarkSchemeEnum.LIGHT
-    else return themeScheme.value
+    else return darkScheme.value
   })
 
   const { isSupported, language } = useNavigatorLanguage()
@@ -67,7 +67,7 @@ export const useAppSettingStore = defineStore('appSetting', () => {
     return menuSetting.value.buttons.includes(button)
   }
 
-  return { themeScheme, themeMode, localeSetting, menuSetting, setLocaleSetting, setMenuSetting, hasMenuButton }
+  return { themeScheme: darkScheme, themeMode: darkMode, localeSetting, menuSetting, setLocaleSetting, setMenuSetting, hasMenuButton }
 })
 
 // HMR hot reload HMR热重载

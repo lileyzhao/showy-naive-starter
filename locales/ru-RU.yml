@@ -36,7 +36,7 @@ profileMenu:
   profile: персональная информация
   settings: настраивать
 theme:
-  themeMode:
+  darkMode:
     dark: Темный
     light: светлый цвет
     system: Следуйте системе

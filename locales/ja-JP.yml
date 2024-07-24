@@ -34,7 +34,7 @@ profileMenu:
   profile: 個人情報
   settings: 設定
 theme:
-  themeMode:
+  darkMode:
     dark: 暗い
     light: 明色
     system: システムに従ってください

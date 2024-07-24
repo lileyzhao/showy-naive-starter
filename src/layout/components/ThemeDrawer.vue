@@ -12,9 +12,9 @@ const icons: Record<DarkSchemeEnum, string> = {
 }
 
 const texts: Record<DarkSchemeEnum, string> = {
-  [DarkSchemeEnum.LIGHT]: 'theme.themeMode.light',
-  [DarkSchemeEnum.DARK]: 'theme.themeMode.dark',
-  [DarkSchemeEnum.AUTO]: 'theme.themeMode.system',
+  [DarkSchemeEnum.LIGHT]: 'theme.darkMode.light',
+  [DarkSchemeEnum.DARK]: 'theme.darkMode.dark',
+  [DarkSchemeEnum.AUTO]: 'theme.darkMode.system',
 }
 
 function handleDarkModeChange(value: DarkSchemeEnum) {
@@ -41,7 +41,7 @@ defineExpose({ show })
   >
     <n-drawer-content :title="t('theme.themeDrawerTitle')" :native-scrollbar="false" closable>
       <n-divider title-placement="left" dashed class="mt-0!">
-        {{ t('theme.themeMode.title') }}
+        {{ t('theme.darkMode.title') }}
       </n-divider>
       <div class="flex-col-stretch gap-16px">
         <div class="i-flex-center">

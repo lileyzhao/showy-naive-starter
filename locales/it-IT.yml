@@ -37,7 +37,7 @@ profileMenu:
   profile: informazione personale
   settings: impostare
 theme:
-  themeMode:
+  darkMode:
     dark: Buio
     light: colore chiaro
     system: Segui il sistema

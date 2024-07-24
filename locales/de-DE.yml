@@ -38,7 +38,7 @@ profileMenu:
 team: Xijiang Xiuyu
 theme:
   themeDrawerTitle: Thema und Layout
-  themeMode:
+  darkMode:
     dark: Dunkel
     light: helle Farbe
     system: Folgen Sie dem System

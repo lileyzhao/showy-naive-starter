@@ -4,10 +4,10 @@ import { DarkSchemeEnum, LocaleEnum, type LocaleSetting } from '@/shared'
 import { router } from '@/router'
 
 /**
- * Update the HTML element theme.
+ * Update the HTML element dark mode.
  * 更新HTML元素的主题。
  *
- * @param mode - The theme mode to set. 主题模式。
+ * @param mode - The dark mode to set. 主题模式。
  */
 export async function updateThemeMode(mode: DarkSchemeEnum | null = DarkSchemeEnum.LIGHT) {
   document.documentElement.classList.toggle('dark', mode === DarkSchemeEnum.DARK)
