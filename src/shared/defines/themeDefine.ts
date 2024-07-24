@@ -6,6 +6,6 @@ export enum ThemeModeEnum {
   DARK = 'dark',
   /** Light mode. 浅色模式。 */
   LIGHT = 'light',
-  /** Follow system. 跟随系统。 */
-  SYSTEM = 'system',
+  /** Auto mode. 自动跟随系统。 */
+  AUTO = 'auto',
 }

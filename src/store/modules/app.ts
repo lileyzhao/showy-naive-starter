@@ -6,11 +6,6 @@ import { deepMergeObjects, typedLocalStorage, updateLocale, updateThemeMode } fr
 import { availableLocales } from '@/modules/i18n'
 import type { DeepPartial } from '@/shared/types'
 
-export const APP_SETTING_VERSION = '__APP__SETTING__VERSION__'
-export const APP_THEME_SCHEMA_KEY = '__APP__DARK__MODE__'
-export const APP_LOCALE_KEY = '__APP__LOCALE__MODE__'
-export const APP_MENU_KEY = '__APP__MENU__SETTING__'
-
 /**
  * Application basic settings
  * 应用的基础设置
@@ -40,10 +35,10 @@ export const useAppStore = defineStore('appSetting', {
     /** Raw theme mode (original configuration: dark, light, system) 主题模式(原始配置 dark light system) */
     ThemeModeRaw(state): ThemeModeEnum {
       // Verify version cache 验证版本缓存
-      if ((this.version || typedLocalStorage.getItem(APP_SETTING_VERSION)) !== version) {
+      if ((this.version || typedLocalStorage.getItem(APP_STORE_VERSION)) !== version) {
         typedLocalStorage.removeItems(APP_THEME_SCHEMA_KEY, APP_LOCALE_KEY, APP_MENU_KEY)
         this.version = version
-        typedLocalStorage.setItem(APP_SETTING_VERSION, version)
+        typedLocalStorage.setItem(APP_STORE_VERSION, version)
       }
 
       return state.themeMode || typedLocalStorage.getItem(APP_THEME_SCHEMA_KEY) || darkMode
@@ -52,7 +47,7 @@ export const useAppStore = defineStore('appSetting', {
     ThemeMode(): ThemeModeEnum {
       const mode = this.ThemeModeRaw
       const darkOsTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      return mode === ThemeModeEnum.SYSTEM ? (darkOsTheme ? ThemeModeEnum.DARK : ThemeModeEnum.LIGHT) : mode
+      return mode === ThemeModeEnum.AUTO ? (darkOsTheme ? ThemeModeEnum.DARK : ThemeModeEnum.LIGHT) : mode
     },
     /** Is dark mode 是否深色模式 */
     IsDarkMode(): boolean {
@@ -61,10 +56,10 @@ export const useAppStore = defineStore('appSetting', {
     /** Locale settings 本地化设置 */
     LocaleSetting(state): LocaleSetting {
       // Verify version cache 验证版本缓存
-      if ((this.version || typedLocalStorage.getItem(APP_SETTING_VERSION)) !== version) {
+      if ((this.version || typedLocalStorage.getItem(APP_STORE_VERSION)) !== version) {
         typedLocalStorage.removeItems(APP_THEME_SCHEMA_KEY, APP_LOCALE_KEY, APP_MENU_KEY)
         this.version = version
-        typedLocalStorage.setItem(APP_SETTING_VERSION, version)
+        typedLocalStorage.setItem(APP_STORE_VERSION, version)
       }
 
       const setting = state.localeSetting || typedLocalStorage.getItem(APP_LOCALE_KEY) || localeSetting
@@ -76,10 +71,10 @@ export const useAppStore = defineStore('appSetting', {
     /** Menu settings 菜单设置 */
     MenuSetting(state): MenuSetting {
       // Verify version cache 验证版本缓存
-      if ((this.version || typedLocalStorage.getItem(APP_SETTING_VERSION)) !== version) {
+      if ((this.version || typedLocalStorage.getItem(APP_STORE_VERSION)) !== version) {
         typedLocalStorage.removeItems(APP_THEME_SCHEMA_KEY, APP_LOCALE_KEY, APP_MENU_KEY)
         this.version = version
-        typedLocalStorage.setItem(APP_SETTING_VERSION, version)
+        typedLocalStorage.setItem(APP_STORE_VERSION, version)
       }
 
       const mset = state.menuSetting || typedLocalStorage.getItem(APP_MENU_KEY) || menuSetting
@@ -102,7 +97,8 @@ export const useAppStore = defineStore('appSetting', {
     setThemeMode(mode: ThemeModeEnum) {
       this.themeMode = mode
       typedLocalStorage.setItem(APP_THEME_SCHEMA_KEY, this.themeMode)
-      updateThemeMode(unref(this.ThemeMode))
+      // updateThemeMode(unref(this.ThemeMode))
+      toggleDark()
     },
     /** Toggle dark mode 切换主题模式 */
     toggleThemeMode() {

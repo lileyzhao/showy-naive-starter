@@ -21,11 +21,16 @@ export default defineConfig(({ mode }) => {
           'vue',
           'vue-router',
           'vue-i18n',
+          '@vueuse/core',
           {
             'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar'],
           },
         ],
         dts: 'src/auto-import.d.ts', // 路径下自动生成文件夹存放全局指令
+        dirs: [
+          'src/shared/composables',
+          'src/stores',
+        ],
       }),
       Components({
         resolvers: [NaiveUiResolver()],

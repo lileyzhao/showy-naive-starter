@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN" id="htmlRoot">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -11,6 +11,9 @@
     <title>Showy Naive Template</title>
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <style>
+      body {
+        margin: 0;
+      }
       /* 内联样式来确保加载效果在应用初始化之前生效 */
       #loading {
         position: fixed;
@@ -22,7 +25,7 @@
         background: white;
         z-index: 9999;
       }
-      .spinner {
+      #loading .spinner {
         border: 4px solid rgba(0, 0, 0, 0.1);
         border-left-color: #09f;
         border-radius: 50%;
@@ -35,7 +38,25 @@
           transform: rotate(360deg);
         }
       }
+      /* 暗色系样式 */
+      .dark #loading {
+        background: #121212; /* 深色背景 */
+      }
+      .dark #loading .spinner {
+        border: 4px solid rgba(255, 255, 255, 0.1); /* 边框颜色适配深色背景 */
+        border-left-color: #bb86fc; /* 边框左侧颜色适配深色背景 */
+      }
     </style>
+    <script>
+      ;(function () {
+        const prefersDark =
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches
+        const setting = localStorage.getItem('app-theme-scheme') || 'auto'
+        if (setting === 'dark' || (prefersDark && setting !== 'light'))
+          document.documentElement.classList.toggle('dark', true)
+      })()
+    </script>
   </head>
   <body>
     <div id="loading">
@@ -45,7 +66,8 @@
     <script type="module" src="/src/main.ts"></script>
     <noscript>
       This website requires JavaScript to function properly. Please enable
-      JavaScript to continue.<br />
+      JavaScript to continue.
+      <br />
       本网站需要 JavaScript 以正常运行，请启用 JavaScript 以继续。
     </noscript>
   </body>

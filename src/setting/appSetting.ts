@@ -4,12 +4,12 @@ import { type LocaleSetting, MenuButtonEnum, MenuPositionEnum, type MenuSetting,
  * Application setting version, mainly used to clear the client configuration cache,
  * 应用设置版本，主要用于清除客户端配置缓存，
  */
-export const version = '0.1.0'
+export const version = '0.1.1'
 
 /**
  * Default theme mode 默认主题模式
  */
-export const darkMode = ThemeModeEnum.LIGHT
+export const darkMode = ThemeModeEnum.AUTO
 
 /**
  * Default locale setting 默认区域设置

@@ -39,7 +39,7 @@ function setI18nLanguage(lang: string): Locale {
   i18n.global.locale.value = lang
 
   if (typeof document !== 'undefined')
-    document.getElementById('htmlRoot')?.setAttribute('lang', lang)
+    document.documentElement?.setAttribute('lang', lang)
 
   return lang
 }

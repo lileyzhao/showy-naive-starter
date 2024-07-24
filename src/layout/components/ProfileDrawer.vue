@@ -8,13 +8,13 @@ const app = useAppStore()
 const icons: Record<ThemeModeEnum, string> = {
   [ThemeModeEnum.LIGHT]: 'i-line-md:sunny-filled',
   [ThemeModeEnum.DARK]: 'i-line-md:moon-filled',
-  [ThemeModeEnum.SYSTEM]: 'i-carbon:contrast',
+  [ThemeModeEnum.AUTO]: 'i-carbon:contrast',
 }
 
 const texts: Record<ThemeModeEnum, string> = {
   [ThemeModeEnum.LIGHT]: 'theme.themeMode.light',
   [ThemeModeEnum.DARK]: 'theme.themeMode.dark',
-  [ThemeModeEnum.SYSTEM]: 'theme.themeMode.system',
+  [ThemeModeEnum.AUTO]: 'theme.themeMode.system',
 }
 
 function handleDarkModeChange(value: ThemeModeEnum) {

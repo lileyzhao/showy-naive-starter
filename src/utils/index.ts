@@ -1,5 +1,4 @@
 export * from './componentUtil'
-export * from './domUtil'
 export * from './menuUtil'
 export * from './objectUtil'
 export * from './routeUtil'
