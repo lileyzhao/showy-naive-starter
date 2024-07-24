@@ -1,40 +1,74 @@
-<script setup lang="ts" name="SyIconButton">
-const props = defineProps<{
-  /** it is a button? 是否显示为按钮 */
-  button?: boolean
-  /**
-   * Override the default class, when displayed as a button
-   * 重写默认的class，显示为按钮时有效
-   */
-  class?: string
-  /** text to display 显示文本 */
-  text?: string
-  /** class for the text 文本的类 */
-  textClass?: string
-  /** class for the icon 图标的类 */
-  iconClass?: string
-  /** hover class in dark mode 暗模式下的悬停的类 */
-  hoverClassDark?: string
-  /** hover class in light mode 亮模式下的悬停的类 */
-  hoverClassLight?: string
-}>()
+<script setup lang="ts" name="SyIconButton2">
+import { useThemeVars } from 'naive-ui'
 
-const defaultBtnClass = 'px-2.6!'
-const defaultIconClass = 'text-5 cursor-pointer'
+const props = defineProps({
+  icon: String,
+  size: [Number, String],
+  button: Boolean,
+  text: String,
+  vertical: Boolean,
+  class: [String, Array, Object],
+  style: [String, Object],
+})
 
-/** Button class 按钮类 */
-const buttonClass = computed(() => `${defaultBtnClass} ${props.class ?? ''}`)
+const themeVars = useThemeVars()
+const colorVars = computed(() => {
+  return { '--primary-color': themeVars.value.primaryColor, '--text-color': themeVars.value.textColor2 }
+})
 
-/** Icon class 图标类 */
-const iconClass = computed(() => `${defaultIconClass} ${props.class ?? ''} ${props.iconClass ?? ''}`)
+const sizeVal = computed(() => typeof props.size === 'number' ? `${props.size}px` : props.size ?? '1.3em')
+
+const customClass = computed(() => props.class)
+const customStyle = computed(() => props.style)
 </script>
 
 <template>
-  <n-tag v-if="props.button" checkable size="large" :class="buttonClass">
-    <div flex-y-center flex-row gap-x-2>
-      <div :class="iconClass" />
-      <span v-if="text" :class="props.textClass">{{ props.text }}</span>
+  <div class="sy-icon-button" :class="[{ 'sy-is-button': button }, customClass]" :style="[customStyle, colorVars]">
+    <div class="sy-icon-container" :class="[{ 'sy-vertical': vertical }]" flex-y-center>
+      <div :class="icon" :style="{ fontSize: sizeVal }" />
+      <span v-if="text" :style="{ height: sizeVal, lineHeight: sizeVal }">{{ text }}</span>
     </div>
-  </n-tag>
-  <div v-else :class="iconClass" />
+  </div>
 </template>
+
+<style scoped lang="scss">
+.sy-icon-button {
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 9px 11px;
+  color: var(--text-color);
+
+  &:hover {
+    color: var(--primary-color);
+  }
+
+  &.sy-is-button:hover {
+    background-color: rgba(46, 51, 56, 0.09);
+    color: var(--text-color);
+  }
+
+  .sy-icon-container {
+    display: flex;
+    align-items: center;
+
+    &.sy-vertical {
+      flex-direction: column;
+      justify-content: center;
+
+      span {
+        margin: 8px 0 0 0;
+      }
+    }
+
+    span {
+      margin-left: 8px;
+    }
+  }
+}
+
+.dark {
+  .sy-icon-button.sy-is-button:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+}
+</style>

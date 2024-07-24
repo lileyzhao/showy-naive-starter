@@ -4,14 +4,12 @@ import SubSidebar from './components/SubSidebar.vue'
 import ThemeDrawer from './components/ThemeDrawer.vue'
 import MobileDrawer from './components/MobileDrawer.vue'
 import TopBar from './components/TopBar.vue'
-import type { MenuSetting } from '@/shared'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared'
-import { menuSetting as menuDefault } from '@/setting/appSetting'
-import { getFullRoutes, typedLocalStorage } from '@/utils'
+import { getFullRoutes } from '@/utils'
 import { isDark } from '@/shared/composable/dark'
 import { isMobile } from '@/shared/composable/mediaQuery'
 
-const appSetting = useAppSettingStore()
+const app = useAppSettingStore()
 const route = useRoute()
 const fullRoutes = getFullRoutes()
 
@@ -22,10 +20,8 @@ const topBarRef = ref<InstanceType<typeof TopBar>>()
 const mobileDrawerRef = ref<InstanceType<typeof MobileDrawer>>()
 const themeDrawerRef = ref<InstanceType<typeof ThemeDrawer>>()
 
-console.log('APP_MENU_KEY', typedLocalStorage.getItem<MenuSetting>(APP_MENU_KEY) || menuDefault)
-
 // Get menu settings from the app store. 从应用存储中获取菜单设置。
-const menuSetting = computed(() => appSetting.menuSetting)
+const menuSetting = computed(() => app.menuSetting)
 
 console.log(menuSetting.value)
 
@@ -148,7 +144,7 @@ const handleAction = (op: string, _val: any) => {
     <MobileDrawer v-if="isMobile" ref="mobileDrawerRef" />
 
     <!-- Theme settings drawer. 主题设置抽屉栏。 -->
-    <ThemeDrawer v-if="!isMobile && appSetting.hasMenuButton(MenuButtonEnum.ThemeDrawer)" ref="themeDrawerRef" />
+    <ThemeDrawer v-if="!isMobile && app.hasMenuButton(MenuButtonEnum.ThemeDrawer)" ref="themeDrawerRef" />
   </n-layout>
 </template>
 

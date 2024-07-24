@@ -30,7 +30,7 @@ function verifyVersionCache(version: string = '0.0.1') {
   }
 }
 
-export const useAppStore = defineStore('appSetting', {
+export const useAppStore = defineStore('app', {
   state: (): AppSettingState => ({
     version: undefined,
     darkScheme: undefined,

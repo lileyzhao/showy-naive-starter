@@ -24,7 +24,7 @@ const onLogin = () => router.push('/')
         <div flex items-center justify-between>
           <div flex-right-center gap-x-5>
             <SyIconButton
-              :icon-class="`i-line-md:${app.IsDarkMode ? 'sunny-filled' : 'moon-filled'}`"
+              :icon="`i-line-md:${app.IsDarkMode ? 'sunny-filled' : 'moon-filled'}`"
               hover-class-dark="text-yellow" hover-class-light="text-purple" @click="app.toggleThemeMode"
             />
             <SyIconButton v-if="app.LocaleSetting.showButton" i-carbon-language @click="app.toggleLanguage" />
