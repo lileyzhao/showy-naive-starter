@@ -5,11 +5,11 @@ module.exports = {
     'type-enum': [2, 'always', ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'build', 'ci', 'chore', 'revert']],
     // The subject cannot end with certain symbols 主题不能以某些符号结尾
     'subject-full-stop': [2, 'never', '/[.!?,;。！？，；]$/'],
-    'header-max-length': [2, 'always', 128],
+    'header-max-length': [2, 'always', 98],
   },
   prompt: {
-    aiQuestionCB: ({ maxSubjectLength, diff }) => `Write an insightful and concise Git commit message in the present tense for the following Git diff code, without any prefixes, and no longer than ${maxSubjectLength} characters : \`\`\`diff\n${diff}\n\`\`\``,
-    // aiQuestionCB: ({ maxSubjectLength, diff }) => `用完整句子为以下 Git diff 代码写一个有见解并简洁的 Git 中文提交消息，不加任何前缀，并且内容不能超过 ${maxSubjectLength} 个字符 : \`\`\`diff\n${diff}\n\`\`\``,
+    aiQuestionCB: ({ maxSubjectLength, diff }) => `Write an insightful and concise Git commit message in the present tense for the following Git diff code, without any prefixes, and no longer than ${maxSubjectLength} characters : \`\`\`diff\n${diff}\n\`\`\`\nYour reply must be less than or equal to ${maxSubjectLength} characters in length.`,
+    // aiQuestionCB: ({ maxSubjectLength, diff }) => `用完整句子为以下 Git diff 代码写一个有见解并简洁的 Git 中文提交消息，不加任何前缀，并且内容不能超过 ${maxSubjectLength} 个字符 : \`\`\`diff\n${diff}\n\`\`\`\n你的回复结果必须小于等于 ${maxSubjectLength} 个字符`,
     aiNumber: 5,
     aiType: 'gpt-4o',
     useEmoji: true,
