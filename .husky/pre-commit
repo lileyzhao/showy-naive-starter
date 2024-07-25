@@ -1,16 +1,1 @@
-#!/bin/sh
-
-# shellcheck source=./_/husky.sh
-. "$(dirname "$0")/_/husky.sh"
-
-# If running in a Continuous Integration (CI) environment, exit
-# 如果在持续集成（CI）环境中运行，则退出
-[ -n "$CI" ] && exit 0
-
-# Add /usr/local/bin to PATH
-# 将 /usr/local/bin 添加到 PATH 中
-PATH="/usr/local/bin:$PATH"
-
-# Run lint-staged using pnpm
-# 使用 pnpm 运行 lint-staged
-pnpm exec lint-staged
+pnpm lint-staged

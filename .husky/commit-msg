@@ -1,12 +1,1 @@
-#!/bin/sh
-
-# shellcheck source=./_/husky.sh
-. "$(dirname "$0")/_/husky.sh"
-
-# Add /usr/local/bin to PATH
-# 将 /usr/local/bin 添加到 PATH 中
-PATH="/usr/local/bin:$PATH"
-
-# Run commitlint with npx to check commit message
-# 使用 npx 运行 commitlint 进行提交信息检查
-npx --no-install commitlint --edit "$1"
+pnpm dlx commitlint --edit \

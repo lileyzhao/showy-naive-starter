@@ -23,8 +23,8 @@
     "build": "pnpm vite build",
     "build:docker": "vite build --mode docker",
     "preview": "pnpm run build && vite preview",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "lint:view": "npx eslint-flat-config-viewer",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky"
