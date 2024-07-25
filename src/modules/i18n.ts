@@ -1,6 +1,8 @@
 import type { Locale } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
 import type { UserModule } from '@/shared/types'
+import type { LocaleSetting } from '@/shared'
+import { typedLocalStorage } from '@/utils'
 
 // Create an i18n instance. 创建一个 i18n 实例。
 export const i18n = createI18n({ legacy: false, locale: '', messages: {}, fallbackWarn: false, missingWarn: false })
@@ -66,11 +68,25 @@ export async function setOrLoadLanguageAsync(lang: string): Promise<Locale | nul
   return null
 }
 
+function findLocale(locale: string) {
+  const lowerCaseLocale = locale.toLowerCase().replace('_', '-')
+  return (
+    availableLocales.find(l => l.toLowerCase() === lowerCaseLocale)
+    || availableLocales.find(l => l.toLowerCase().startsWith(lowerCaseLocale.split('-')[0]))
+    || null
+  )
+}
+
 /**
  * Setup i18n internationalization
  * 挂载i18n国际化
  * @param app Vue application instance. Vue 应用实例。
  */
-export const install: UserModule = (app) => {
+export const install: UserModule = async (app) => {
   app.use(i18n)
+
+  // 加载设置的语言或浏览器语言
+  await setOrLoadLanguageAsync(
+    typedLocalStorage.getItem<LocaleSetting>(APP_LOCALE_KEY)?.locale || findLocale(navigator.language) || 'en-US',
+  )
 }

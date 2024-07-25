@@ -15,13 +15,7 @@ async function bootstrap() {
   const app = createApp(App)
 
   // 安装目录`modules/`下的所有模块
-  Object.values(import.meta.glob<{ install: UserModule }>('./modules/*.ts', { eager: true })).forEach(i => i.install?.(app))
-
-  // // 挂载国际化
-  // setupI18n(app)
-
-  // // 挂载状态管理
-  // setupStore(app)
+  Object.values(import.meta.glob<{ install: UserModule }>('./modules/*.ts', { eager: true })).forEach(async i => await i.install?.(app))
 
   // 挂载路由
   await setupRouter(app)
