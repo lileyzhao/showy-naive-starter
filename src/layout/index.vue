@@ -23,7 +23,7 @@ const themeDrawerRef = ref<InstanceType<typeof ThemeDrawer>>()
 // Get menu settings from the app store. 从应用存储中获取菜单设置。
 const menuSetting = computed(() => app.menuSetting)
 
-console.log(menuSetting.value)
+console.log(menuSetting.value, isMobile.value, 'isMobile')
 
 /** Whether the menu is in the top bar layout. 是否顶栏菜单布局。 */
 const isTopBar = computed(() => menuSetting.value.menuPosition === MenuPositionEnum.TOP_BAR)
@@ -106,14 +106,13 @@ const handleAction = (op: string, _val: any) => {
   <n-layout has-sider position="absolute">
     <!-- Sidebar (Desktop): Main Sidebar. 侧边栏(电脑端):主栏。 -->
     <MainSidebar
-      v-if="isMobile && !isTopBar" ref="mainSidebarRef" @key-change="handleMainMenuKeyChange" @mouseenter="cancelRestoreSubMenu"
-      @mouseleave="stopTimeout = false"
+      v-if="!isMobile && !isTopBar" ref="mainSidebarRef" @key-change="handleMainMenuKeyChange"
+      @mouseenter="cancelRestoreSubMenu" @mouseleave="stopTimeout = false"
     />
     <!-- Sidebar (Desktop): Sub Sidebar. 侧边栏(电脑端):副栏。 -->
     <SubSidebar
-      v-if="!isMobile && (!isTopBar || menuSetting.topMenu.showSubMenu)"
-      :parent-menu-key="mainMenuRootKey" @collapsed="handleSubCollapsed" @mouseenter="cancelRestoreSubMenu"
-      @mouseleave="stopTimeout = false"
+      v-if="!isMobile && (!isTopBar || menuSetting.topMenu.showSubMenu)" :parent-menu-key="mainMenuRootKey"
+      @collapsed="handleSubCollapsed" @mouseenter="cancelRestoreSubMenu" @mouseleave="stopTimeout = false"
     />
 
     <!-- Right main area. 右侧主体区。 -->

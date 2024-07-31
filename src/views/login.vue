@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useAppStore } from '@/store/app'
 import SyIconButton from '@/shared/components/SyIconButton.vue'
 
 const { t } = useI18n()

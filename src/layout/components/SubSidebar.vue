@@ -1,7 +1,6 @@
 <script setup lang="ts" name="Layout-SubSidebar">
 import type { MenuInst, MenuOption } from 'naive-ui'
 import type { RouteRecordRaw } from 'vue-router'
-import { useAppStore } from '@/store/app'
 import Logo from '@/layout/components/Logo.vue'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared'
 import { mapRoutes } from '@/utils/menuUtil'

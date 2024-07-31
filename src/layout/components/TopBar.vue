@@ -1,7 +1,6 @@
 <script setup lang="ts" name="Layout-TopBar">
 import type { MenuInst } from 'naive-ui'
 import Logo from '@/layout/components/Logo.vue'
-import { useAppStore } from '@/store/app'
 import { MENU_STATE_TEXT, MenuButtonEnum, MenuPositionEnum } from '@/shared'
 import SyIconButton from '@/shared/components/SyIconButton.vue'
 import { mapRoutes } from '@/utils/menuUtil'
