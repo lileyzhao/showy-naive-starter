@@ -1,24 +1,5 @@
 import type { NDateLocale, NLocale } from 'naive-ui'
-import {
-  arDZ,
-  dateArDZ,
-  dateDeDE,
-  dateEnUS,
-  dateItIT,
-  dateJaJP,
-  dateKoKR,
-  dateRuRU,
-  dateZhCN,
-  dateZhTW,
-  deDE,
-  enUS,
-  itIT,
-  jaJP,
-  koKR,
-  ruRU,
-  zhCN,
-  zhTW,
-} from 'naive-ui'
+import { dateEnUS, dateJaJP, dateKoKR, dateZhCN, dateZhTW, enUS, jaJP, koKR, zhCN, zhTW } from 'naive-ui'
 
 export const APP_LOCALE_KEY = 'app-locale-setting'
 
@@ -37,14 +18,9 @@ interface NaiveLocale {
  * Locale 映射对象
  */
 export const localeMap: Record<string, NaiveLocale> = {
-  'ar-DZ': { locale: arDZ, dateLocale: dateArDZ, display: 'العربية (الجزائر)' },
-  'ar-KW': { locale: arDZ, dateLocale: dateArDZ, display: 'العربية (الكويت)' },
-  'de-DE': { locale: deDE, dateLocale: dateDeDE, display: 'Deutsch (Deutschland)' },
   'en-US': { locale: enUS, dateLocale: dateEnUS, display: 'English (United States)' },
-  'it-IT': { locale: itIT, dateLocale: dateItIT, display: 'Italiano (Italia)' },
   'ja-JP': { locale: jaJP, dateLocale: dateJaJP, display: '日本語 (日本)' },
   'ko-KR': { locale: koKR, dateLocale: dateKoKR, display: '한국어 (대한민국)' },
-  'ru-RU': { locale: ruRU, dateLocale: dateRuRU, display: 'Русский (Россия)' },
   'zh-CN': { locale: zhCN, dateLocale: dateZhCN, display: '中文 (简体)' },
   'zh-TW': { locale: zhTW, dateLocale: dateZhTW, display: '中文 (繁體)' },
 }
