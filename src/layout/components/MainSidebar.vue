@@ -7,7 +7,7 @@ import { getFullRoutes } from '@/utils'
 const emit = defineEmits(['keyChange'])
 
 const { t } = useI18n()
-const app = useAppStore()
+const app = useAppSettingStore()
 const route = useRoute()
 const fullRoutes = getFullRoutes()
 const mainMenuRoutes = fullRoutes.filter(route => route.meta.parentName === 'root').filter(route => !route.meta?.hidden) ?? []
@@ -17,13 +17,13 @@ const mainMenuKey = ref<string>()
 
 /** Collapsed State of main-menu 主栏菜单收缩状态 */
 const collMainMenu = computed({
-  get: () => app.MenuSetting.mainMenu.collapsed,
+  get: () => app.menuSetting.mainMenu.collapsed,
   set: val => app.setMenuSetting({ mainMenu: { collapsed: val } }),
 })
 
 /** Main column reverse color 主栏反转颜色 */
 const mainMenuInverted = computed({
-  get: () => app.MenuSetting.mainMenu.inverted,
+  get: () => app.menuSetting.mainMenu.inverted,
   set: val => app.setMenuSetting({ mainMenu: { inverted: val } }),
 })
 
@@ -32,8 +32,8 @@ const mainMenuRef = ref<MenuInst | null>()
 
 /** main-menu data 主栏菜单数据 */
 const mainMenuOptions = computed(() => {
-  const mainMenuSetting = app.MenuSetting.mainMenu
-  return mainMenuRoutes.map(route => mapRoutesMain(route, fullRoutes, t, app.MenuSetting.subMenu.collapsed, mainMenuSetting))
+  const mainMenuSetting = app.menuSetting.mainMenu
+  return mainMenuRoutes.map(route => mapRoutesMain(route, fullRoutes, t, app.menuSetting.subMenu.collapsed, mainMenuSetting))
 })
 
 /** Handle main menu key change 处理主菜单键变化 */
@@ -41,16 +41,16 @@ const handleMainMenuKeyChange = (key: string) => emit('keyChange', key)
 
 /** Refresh main menu 刷新主菜单 */
 const refreshMainMenu = () => {
-  mainMenuKey.value = (app.MenuSetting.subMenu.collapsed ? route.name : route.matched[1].name) as string
+  mainMenuKey.value = (app.menuSetting.subMenu.collapsed ? route.name : route.matched[1].name) as string
   mainMenuRef.value?.showOption(mainMenuKey.value)
 }
 
 /** Style class for logo logo的样式类 */
-const logoClass = computed(() => !app.IsDarkMode && app.MenuSetting.mainMenu.inverted ? 'b-bl-gray2! b-b-1!' : '')
+const logoClass = computed(() => !app.isDark && app.menuSetting.mainMenu.inverted ? 'b-bl-gray2! b-b-1!' : '')
 
 onMounted(refreshMainMenu)
 
-watch(() => app.MenuSetting.subMenu.collapsed, refreshMainMenu)
+watch(() => app.menuSetting.subMenu.collapsed, refreshMainMenu)
 
 /** Exposes 公开对象 */
 defineExpose({ refreshMainMenu })

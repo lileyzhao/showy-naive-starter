@@ -2,7 +2,11 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { GlobalThemeOverrides } from 'naive-ui'
 import type { LocaleSetting, MenuButtonEnum, MenuSetting } from '@/shared'
 import { DarkSchemeEnum } from '@/shared'
-import { localeSetting as localDefault, menuSetting as menuDefault, themeOverride as themeOverrideDefault } from '@/setting/appSetting'
+import {
+  localeSetting as localDefault,
+  menuSetting as menuDefault,
+  themeOverride as themeOverrideDefault,
+} from '@/setting/appSetting'
 import { deepMergeObjects, typedLocalStorage, updateLocale } from '@/utils'
 import type { DeepPartial } from '@/shared/types'
 
@@ -19,6 +23,9 @@ export const useAppSettingStore = defineStore('appSetting', () => {
       return preferredDark.value ? DarkSchemeEnum.DARK : DarkSchemeEnum.LIGHT
     else return darkScheme.value
   })
+
+  /** Is dark mode. 是否深色模式 */
+  const isDark = computed(() => darkMode.value === DarkSchemeEnum.DARK)
 
   const { isSupported, language } = useNavigatorLanguage()
 
@@ -72,6 +79,11 @@ export const useAppSettingStore = defineStore('appSetting', () => {
     }
   })
 
+  /** Set theme-scheme 设置主题方案 */
+  function setDarkScheme(val: DarkSchemeEnum) {
+    typedLocalStorage.setItem(APP_DARK_SCHEMA_KEY, val)
+  }
+
   /** Set locale settings 设置本地化设置 */
   function setLocaleSetting(setting: Partial<LocaleSetting>) {
     const currSetting = deepMergeObjects(localeSetting.value, setting)
@@ -93,9 +105,11 @@ export const useAppSettingStore = defineStore('appSetting', () => {
   return {
     darkScheme,
     darkMode,
+    isDark,
     localeSetting,
     menuSetting,
     themeOverride,
+    setDarkScheme,
     setLocaleSetting,
     setMenuSetting,
     hasMenuButton,

@@ -2,7 +2,7 @@
 import type { Type } from 'naive-ui/es/button/src/interface'
 
 const { t } = useI18n()
-const app = useAppStore()
+const app = useAppSettingStore()
 const route = useRoute()
 
 const currentTime = ref('00:00:00')

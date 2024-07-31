@@ -12,13 +12,13 @@ const emit = defineEmits(['collapsed'])
 
 // Variables 变量
 const { t } = useI18n()
-const app = useAppStore()
+const app = useAppSettingStore()
 const route = useRoute()
 const fullRoutes = getFullRoutes()
 const subMenuRoutes = ref<RouteRecordRaw[]>([])
 
 /** Menu setting 菜单设置 */
-const menuSetting = computed(() => app.MenuSetting)
+const menuSetting = computed(() => app.menuSetting)
 
 /** Collapsed State of sub-menu 副栏菜单收缩状态 */
 const collSubMenu = computed({

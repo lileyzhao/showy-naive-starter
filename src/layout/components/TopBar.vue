@@ -40,11 +40,11 @@ const topMenuOptions = computed(() => {
 /** Menu state switch icon 菜单状态切换图标 */
 const menuStateIcon = computed(() => {
   const menuIconMap = { 1: 'i-line-md:download-off-outline', 2: 'i-line-md:menu-fold-right', 3: 'i-line-md:menu-unfold-left' }
-  return app.isMobile ? 'i-line-md:menu-fold-right' : menuIconMap[menuSetting.value.menuState!] || ''
+  return isMobile ? 'i-line-md:menu-fold-right' : menuIconMap[menuSetting.value.menuState!] || ''
 })
 
 /** Toggle main-menu status 切换主栏菜单状态 */
-const toggleMainMenu = () => app.isMobile ? emit('action', 'toggleMobileDrawer') : app.toggleMainMenuState()
+const toggleMainMenu = () => isMobile ? emit('action', 'toggleMobileDrawer') : app.toggleMainMenuState()
 
 const refreshTopMenu = () => {
   topMenuKey.value = (menuSetting.value.subMenu.collapsed ? route.name : route.matched[1].name) as string
@@ -117,29 +117,29 @@ defineExpose({ refreshTopMenu })
     <div h-header flex-right-center gap-x-4>
       <!-- Left section of the top bar 头部左侧区 -->
       <div
-        v-if="(!isTopBarLayout && showMainMenuStatusButton) || app.isMobile" h-full flex flex-1 items-center gap-x-4
+        v-if="(!isTopBarLayout && showMainMenuStatusButton) || isMobile" h-full flex flex-1 items-center gap-x-4
         p-l-4
       >
         <div :class="menuStateIcon" cursor-pointer text-5 @click="toggleMainMenu" />
-        <span v-if="!app.isMobile" font-size-3 text-gray>←{{ t(MENU_STATE_TEXT[menuSetting.menuState!]) }}</span>
+        <span v-if="!isMobile" font-size-3 text-gray>←{{ t(MENU_STATE_TEXT[menuSetting.menuState!]) }}</span>
       </div>
       <!-- Top logo 顶栏Logo -->
       <Logo v-if="isTopBarLayout && !menuSetting.topMenu.showSubMenu" flex-nowrap b-r-1 px-28px />
       <!-- Top menu 顶栏菜单 -->
       <div flex-1>
         <n-menu
-          v-if="!app.isMobile && isTopBarLayout" ref="topMenuRef" v-model:value="topMenuKey" mode="horizontal"
+          v-if="!isMobile && isTopBarLayout" ref="topMenuRef" v-model:value="topMenuKey" mode="horizontal"
           :options="topMenuOptions" :icon-size="20.5" responsive :indent="16" @update:value="onTopMenuKeyChange"
         />
       </div>
       <!-- Right section of the top bar 头部右侧区 -->
       <div h-full flex-right-center gap-1.5 p-r-3>
         <SyIconButton
-          v-if="menuSetting.topMenu.showSubMenu && isTopBarLayout && !app.isMobile" button
+          v-if="menuSetting.topMenu.showSubMenu && isTopBarLayout && !isMobile" button
           icon="i-carbon:side-panel-close" @click="app.toggleMenuPosition"
         />
         <SyIconButton
-          v-else-if="!app.isMobile" button
+          v-else-if="!isMobile" button
           :icon="`i-carbon:align-${isTopBarLayout ? 'horizontal-left' : 'vertical-top'}`"
           @click="app.toggleMenuPosition"
         />
@@ -157,7 +157,7 @@ defineExpose({ refreshTopMenu })
           </div>
         </n-dropdown>
         <SyIconButton
-          v-if="!app.isMobile && menuSetting.buttons.includes(MenuButtonEnum.ThemeDrawer)" button
+          v-if="!isMobile && menuSetting.buttons.includes(MenuButtonEnum.ThemeDrawer)" button
           icon="i-carbon:cookie" @click="toggleThemeDrawer"
         />
         <n-dropdown :options="profileOptions" trigger="click" @select="profileSelect">

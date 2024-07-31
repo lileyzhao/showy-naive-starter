@@ -3,12 +3,11 @@ import { computed } from 'vue'
 import { useThemeVars } from 'naive-ui'
 import pkg from '@/../package.json'
 
-const app = useAppStore()
 const themeVars = useThemeVars() // Get theme variables 获取主题变量
 
 const { t } = useI18n()
 
-const column = computed(() => (app.isMobile ? 1 : 2))
+const column = computed(() => (isMobile ? 1 : 2))
 
 interface PkgJson {
   name: string

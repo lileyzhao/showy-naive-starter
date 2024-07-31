@@ -3,7 +3,7 @@ import SyIconButton from '@/shared/components/SyIconButton.vue'
 
 const { t } = useI18n()
 const router = useRouter()
-const app = useAppStore()
+const app = useAppSettingStore()
 
 const model = ref({ account: 'admin', password: 'admin' })
 

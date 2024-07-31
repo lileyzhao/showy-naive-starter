@@ -2,7 +2,7 @@
 import { DarkSchemeEnum } from '@/shared'
 
 const { t } = useI18n()
-const app = useAppStore()
+const app = useAppSettingStore()
 
 const icons: Record<DarkSchemeEnum, string> = {
   [DarkSchemeEnum.LIGHT]: 'i-line-md:sunny-filled',
@@ -17,12 +17,12 @@ const texts: Record<DarkSchemeEnum, string> = {
 }
 
 function handleDarkModeChange(value: DarkSchemeEnum) {
-  app.setThemeMode(value)
+  app.setDarkScheme(value)
 }
 
 /** Main column reverse color 主栏反转颜色 */
 const mainMenuInverted = computed({
-  get: () => app.MenuSetting.mainMenu.inverted,
+  get: () => app.menuSetting.mainMenu.inverted,
   set: val => app.setMenuSetting({ mainMenu: { inverted: val } }),
 })
 

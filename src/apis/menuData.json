@@ -71,5 +71,5 @@
       "hidden": true
     }
   ],
-  "publicRoutes": [{ "path": "/login", "name": "login", "title": "menu.login", "component": "login" }]
+  "publicRoutes": [{ "path": "/login", "name": "login", "title": "login.title", "component": "login" }]
 }

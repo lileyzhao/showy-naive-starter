@@ -6,7 +6,7 @@ import { getFullRoutes } from '@/utils'
 
 // Variables 变量
 const { t } = useI18n()
-const app = useAppStore()
+const app = useAppSettingStore()
 const route = useRoute()
 const fullRoutes = getFullRoutes()
 
@@ -16,7 +16,7 @@ const drawerActive = ref(false)
 const mobileMenuRef = ref<MenuInst | null>()
 
 /** Menu setting 菜单设置 */
-const menuSetting = computed(() => app.MenuSetting)
+const menuSetting = computed(() => app.menuSetting)
 
 /** Main column reverse color 主栏反转颜色 */
 const mainMenuInverted = computed({
