@@ -1,4 +1,4 @@
-<script setup lang="ts" name="Layout-Index">
+<script setup lang="ts" name="Layout-Default">
 import MainSidebar from './components/MainSidebar.vue'
 import SubSidebar from './components/SubSidebar.vue'
 import ThemeDrawer from './components/ThemeDrawer.vue'
@@ -103,17 +103,20 @@ const handleAction = (op: string, _val: any) => {
 </script>
 
 <template>
-  <n-layout has-sider position="absolute">
-    <!-- Sidebar (Desktop): Main Sidebar. 侧边栏(电脑端):主栏。 -->
-    <MainSidebar
-      v-if="!isMobile && !isTopBar" ref="mainSidebarRef" @key-change="handleMainMenuKeyChange"
-      @mouseenter="cancelRestoreSubMenu" @mouseleave="stopTimeout = false"
-    />
-    <!-- Sidebar (Desktop): Sub Sidebar. 侧边栏(电脑端):副栏。 -->
-    <SubSidebar
-      v-if="!isMobile && (!isTopBar || menuSetting.topMenu.showSubMenu)" :parent-menu-key="mainMenuRootKey"
-      @collapsed="handleSubCollapsed" @mouseenter="cancelRestoreSubMenu" @mouseleave="stopTimeout = false"
-    />
+  <n-layout has-sider position="absolute" class="layout-default">
+    <!-- Sidebar (Desktop). 侧边栏(电脑端)。 -->
+    <template v-if="!isMobile">
+      <!-- Sidebar (Desktop): Main Sidebar. 侧边栏(电脑端):主栏。 -->
+      <MainSidebar
+        v-if="!isTopBar" ref="mainSidebarRef" @key-change="handleMainMenuKeyChange"
+        @mouseenter="cancelRestoreSubMenu" @mouseleave="stopTimeout = false"
+      />
+      <!-- Sidebar (Desktop): Sub Sidebar. 侧边栏(电脑端):副栏。 -->
+      <SubSidebar
+        v-if="!isTopBar || menuSetting.topMenu.showSubMenu" :parent-menu-key="mainMenuRootKey"
+        @collapsed="handleSubCollapsed" @mouseenter="cancelRestoreSubMenu" @mouseleave="stopTimeout = false"
+      />
+    </template>
 
     <!-- Right main area. 右侧主体区。 -->
     <n-layout content-class="flex flex-col">
