@@ -1,8 +1,9 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import type { GlobalThemeOverrides } from 'naive-ui'
 import type { LocaleSetting, MenuButtonEnum, MenuSetting } from '@/shared'
-import { DarkSchemeEnum, LocaleEnum, MenuPositionEnum } from '@/shared'
-import { localeSetting as localDefault, menuSetting as menuDefault } from '@/setting/appSetting'
-import { deepMergeObjects, typedLocalStorage, updateLocale, updateThemeMode } from '@/utils'
+import { DarkSchemeEnum } from '@/shared'
+import { localeSetting as localDefault, menuSetting as menuDefault, themeOverride as themeOverrideDefault } from '@/setting/appSetting'
+import { deepMergeObjects, typedLocalStorage, updateLocale } from '@/utils'
 import type { DeepPartial } from '@/shared/types'
 
 export const useAppSettingStore = defineStore('appSetting', () => {
@@ -49,6 +50,28 @@ export const useAppSettingStore = defineStore('appSetting', () => {
     return mset
   })
 
+  /** Override Naive's theme colors. 覆盖Naive的主题配色 */
+  const themeOverride = computed((): GlobalThemeOverrides | undefined => {
+    if (!themeOverrideDefault.defaultColor && !themeOverrideDefault.light && !themeOverrideDefault.dark)
+      return undefined
+    const defaultOverride = !themeOverrideDefault.defaultColor
+      ? undefined
+      : {
+          common: {
+            primaryColor: themeOverrideDefault.defaultColor,
+            primaryColorHover: themeOverrideDefault.defaultColor,
+            primaryColorPressed: themeOverrideDefault.defaultColor,
+            primaryColorSuppl: themeOverrideDefault.defaultColor,
+          },
+        }
+    if (darkMode.value === DarkSchemeEnum.DARK) {
+      return themeOverrideDefault.dark || defaultOverride || themeOverrideDefault.light
+    }
+    else {
+      return themeOverrideDefault.light || defaultOverride || themeOverrideDefault.dark
+    }
+  })
+
   /** Set locale settings 设置本地化设置 */
   function setLocaleSetting(setting: Partial<LocaleSetting>) {
     const currSetting = deepMergeObjects(localeSetting.value, setting)
@@ -72,6 +95,7 @@ export const useAppSettingStore = defineStore('appSetting', () => {
     darkMode,
     localeSetting,
     menuSetting,
+    themeOverride,
     setLocaleSetting,
     setMenuSetting,
     hasMenuButton,

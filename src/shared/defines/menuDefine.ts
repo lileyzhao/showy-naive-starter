@@ -108,9 +108,6 @@ export interface MenuSetting {
    *              Step 3 (ONLY_ICON):   collMainMenu:false showIconLabel:false
    */
   menuState?: MenuStateEnum
-
-  /** Theme color 主题色 */
-  primaryColor: string
 }
 
 /**

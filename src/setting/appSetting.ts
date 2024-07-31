@@ -1,13 +1,26 @@
-import { DarkSchemeEnum, type LocaleSetting, MenuButtonEnum, MenuPositionEnum, type MenuSetting } from '@/shared'
+import { DarkSchemeEnum, MenuButtonEnum, MenuPositionEnum } from '@/shared'
+import type { LocaleSetting, MenuSetting, ThemeOverride } from '@/shared'
 
-/**
- * Default dark-scheme 默认主题方案
- */
+/** Default dark-scheme 默认主题方案 */
 export const darkScheme = DarkSchemeEnum.AUTO
 
 /**
- * Default locale setting 默认区域设置
+ * Override Naive's theme colors. 覆盖Naive的主题配色
+ * Reference: https://www.naiveui.com/zh-CN/os-theme/docs/customize-theme#调整主题变量
  */
+export const themeOverride: ThemeOverride = {
+  // The default color,  if light and dark are not set, this color will be used as the theme color.
+  // 默认的主题颜色，如果不设置light和dark ，将使用这个颜色作为主题色
+  defaultColor: '#646CFF',
+
+  // Theme colors under light 浅色下的配色
+  light: undefined,
+
+  // Theme colors under dark 深色下的配色
+  dark: undefined,
+}
+
+/** Default locale setting 默认区域设置 */
 export const localeSetting: LocaleSetting = {
   // Whether to display button 是否显示按钮
   showButton: true,
@@ -25,9 +38,7 @@ export const localeSetting: LocaleSetting = {
   inRouteExclude: [],
 }
 
-/**
- * Default menu Setting 默认菜单设置
- */
+/** Default menu Setting 默认菜单设置 */
 export const menuSetting: MenuSetting = {
   // Displayed menu button set 显示的菜单按钮集合
   buttons: [
@@ -63,7 +74,4 @@ export const menuSetting: MenuSetting = {
     collapsed: false,
     width: 160,
   },
-
-  // Theme color 主题色
-  primaryColor: '#646CFF',
 }
