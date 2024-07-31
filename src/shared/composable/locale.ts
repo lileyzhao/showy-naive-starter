@@ -29,6 +29,7 @@ export const APP_LOCALE_KEY = 'app-locale-setting'
 interface NaiveLocale {
   locale: NLocale
   dateLocale: NDateLocale
+  display: string
 }
 
 /**
@@ -36,33 +37,16 @@ interface NaiveLocale {
  * Locale 映射对象
  */
 export const localeMap: Record<string, NaiveLocale> = {
-  'ar-DZ': { locale: arDZ, dateLocale: dateArDZ },
-  'ar-KW': { locale: arDZ, dateLocale: dateArDZ },
-  'de-DE': { locale: deDE, dateLocale: dateDeDE },
-  'en-US': { locale: enUS, dateLocale: dateEnUS },
-  'it-IT': { locale: itIT, dateLocale: dateItIT },
-  'ja-JP': { locale: jaJP, dateLocale: dateJaJP },
-  'ko-KR': { locale: koKR, dateLocale: dateKoKR },
-  'ru-RU': { locale: ruRU, dateLocale: dateRuRU },
-  'zh-CN': { locale: zhCN, dateLocale: dateZhCN },
-  'zh-TW': { locale: zhTW, dateLocale: dateZhTW },
-}
-
-/**
- * Language name mapping object.
- * Locale 名称映射对象
- */
-const languageNameMap: Record<string, string> = {
-  'ar-DZ': 'العربية (الجزائر)',
-  'ar-KW': 'العربية (الكويت)',
-  'de-DE': 'Deutsch (Deutschland)',
-  'en-US': 'English (United States)',
-  'it-IT': 'Italiano (Italia)',
-  'ja-JP': '日本語 (日本)',
-  'ko-KR': '한국어 (대한민국)',
-  'ru-RU': 'Русский (Россия)',
-  'zh-CN': '中文 (简体)',
-  'zh-TW': '中文 (繁體)',
+  'ar-DZ': { locale: arDZ, dateLocale: dateArDZ, display: 'العربية (الجزائر)' },
+  'ar-KW': { locale: arDZ, dateLocale: dateArDZ, display: 'العربية (الكويت)' },
+  'de-DE': { locale: deDE, dateLocale: dateDeDE, display: 'Deutsch (Deutschland)' },
+  'en-US': { locale: enUS, dateLocale: dateEnUS, display: 'English (United States)' },
+  'it-IT': { locale: itIT, dateLocale: dateItIT, display: 'Italiano (Italia)' },
+  'ja-JP': { locale: jaJP, dateLocale: dateJaJP, display: '日本語 (日本)' },
+  'ko-KR': { locale: koKR, dateLocale: dateKoKR, display: '한국어 (대한민국)' },
+  'ru-RU': { locale: ruRU, dateLocale: dateRuRU, display: 'Русский (Россия)' },
+  'zh-CN': { locale: zhCN, dateLocale: dateZhCN, display: '中文 (简体)' },
+  'zh-TW': { locale: zhTW, dateLocale: dateZhTW, display: '中文 (繁體)' },
 }
 
 /**
@@ -93,7 +77,7 @@ export function getNaiveLocale(locale: string = 'en-US'): NaiveLocale {
     }
   }
 
-  return { locale: enUS, dateLocale: dateEnUS }
+  return { locale: enUS, dateLocale: dateEnUS, display: 'English (United States)' }
 }
 
 /**
@@ -108,8 +92,8 @@ export function getLanguageName(locale: string = 'en-US'): string {
 
   // Attempt to get the label directly from the map
   // 尝试直接从映射中获取标签
-  if (languageNameMap[locale]) {
-    return languageNameMap[locale]
+  if (localeMap[locale].display) {
+    return localeMap[locale].display
   }
 
   // Split the locale into parts
@@ -118,9 +102,9 @@ export function getLanguageName(locale: string = 'en-US'): string {
 
   // Try to find the first matching label for the simple language code
   // 尝试找到第一个匹配的简单语言代码的标签
-  for (const key in languageNameMap) {
+  for (const key in localeMap) {
     if (key.startsWith(language)) {
-      return languageNameMap[key]
+      return localeMap[key].display
     }
   }
 
