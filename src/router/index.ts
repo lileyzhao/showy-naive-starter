@@ -25,7 +25,7 @@ export const RootRoute: RouteRecordRaw = {
   // 语言代码为可选参数，仅支持'zh-CN', 'zh-TW' 两段式语言代码
   path: `${LOCALE_PARAM}/`,
   name: 'root',
-  component: () => import('@/layout/index.vue'),
+  component: () => import('@/layout/default.vue'),
   meta: { title: 'Root' },
   redirect: '/project',
   children: [],
