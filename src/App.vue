@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { darkTheme } from 'naive-ui'
 
-const app = useAppSettingStore()
+const app = useAppStore()
 const theme = computed(() => (isDark.value ? darkTheme : null))
 const naiveLocale = computed(() => getNaiveLocale(app.localeSetting.locale))
 

@@ -1,4 +1,5 @@
 <script setup lang="ts" name="Layout-Default">
+import chalk from 'chalk'
 import MainSidebar from './components/MainSidebar.vue'
 import SubSidebar from './components/SubSidebar.vue'
 import ThemeDrawer from './components/ThemeDrawer.vue'
@@ -8,7 +9,7 @@ import { MenuButtonEnum, MenuPositionEnum } from '@/shared'
 import { getFullRoutes } from '@/utils'
 import { isDark } from '@/shared/composable/dark'
 
-const app = useAppSettingStore()
+const app = useAppStore()
 const route = useRoute()
 const fullRoutes = getFullRoutes()
 
@@ -19,13 +20,11 @@ const topBarRef = ref<InstanceType<typeof TopBar>>()
 const mobileDrawerRef = ref<InstanceType<typeof MobileDrawer>>()
 const themeDrawerRef = ref<InstanceType<typeof ThemeDrawer>>()
 
-// Get menu settings from the app store. 从应用存储中获取菜单设置。
-const menuSetting = computed(() => app.menuSetting)
-
-console.log(menuSetting.value, app.isMobile, 'isMobile')
+console.log(chalk.bgBlue.black.bold(' DefaultLayout ') + chalk.bgCyan.black(' MenuSetting: '), app.menuSetting)
+console.log(chalk.bgBlue.black.bold(' DefaultLayout ') + chalk.bgCyan.black(' isMobile: '), app.isMobile)
 
 /** Whether the menu is in the top bar layout. 是否顶栏菜单布局。 */
-const isTopBar = computed(() => menuSetting.value.menuPosition === MenuPositionEnum.TOP_BAR)
+const isTopBar = computed(() => app.menuSetting.menuPosition === MenuPositionEnum.TOP_BAR)
 
 /** Selected item in the main menu. 主栏菜单选中项。 */
 const mainMenuKey = ref<string>()
@@ -53,7 +52,7 @@ const restoreSubMenu = useDebounceFn(() => {
   const tt = setTimeout(() => {
     if (stopTimeout.value)
       return
-    if (!menuSetting.value.subMenu.collapsed) {
+    if (!app.menuSetting.subMenu.collapsed) {
       // 刷新主栏菜单
       if (!app.isMobile && !isTopBar.value)
         mainSidebarRef.value?.refreshMainMenu()
@@ -89,7 +88,7 @@ const handleSubCollapsed = (collSubMenu: boolean) => {
 
 onMounted(async () => {
   // Update the main menu. 更新主栏菜单。
-  mainMenuKey.value = (menuSetting.value.subMenu.collapsed ? route.name : route.matched[1].name) as string
+  mainMenuKey.value = (app.menuSetting.subMenu.collapsed ? route.name : route.matched[1].name) as string
 })
 
 /** Handle various actions like toggling drawers. 处理各种操作，如切换抽屉。 */
@@ -112,7 +111,7 @@ const handleAction = (op: string, _val: any) => {
       />
       <!-- Sidebar (Desktop): Sub Sidebar. 侧边栏(电脑端):副栏。 -->
       <SubSidebar
-        v-if="!isTopBar || menuSetting.topMenu.showSubMenu" :parent-menu-key="mainMenuRootKey"
+        v-if="!isTopBar || app.menuSetting.topMenu.showSubMenu" :parent-menu-key="mainMenuRootKey"
         @collapsed="handleSubCollapsed" @mouseenter="cancelRestoreSubMenu" @mouseleave="stopTimeout = false"
       />
     </template>

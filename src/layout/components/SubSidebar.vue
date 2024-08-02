@@ -12,7 +12,7 @@ const emit = defineEmits(['collapsed'])
 
 // Variables 变量
 const { t } = useI18n()
-const app = useAppSettingStore()
+const app = useAppStore()
 const route = useRoute()
 const fullRoutes = getFullRoutes()
 const subMenuRoutes = ref<RouteRecordRaw[]>([])
@@ -86,13 +86,13 @@ defineExpose({ refreshSubMenu })
   <n-layout-sider
     v-if="subMenuRoutes.length > 0" collapse-mode="width" :width="menuSetting.subMenu.width"
     :collapsed-width="0" :collapsed="collSubMenu"
-    :show-trigger="menuSetting.buttons.includes(MenuButtonEnum.SubMenuStatus) && app.MenuSetting.menuPosition === MenuPositionEnum.SIDEBAR ? 'arrow-circle' : false"
+    :show-trigger="menuSetting.buttons.includes(MenuButtonEnum.SubMenuStatus) && app.menuSetting.menuPosition === MenuPositionEnum.SIDEBAR ? 'arrow-circle' : false"
     :bordered="!collSubMenu" content-class="of-x-hidden!" z-2 @collapse="handleToggleSub(true)"
     @expand="handleToggleSub(false)"
   >
     <n-layout-header bordered>
       <Logo
-        v-if="app.MenuSetting.menuPosition === MenuPositionEnum.TOP_BAR && app.MenuSetting.topMenu.showSubMenu"
+        v-if="app.menuSetting.menuPosition === MenuPositionEnum.TOP_BAR && app.menuSetting.topMenu.showSubMenu"
         flex-y-center p-l-5
       />
       <Logo v-else hide-logo :hide-title="!menuSetting.mainMenu.collapsed" flex-y-center p-l-5 />

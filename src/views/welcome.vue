@@ -2,7 +2,7 @@
 import type { Type } from 'naive-ui/es/button/src/interface'
 
 const { t } = useI18n()
-const app = useAppSettingStore()
+const app = useAppStore()
 const route = useRoute()
 
 const currentTime = ref('00:00:00')
@@ -35,14 +35,14 @@ onMounted(() => {
   <n-card class="m--8px" content-class="!p-0" :bordered="false">
     <div flex flex-col items-center justify-center gap-y-4 pt-4>
       <div
-        :class="`i-line-md:${app.IsDarkMode ? 'moon-filled-loop text-purple' : 'sunny-filled-loop text-yellow'}`"
+        :class="`i-line-md:${app.isDark ? 'moon-filled-loop text-purple' : 'sunny-filled-loop text-yellow'}`"
         text-24
       />
       <div class="time-display">
         {{ currentTime }}
       </div>
       <div text-6>
-        {{ app.IsDarkMode ? t('welcome.night') : t('welcome.morning') }}
+        {{ app.isDark ? t('welcome.night') : t('welcome.morning') }}
       </div>
       <div decoration-underline>
         {{ route?.path }}

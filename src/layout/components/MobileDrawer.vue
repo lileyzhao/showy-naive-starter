@@ -6,7 +6,7 @@ import { getFullRoutes } from '@/utils'
 
 // Variables 变量
 const { t } = useI18n()
-const app = useAppSettingStore()
+const app = useAppStore()
 const route = useRoute()
 const fullRoutes = getFullRoutes()
 
@@ -71,7 +71,7 @@ defineExpose({ show })
           ref="mobileMenuRef" v-model:value="mobileMenuKey" :options="mobileMenuOptions" :indent="16"
           :icon-size="16" accordion @update:value="handleMobileMenuKeyChange"
         />
-        <div v-if="!app.IsDarkMode" absolute bottom-12px w-full flex justify-center>
+        <div v-if="!app.isDark" absolute bottom-12px w-full flex justify-center>
           <div
             :class="`i-line-md:${mainMenuInverted ? 'sunny-filled hover:text-yellow' : 'moon-filled hover:text-purple'}`"
             cursor-pointer text-18px @click="mainMenuInverted = !mainMenuInverted"

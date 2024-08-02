@@ -19,14 +19,11 @@ const fullRoutes = getFullRoutes()
 // Component references 组件引用
 const topMenuRef = ref<MenuInst | null>()
 
-/** Menu setting 菜单设置 */
-const menuSetting = computed(() => app.MenuSetting)
-
 /** Whether it is top bar layout 是否顶栏菜单布局 */
-const isTopBarLayout = computed(() => menuSetting.value.menuPosition === MenuPositionEnum.TOP_BAR)
+const isTopBarLayout = computed(() => app.menuSetting.menuPosition === MenuPositionEnum.TOP_BAR)
 
 /** Whether to show main menu status switch button 是否显示主菜单状态切换按钮 */
-const showMainMenuStatusButton = computed(() => menuSetting.value.buttons.includes(MenuButtonEnum.MainMenuStatus))
+const showMainMenuStatusButton = computed(() => app.menuSetting.buttons.includes(MenuButtonEnum.MainMenuStatus))
 
 /** Selected item in top menu 顶栏菜单选中项 */
 const topMenuKey = ref<string>()
@@ -34,20 +31,20 @@ const topMenuKey = ref<string>()
 /** Top menu items 顶栏菜单项 */
 const topMenuOptions = computed(() => {
   const routers = fullRoutes.filter(route => route.meta.parentName === 'root').filter(route => !route.meta?.hidden) ?? []
-  return routers.map(route => mapRoutes(route, fullRoutes, t, !menuSetting.value.topMenu.showSubMenu))
+  return routers.map(route => mapRoutes(route, fullRoutes, t, !app.menuSetting.topMenu.showSubMenu))
 })
 
 /** Menu state switch icon 菜单状态切换图标 */
 const menuStateIcon = computed(() => {
   const menuIconMap = { 1: 'i-line-md:download-off-outline', 2: 'i-line-md:menu-fold-right', 3: 'i-line-md:menu-unfold-left' }
-  return app.isMobile ? 'i-line-md:menu-fold-right' : menuIconMap[menuSetting.value.menuState!] || ''
+  return app.isMobile ? 'i-line-md:menu-fold-right' : menuIconMap[app.menuSetting.menuState!] || ''
 })
 
 /** Toggle main-menu status 切换主栏菜单状态 */
 const toggleMainMenu = () => app.isMobile ? emit('action', 'toggleMobileDrawer') : app.toggleMainMenuState()
 
 const refreshTopMenu = () => {
-  topMenuKey.value = (menuSetting.value.subMenu.collapsed ? route.name : route.matched[1].name) as string
+  topMenuKey.value = (app.menuSetting.subMenu.collapsed ? route.name : route.matched[1].name) as string
   topMenuRef.value?.showOption(topMenuKey.value)
   emit('keyChange', toRaw(topMenuKey.value))
 }
@@ -101,7 +98,7 @@ const profileSelect = (key: string | number) => {
 }
 
 onMounted(() => {
-  topMenuKey.value = (!menuSetting.value.topMenu.showSubMenu ? route.name : route.matched[1].name) as string
+  topMenuKey.value = (!app.menuSetting.topMenu.showSubMenu ? route.name : route.matched[1].name) as string
   topMenuRef.value?.showOption(topMenuKey.value)
 })
 
@@ -121,10 +118,10 @@ defineExpose({ refreshTopMenu })
         p-l-4
       >
         <div :class="menuStateIcon" cursor-pointer text-5 @click="toggleMainMenu" />
-        <span v-if="!app.isMobile" font-size-3 text-gray>←{{ t(MENU_STATE_TEXT[menuSetting.menuState!]) }}</span>
+        <span v-if="!app.isMobile" font-size-3 text-gray>←{{ t(MENU_STATE_TEXT[app.menuSetting.menuState!]) }}</span>
       </div>
       <!-- Top logo 顶栏Logo -->
-      <Logo v-if="isTopBarLayout && !menuSetting.topMenu.showSubMenu" flex-nowrap b-r-1 px-28px />
+      <Logo v-if="isTopBarLayout && !app.menuSetting.topMenu.showSubMenu" flex-nowrap b-r-1 px-28px />
       <!-- Top menu 顶栏菜单 -->
       <div flex-1>
         <n-menu
@@ -135,7 +132,7 @@ defineExpose({ refreshTopMenu })
       <!-- Right section of the top bar 头部右侧区 -->
       <div h-full flex-right-center gap-1.5 p-r-3>
         <SyIconButton
-          v-if="menuSetting.topMenu.showSubMenu && isTopBarLayout && !app.isMobile" button
+          v-if="app.menuSetting.topMenu.showSubMenu && isTopBarLayout && !app.isMobile" button
           icon="i-carbon:side-panel-close" @click="app.toggleMenuPosition"
         />
         <SyIconButton
@@ -144,12 +141,12 @@ defineExpose({ refreshTopMenu })
           @click="app.toggleMenuPosition"
         />
         <SyIconButton
-          v-if="menuSetting.buttons.includes(MenuButtonEnum.ThemeMode)" button
-          :icon="`i-line-md:${app.IsDarkMode ? 'sunny-filled' : 'moon-filled '}`" hover-class-dark="text-yellow!"
-          @click="app.toggleThemeMode"
+          v-if="app.menuSetting.buttons.includes(MenuButtonEnum.ThemeMode)" button
+          :icon="`i-line-md:${app.isDark ? 'sunny-filled' : 'moon-filled '}`" hover-class-dark="text-yellow!"
+          @click="app.toggleDark"
         />
         <n-dropdown
-          v-if="app.LocaleSetting.showButton" trigger="click" :options="langs" :show-arrow="true"
+          v-if="app.localeSetting.showButton" trigger="click" :options="langs" :show-arrow="true"
           @select="(key: string) => toggleLanguage(key)"
         >
           <div>
@@ -157,7 +154,7 @@ defineExpose({ refreshTopMenu })
           </div>
         </n-dropdown>
         <SyIconButton
-          v-if="!app.isMobile && menuSetting.buttons.includes(MenuButtonEnum.ThemeDrawer)" button
+          v-if="!app.isMobile && app.menuSetting.buttons.includes(MenuButtonEnum.ThemeDrawer)" button
           icon="i-carbon:cookie" @click="toggleThemeDrawer"
         />
         <n-dropdown :options="profileOptions" trigger="click" @select="profileSelect">

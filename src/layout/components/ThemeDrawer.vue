@@ -2,7 +2,7 @@
 import { DarkSchemeEnum } from '@/shared'
 
 const { t } = useI18n()
-const app = useAppSettingStore()
+const app = useAppStore()
 
 const icons: Record<DarkSchemeEnum, string> = {
   [DarkSchemeEnum.LIGHT]: 'i-line-md:sunny-filled',
@@ -45,7 +45,7 @@ defineExpose({ show })
       <div class="flex-col-stretch gap-16px">
         <div class="i-flex-center">
           <n-tabs
-            :key="app.ThemeModeRaw" type="segment" size="small" class="relative w-214px" :value="app.ThemeModeRaw"
+            :key="app.darkMode" type="segment" size="small" class="relative w-214px" :value="app.darkMode"
             @update:value="handleDarkModeChange"
           >
             <n-tab v-for="(_, key) in icons" :key="key" :name="key">
@@ -56,7 +56,7 @@ defineExpose({ show })
             </n-tab>
           </n-tabs>
         </div>
-        <div v-if="app.ThemeModeRaw !== DarkSchemeEnum.DARK" m-y-12px flex-y-center gap-8px>
+        <div v-if="app.darkMode !== DarkSchemeEnum.DARK" m-y-12px flex-y-center gap-8px>
           <span>深色侧边栏</span>
           <n-switch v-model:value="mainMenuInverted" />
         </div>

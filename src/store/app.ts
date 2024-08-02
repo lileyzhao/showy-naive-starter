@@ -1,169 +1,171 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import type { LocaleSetting, MenuButtonEnum, MenuSetting } from '@/shared'
-import { DarkSchemeEnum, LocaleEnum, MenuPositionEnum } from '@/shared'
-import { darkScheme, localeSetting, menuSetting } from '@/setting/appSetting'
-import { deepMergeObjects, typedLocalStorage, updateLocale, updateThemeMode } from '@/utils'
-import { availableLocales } from '@/modules/i18n'
+import type { GlobalThemeOverrides } from 'naive-ui'
+import type { LocaleSetting, MenuButtonEnum, MenuSetting, ThemeOverride } from '@/shared'
+import { DarkSchemeEnum, MenuPositionEnum } from '@/shared'
+import {
+  darkScheme as darkSchemeDefault,
+  localeSetting as localDefault,
+  menuSetting as menuDefault,
+  themeOverride as themeOverrideDefault,
+} from '@/setting/appSetting'
+import { deepMergeObjects, typedLocalStorage, updateLocale } from '@/utils'
 import type { DeepPartial } from '@/shared/types'
+import { toggleDark as toggleDarkComposable } from '@/shared/composable/dark'
+import { availableLocales } from '@/modules/i18n'
 
-/**
- * Application basic settings
- * 应用的基础设置
- */
-interface AppSettingState {
-  /** Application setting version 应用设置版本 */
-  version?: string
-  /** Theme mode 主题模式 */
-  darkScheme?: DarkSchemeEnum
-  /** Locale settings 本地化设置 */
-  localeSetting?: LocaleSetting
+export const useAppStore = defineStore('app', () => {
+  /** Dark scheme: Includes light, dark, and auto. 主题方案：包括 light、dark 和 auto。 */
+  const darkScheme = ref<DarkSchemeEnum>(typedLocalStorage.getItem<DarkSchemeEnum>(APP_DARK_SCHEMA_KEY) || darkSchemeDefault)
+
+  /**
+   * Dark mode: Excludes "auto". When theme-scheme is set to "auto", it will return the theme-mode of the operating system.
+   * 主题模式：不包括 auto。当 theme-scheme 设置为 auto 时，将返回操作系统的主题模式。
+   */
+  const darkMode = computed<DarkSchemeEnum>(() => {
+    if (darkScheme.value === DarkSchemeEnum.AUTO)
+      return preferredDark.value ? DarkSchemeEnum.DARK : DarkSchemeEnum.LIGHT
+    else return darkScheme.value
+  })
+
+  /** Is dark mode. 是否深色模式 */
+  const isDark = computed(() => darkMode.value === DarkSchemeEnum.DARK)
+
+  const _themeOverride = ref<ThemeOverride>(
+    typedLocalStorage.getItem<ThemeOverride>(APP_THEME_OVERRIDE_KEY) || themeOverrideDefault,
+  )
+  /** Override Naive's theme colors. 覆盖Naive的主题配色 */
+  const themeOverride = computed((): GlobalThemeOverrides | undefined => {
+    const themeOvr = { ..._themeOverride.value }
+    if (!themeOvr.defaultColor && !themeOvr.light && !themeOvr.dark)
+      return undefined
+    const defaultOverride = !themeOvr.defaultColor
+      ? undefined
+      : {
+          common: {
+            primaryColor: themeOvr.defaultColor,
+            primaryColorHover: themeOvr.defaultColor,
+            primaryColorPressed: themeOvr.defaultColor,
+            primaryColorSuppl: themeOvr.defaultColor,
+          },
+        }
+    if (darkMode.value === DarkSchemeEnum.DARK) {
+      return themeOvr.dark || defaultOverride || themeOvr.light
+    }
+    else {
+      return themeOvr.light || defaultOverride || themeOvr.dark
+    }
+  })
+
+  const { isSupported, language } = useNavigatorLanguage()
+  const _localeSetting = ref<LocaleSetting>(typedLocalStorage.getItem<LocaleSetting>(APP_LOCALE_KEY) || localDefault)
+  /** Locale setting. 区域设置。 */
+  const localeSetting = computed<LocaleSetting>(() => {
+    const lSet = { ..._localeSetting.value }
+
+    // Default to use browser language 默认使用浏览器语言
+    if (!lSet.locale && isSupported.value)
+      lSet.locale = language.value
+
+    return lSet
+  })
+
+  const _menuSetting = ref<MenuSetting>(typedLocalStorage.getItem<MenuSetting>(APP_MENU_KEY) || menuDefault)
   /** Menu settings 菜单设置 */
-  menuSetting?: MenuSetting
-  /** Is mobile device 是否移动端 */
-  isMobile: boolean
-}
-
-function verifyVersionCache(version: string = '0.0.1') {
-  if ((version || typedLocalStorage.getItem(APP_STORE_VERSION)) !== version) {
-    typedLocalStorage.removeItems(APP_DARK_SCHEMA_KEY, APP_LOCALE_KEY, APP_MENU_KEY)
-    typedLocalStorage.setItem(APP_STORE_VERSION, version)
-  }
-}
-
-export const useAppStore = defineStore('app', {
-  state: (): AppSettingState => ({
-    version: undefined,
-    darkScheme: undefined,
-    localeSetting: undefined,
-    menuSetting: undefined,
-    isMobile: false,
-  }),
-  getters: {
-    /** Raw theme mode (original configuration: dark, light, auto) 主题模式(原始配置 dark light auto) */
-    ThemeModeRaw(state): DarkSchemeEnum {
-      verifyVersionCache(this.version) // Verify version cache 验证版本缓存
-
-      return state.darkScheme || typedLocalStorage.getItem(APP_DARK_SCHEMA_KEY) || darkScheme
-    },
-    /** Theme mode (auto will convert to dark or light) 主题模式(auto会根据转为dark或light) */
-    ThemeMode(): DarkSchemeEnum {
-      const mode = this.ThemeModeRaw
-      return mode === DarkSchemeEnum.AUTO ? (preferredDark.value ? DarkSchemeEnum.DARK : DarkSchemeEnum.LIGHT) : mode
-    },
-    /** Is dark mode 是否深色模式 */
-    IsDarkMode(): boolean {
-      return this.ThemeMode === DarkSchemeEnum.DARK
-    },
-    /** Locale settings 本地化设置 */
-    LocaleSetting(state): LocaleSetting {
-      verifyVersionCache(this.version) // Verify version cache 验证版本缓存
-
-      const setting = state.localeSetting || typedLocalStorage.getItem(APP_LOCALE_KEY) || localeSetting
-      if (!setting.locale)
-        // Default to use browser language 默认使用浏览器语言
-        setting.locale = navigator.language.includes('zh') ? LocaleEnum.zhCN : LocaleEnum.enUS
-      return setting
-    },
-    /** Menu settings 菜单设置 */
-    MenuSetting(state): MenuSetting {
-      verifyVersionCache(this.version) // Verify version cache 验证版本缓存
-
-      const mset = state.menuSetting || typedLocalStorage.getItem(APP_MENU_KEY) || menuSetting
-      if (!mset.menuState) {
-        if (mset.mainMenu.collapsed && mset.mainMenu.showLabel) {
-          mset.menuState = 1
-        }
-        else if (mset.mainMenu.collapsed && !mset.mainMenu.showLabel) {
-          mset.menuState = 2
-        }
-        else if (!mset.mainMenu.collapsed) {
-          mset.menuState = 3
-        }
+  const menuSetting = computed<MenuSetting>(() => {
+    const mSet = { ..._menuSetting.value }
+    if (!mSet.menuState) {
+      if (mSet.mainMenu.collapsed && mSet.mainMenu.showLabel) {
+        mSet.menuState = 1
       }
-      return mset
-    },
-  },
-  actions: {
-    /** Set theme mode 设置主题模式 */
-    setThemeMode(mode: DarkSchemeEnum) {
-      this.darkScheme = mode
-      typedLocalStorage.setItem(APP_DARK_SCHEMA_KEY, this.darkScheme)
-      // updateThemeMode(unref(this.ThemeMode))
-      toggleDark()
-    },
-    /** Toggle dark mode 切换主题模式 */
-    toggleThemeMode() {
-      this.setThemeMode(this.IsDarkMode ? DarkSchemeEnum.LIGHT : DarkSchemeEnum.DARK)
-    },
-    /** Set locale settings 设置本地化设置 */
-    async setLocaleSetting(setting: Partial<LocaleSetting>) {
-      this.localeSetting = deepMergeObjects(this.LocaleSetting, setting)
-      typedLocalStorage.setItem(APP_LOCALE_KEY, this.localeSetting)
-      updateLocale(this.localeSetting)
-    },
-    /** Toggle language 切换语言 */
-    toggleLanguage(lang?: string) {
-      const currentIndex = availableLocales.indexOf(lang ?? this.LocaleSetting.locale!)
-      const nextIndex = lang ? currentIndex : (currentIndex + 1) % availableLocales.length
-      this.setLocaleSetting({ locale: availableLocales[nextIndex] })
-    },
-    /** Set menu settings 设置菜单设置 */
-    setMenuSetting(menuSettings: DeepPartial<MenuSetting>) {
-      this.menuSetting = deepMergeObjects(this.MenuSetting, menuSettings)
-      typedLocalStorage.setItem(APP_MENU_KEY, this.menuSetting)
-    },
-    /** Toggle menu position 切换菜单位置 */
-    toggleMenuPosition() {
-      if (this.MenuSetting.menuPosition === MenuPositionEnum.SIDEBAR)
-        this.setMenuSetting({ menuPosition: MenuPositionEnum.TOP_BAR, topMenu: { showSubMenu: true } })
-      else if (this.MenuSetting.topMenu.showSubMenu)
-        this.setMenuSetting({ menuPosition: MenuPositionEnum.TOP_BAR, topMenu: { showSubMenu: false } })
-      else this.setMenuSetting({ menuPosition: MenuPositionEnum.SIDEBAR })
-    },
-    /** Toggle main menu state 切换主栏菜单状态 */
-    toggleMainMenuState() {
-      if (this.isMobile)
-        this.setMenuSetting({ mainMenu: { collapsed: !this.MenuSetting.mainMenu.collapsed } })
-      else if (this.MenuSetting.menuState === 1)
-        this.setMenuSetting({ mainMenu: { collapsed: true, showLabel: false }, menuState: 2 })
-      else if (this.MenuSetting.menuState === 2)
-        this.setMenuSetting({ mainMenu: { collapsed: false, showLabel: false }, menuState: 3 })
-      else if (this.MenuSetting.menuState === 3)
-        this.setMenuSetting({ mainMenu: { collapsed: true, showLabel: true }, menuState: 1 })
-    },
-    /** Check if menu button exists display list 检查菜单按钮是否存在于显示列表 */
-    hasMenuButton(button: MenuButtonEnum) {
-      return this.MenuSetting.buttons.includes(button)
-    },
-    /** Set mobile status 设置是否为移动设备 */
-    setIsMobile(isMobile: boolean) {
-      this.isMobile = isMobile
-      const mset = this.MenuSetting
-      if (isMobile && !(mset.mainMenu.collapsed && !mset.subMenu.collapsed))
-        this.setMenuSetting({ mainMenu: { collapsed: true }, subMenu: { collapsed: false } })
-      // Fix the menu status abnormal when switching back and forth between mobile UI
-      // 用于修复来回切换手机UI时菜单状态异常
-      else if (mset.menuState === 1 && !(mset.mainMenu.collapsed && mset.mainMenu.showLabel))
-        this.setMenuSetting({ mainMenu: { collapsed: true, showLabel: true }, menuState: 1 })
-      else if (mset.menuState === 2 && !(mset.mainMenu.collapsed && !mset.mainMenu.showLabel))
-        this.setMenuSetting({ mainMenu: { collapsed: true, showLabel: false }, menuState: 2 })
-      else if (mset.menuState === 3 && !(!mset.mainMenu.collapsed && !mset.mainMenu.showLabel))
-        this.setMenuSetting({ mainMenu: { collapsed: false, showLabel: false }, menuState: 3 })
-    },
-  },
+      else if (mSet.mainMenu.collapsed && !mSet.mainMenu.showLabel) {
+        mSet.menuState = 2
+      }
+      else if (!mSet.mainMenu.collapsed) {
+        mSet.menuState = 3
+      }
+    }
+    return mSet
+  })
+
+  /** Is dark mode. 是否深色模式 */
+  const isMobile = useMediaQuery('(max-width: 768px)')
+
+  /** Set theme-scheme 设置主题方案 */
+  function setDarkScheme(val: DarkSchemeEnum) {
+    darkScheme.value = val // STATE UPDATE
+    typedLocalStorage.setItem(APP_DARK_SCHEMA_KEY, val)
+  }
+
+  function toggleDark() {
+    toggleDarkComposable()
+  }
+
+  /** Set locale settings 设置本地化设置 */
+  function setLocaleSetting(setting: Partial<LocaleSetting>) {
+    const currSetting = deepMergeObjects(localeSetting.value, setting)
+    _localeSetting.value = currSetting // STATE UPDATE
+    typedLocalStorage.setItem(APP_LOCALE_KEY, currSetting)
+    updateLocale(localeSetting.value)
+  }
+
+  /** Toggle language 切换语言 */
+  function toggleLanguage(lang?: string) {
+    const currentIndex = availableLocales.indexOf(lang ?? localeSetting.value.locale ?? 'en-US')
+    const nextIndex = lang ? currentIndex : (currentIndex + 1) % availableLocales.length
+    setLocaleSetting({ locale: availableLocales[nextIndex] })
+  }
+
+  /** Set menu settings 设置菜单设置 */
+  function setMenuSetting(setting: DeepPartial<MenuSetting>) {
+    const currSetting = deepMergeObjects(menuSetting.value, setting)
+    _menuSetting.value = currSetting // STATE UPDATE
+    typedLocalStorage.setItem(APP_MENU_KEY, currSetting)
+  }
+
+  /** Toggle menu position 切换菜单位置 */
+  function toggleMenuPosition() {
+    if (menuSetting.value.menuPosition === MenuPositionEnum.SIDEBAR)
+      setMenuSetting({ menuPosition: MenuPositionEnum.TOP_BAR, topMenu: { showSubMenu: true } })
+    else if (menuSetting.value.topMenu.showSubMenu)
+      setMenuSetting({ menuPosition: MenuPositionEnum.TOP_BAR, topMenu: { showSubMenu: false } })
+    else setMenuSetting({ menuPosition: MenuPositionEnum.SIDEBAR })
+  }
+
+  /** Toggle main menu state 切换主栏菜单状态 */
+  function toggleMainMenuState() {
+    if (isMobile.value)
+      setMenuSetting({ mainMenu: { collapsed: !menuSetting.value.mainMenu.collapsed } })
+    else if (menuSetting.value.menuState === 1)
+      setMenuSetting({ mainMenu: { collapsed: true, showLabel: false }, menuState: 2 })
+    else if (menuSetting.value.menuState === 2)
+      setMenuSetting({ mainMenu: { collapsed: false, showLabel: false }, menuState: 3 })
+    else if (menuSetting.value.menuState === 3)
+      setMenuSetting({ mainMenu: { collapsed: true, showLabel: true }, menuState: 1 })
+  }
+
+  /** Check if menu button exists display list 检查菜单按钮是否存在于显示列表 */
+  function hasMenuButton(button: MenuButtonEnum) {
+    return menuSetting.value.buttons.includes(button)
+  }
+
+  return {
+    darkScheme,
+    darkMode,
+    isDark,
+    localeSetting,
+    menuSetting,
+    themeOverride,
+    isMobile,
+    setDarkScheme,
+    toggleDark,
+    setLocaleSetting,
+    toggleLanguage,
+    setMenuSetting,
+    toggleMenuPosition,
+    toggleMainMenuState,
+    hasMenuButton,
+  }
 })
 
 // HMR hot reload HMR热重载
 import.meta.hot?.accept(acceptHMRUpdate(useAppStore, import.meta.hot))
-
-/**
- * Initialize Application Settings
- * 初始化应用设置
- */
-export function initAppSetting() {
-  const app = useAppStore()
-
-  updateThemeMode(app.ThemeMode)
-
-  updateLocale(app.LocaleSetting)
-}

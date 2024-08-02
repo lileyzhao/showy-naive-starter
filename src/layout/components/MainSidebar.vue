@@ -7,7 +7,7 @@ import { getFullRoutes } from '@/utils'
 const emit = defineEmits(['keyChange'])
 
 const { t } = useI18n()
-const app = useAppSettingStore()
+const app = useAppStore()
 const route = useRoute()
 const fullRoutes = getFullRoutes()
 const mainMenuRoutes = fullRoutes.filter(route => route.meta.parentName === 'root').filter(route => !route.meta?.hidden) ?? []
@@ -60,8 +60,8 @@ defineExpose({ refreshMainMenu })
   <!-- Sidebar (Desktop): Main Column 侧边栏(电脑端):主栏 -->
   <n-layout-sider
     collapse-mode="width"
-    :width="app.MenuSetting.subMenu.collapsed ? app.MenuSetting.mainMenu.widthSingle : app.MenuSetting.mainMenu.width"
-    :collapsed-width="app.MenuSetting.mainMenu.widthColl" :collapsed="collMainMenu" bordered
+    :width="app.menuSetting.subMenu.collapsed ? app.menuSetting.mainMenu.widthSingle : app.menuSetting.mainMenu.width"
+    :collapsed-width="app.menuSetting.mainMenu.widthColl" :collapsed="collMainMenu" bordered
     :inverted="mainMenuInverted" style="box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);z-index:1"
   >
     <n-layout-header bordered :inverted="mainMenuInverted" :class="logoClass">
@@ -70,12 +70,12 @@ defineExpose({ refreshMainMenu })
     <!-- Main Menu 主栏菜单 -->
     <n-menu
       ref="mainMenuRef" v-model:value="mainMenuKey" :options="mainMenuOptions"
-      :collapsed-width="app.MenuSetting.mainMenu.widthColl" :collapsed="collMainMenu"
-      :collapsed-icon-size="app.MenuSetting.mainMenu.showLabel ? 20 : 22" :indent="16" :icon-size="16" accordion
-      :class="`main-menu ${app.MenuSetting.mainMenu.showLabel && app.MenuSetting.mainMenu.collapsed ? 'main-menu-icon-label' : ''}`"
+      :collapsed-width="app.menuSetting.mainMenu.widthColl" :collapsed="collMainMenu"
+      :collapsed-icon-size="app.menuSetting.mainMenu.showLabel ? 20 : 22" :indent="16" :icon-size="16" accordion
+      :class="`main-menu ${app.menuSetting.mainMenu.showLabel && app.menuSetting.mainMenu.collapsed ? 'main-menu-icon-label' : ''}`"
       :inverted="mainMenuInverted" @update:value="handleMainMenuKeyChange"
     />
-    <div v-if="!app.IsDarkMode" absolute bottom-12px w-full flex justify-center>
+    <div v-if="!app.isDark" absolute bottom-12px w-full flex justify-center>
       <div
         :class="`i-line-md:${mainMenuInverted ? 'sunny-filled hover:text-yellow' : 'moon-filled hover:text-purple'}`"
         cursor-pointer text-18px @click="mainMenuInverted = !mainMenuInverted"

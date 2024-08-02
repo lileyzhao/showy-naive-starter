@@ -3,7 +3,7 @@ import SyIconButton from '@/shared/components/SyIconButton.vue'
 
 const { t } = useI18n()
 const router = useRouter()
-const app = useAppSettingStore()
+const app = useAppStore()
 
 const model = ref({ account: 'admin', password: 'admin' })
 
@@ -23,10 +23,10 @@ const onLogin = () => router.push('/')
         <div flex items-center justify-between>
           <div flex-right-center gap-x-5>
             <SyIconButton
-              :icon="`i-line-md:${app.IsDarkMode ? 'sunny-filled' : 'moon-filled'}`"
-              hover-class-dark="text-yellow" hover-class-light="text-purple" @click="app.toggleThemeMode"
+              :icon="`i-line-md:${app.isDark ? 'sunny-filled' : 'moon-filled'}`"
+              hover-class-dark="text-yellow" hover-class-light="text-purple" @click="app.toggleDark"
             />
-            <SyIconButton v-if="app.LocaleSetting.showButton" i-carbon-language @click="app.toggleLanguage" />
+            <SyIconButton v-if="app.localeSetting.showButton" i-carbon-language @click="app.toggleLanguage" />
           </div>
           <n-button type="primary" style="width: 120px" @click="onLogin">
             登 录
