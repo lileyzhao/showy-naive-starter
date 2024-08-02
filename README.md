@@ -25,6 +25,8 @@
 
 This is merely a template project for an admin dashboard and does not implement full backend functionality. You can create a repository based on this template and implement your own admin dashboard.
 
+⚠️ **Important Reminder: We are currently in a phase of brainstorming and code revisions. It is not advisable to use this for real-world projects.**
+
 ## Features
 
 - 🌟 **Built with the latest and most popular front-end technologies**
