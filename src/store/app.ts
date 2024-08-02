@@ -10,7 +10,7 @@ import {
 } from '@/setting/appSetting'
 import { deepMergeObjects, typedLocalStorage, updateLocale } from '@/utils'
 import type { DeepPartial } from '@/shared/types'
-import { toggleDark as toggleDarkComposable } from '@/shared/composable/dark'
+import { toggleDark } from '@/shared/composable/dark'
 import { availableLocales } from '@/modules/i18n'
 
 export const useAppStore = defineStore('app', () => {
@@ -96,8 +96,9 @@ export const useAppStore = defineStore('app', () => {
     typedLocalStorage.setItem(APP_DARK_SCHEMA_KEY, val)
   }
 
-  function toggleDark() {
-    toggleDarkComposable()
+  /** Toggle dark mode 切换深色模式 */
+  function toggleDarkMode() {
+    toggleDark()
   }
 
   /** Set locale settings 设置本地化设置 */
@@ -157,7 +158,7 @@ export const useAppStore = defineStore('app', () => {
     themeOverride,
     isMobile,
     setDarkScheme,
-    toggleDark,
+    toggleDarkMode,
     setLocaleSetting,
     toggleLanguage,
     setMenuSetting,

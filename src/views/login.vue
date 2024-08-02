@@ -24,7 +24,7 @@ const onLogin = () => router.push('/')
           <div flex-right-center gap-x-5>
             <SyIconButton
               :icon="`i-line-md:${app.isDark ? 'sunny-filled' : 'moon-filled'}`"
-              hover-class-dark="text-yellow" hover-class-light="text-purple" @click="app.toggleDark"
+              hover-class-dark="text-yellow" hover-class-light="text-purple" @click="app.toggleDarkMode"
             />
             <SyIconButton v-if="app.localeSetting.showButton" i-carbon-language @click="app.toggleLanguage" />
           </div>

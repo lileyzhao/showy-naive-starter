@@ -143,7 +143,7 @@ defineExpose({ refreshTopMenu })
         <SyIconButton
           v-if="app.menuSetting.buttons.includes(MenuButtonEnum.ThemeMode)" button
           :icon="`i-line-md:${app.isDark ? 'sunny-filled' : 'moon-filled '}`" hover-class-dark="text-yellow!"
-          @click="app.toggleDark"
+          @click="app.toggleDarkMode"
         />
         <n-dropdown
           v-if="app.localeSetting.showButton" trigger="click" :options="langs" :show-arrow="true"
