@@ -102,7 +102,7 @@ onMounted(() => {
   topMenuRef.value?.showOption(topMenuKey.value)
 })
 
-const langs = computed(() => availableLocales.map(locale => ({ label: getLanguageName(locale), key: locale })))
+const langs = computed(() => availableLocales.map(locale => ({ label: getLanguageDisplay(locale), key: locale })))
 
 /** Exposes 公开对象 */
 defineExpose({ refreshTopMenu })

@@ -8,7 +8,7 @@ import {
   menuSetting as menuDefault,
   themeOverride as themeOverrideDefault,
 } from '@/setting/appSetting'
-import { deepMergeObjects, typedLocalStorage, updateLocale } from '@/utils'
+import { deepMergeObjects, typedLocalStorage } from '@/utils'
 import type { DeepPartial } from '@/shared/types'
 import { toggleDark } from '@/shared/composable/dark'
 import { availableLocales } from '@/modules/i18n'
@@ -106,7 +106,7 @@ export const useAppStore = defineStore('app', () => {
     const currSetting = deepMergeObjects(localeSetting.value, setting)
     _localeSetting.value = currSetting // STATE UPDATE
     typedLocalStorage.setItem(APP_LOCALE_KEY, currSetting)
-    updateLocale(localeSetting.value)
+    activateLanguage(localeSetting.value.locale)
   }
 
   /** Toggle language 切换语言 */

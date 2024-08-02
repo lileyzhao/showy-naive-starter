@@ -1,5 +1,7 @@
 import type { NDateLocale, NLocale } from 'naive-ui'
 import { dateEnUS, dateJaJP, dateKoKR, dateZhCN, dateZhTW, enUS, jaJP, koKR, zhCN, zhTW } from 'naive-ui'
+import { i18n, setOrLoadLanguageAsync } from '@/modules/i18n'
+import { router } from '@/router'
 
 export const APP_LOCALE_KEY = 'app-locale-setting'
 
@@ -57,13 +59,13 @@ export function getNaiveLocale(locale: string = 'en-US'): NaiveLocale {
 }
 
 /**
- * Get locale name
+ * Get locale display
  * 获取本地化名称
  *
  * @param {string} [locale] - 语言区域代码
  * @returns {string} 用于前端显示的名称
  */
-export function getLanguageName(locale: string = 'en-US'): string {
+export function getLanguageDisplay(locale: string = 'en-US'): string {
   locale = locale.replace('_', '-')
 
   // Attempt to get the label directly from the map
@@ -88,7 +90,62 @@ export function getLanguageName(locale: string = 'en-US'): string {
 }
 
 /**
+ * Get locale name
+ * 获取语言名称
+ *
+ * @param {string} [locale] - 语言区域代码
+ * @returns {string} 用于前端显示的名称
+ */
+export function getLanguageName(locale: string = 'en-US'): string {
+  locale = locale.replace('_', '-')
+
+  // Attempt to get the label directly from the map
+  // 尝试直接从映射中获取标签
+  if (localeMap[locale]) {
+    return locale
+  }
+
+  // Split the locale into parts
+  // 将本地化代码拆分成部分
+  const [language] = locale.split('-')
+
+  // Try to find the first matching label for the simple language code
+  // 尝试找到第一个匹配的简单语言代码的标签
+  for (const key in localeMap) {
+    if (key.startsWith(language)) {
+      return key
+    }
+  }
+
+  return 'en-US'
+}
+
+/**
  * Browser language
  * 浏览器语言
  */
 export const browserLanguage = useNavigatorLanguage()
+
+/**
+ * Update the locale setting.
+ * 更新区域设置。
+ *
+ * @param setting - The locale setting to apply. 区域设置。
+ */
+export async function activateLanguage(locale?: string) {
+  const lang = getLanguageName(locale ?? browserLanguage.language.value)
+
+  // Load the appropriate language setting asynchronously.
+  // 异步加载适当的语言设置。
+  await setOrLoadLanguageAsync(lang)
+
+  // Set the 'lang' attribute of the HTML root element based on the locale setting or browser language.
+  // 根据区域设置或浏览器语言设置HTML根元素的'lang'属性。
+  document.documentElement.setAttribute('lang', lang)
+
+  // Update the document title based on the current route's metadata and the app's title.
+  // 根据当前路由的元数据和应用程序标题更新文档标题。
+  const routeTitle = router.currentRoute.value.meta.title as string
+  if (router.currentRoute.value.meta.title)
+    document.title = `${i18n.global.t(routeTitle)} | ${import.meta.env.VITE_APP_TITLE}`
+}
