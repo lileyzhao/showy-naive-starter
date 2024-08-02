@@ -25,26 +25,35 @@
         background: white;
         z-index: 9999;
       }
-      #loading .spinner {
-        border: 4px solid rgba(0, 0, 0, 0.1);
-        border-left-color: #09f;
-        border-radius: 50%;
-        width: 36px;
-        height: 36px;
-        animation: spin 1s linear infinite;
-      }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
       /* 暗色系样式 */
       .dark #loading {
         background: #121212; /* 深色背景 */
       }
-      .dark #loading .spinner {
-        border: 4px solid rgba(255, 255, 255, 0.1); /* 边框颜色适配深色背景 */
-        border-left-color: #bb86fc; /* 边框左侧颜色适配深色背景 */
+      .loader {
+        width: 50px;
+        --b: 8px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        padding: 1px;
+        background: conic-gradient(#0000 10%, #666) content-box;
+        mask: repeating-conic-gradient(
+            #0000 0deg,
+            #000 1deg 20deg,
+            #0000 21deg 36deg
+          ),
+          radial-gradient(
+            farthest-side,
+            #0000 calc(100% - var(--b) - 1px),
+            #000 calc(100% - var(--b))
+          );
+        -webkit-mask-composite: destination-in;
+        mask-composite: intersect;
+        animation: l4 1s infinite steps(10);
+      }
+      @keyframes l4 {
+        to {
+          transform: rotate(1turn);
+        }
       }
     </style>
     <script>
@@ -60,7 +69,7 @@
   </head>
   <body>
     <div id="loading">
-      <div class="spinner"></div>
+      <div class="loader"></div>
     </div>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
