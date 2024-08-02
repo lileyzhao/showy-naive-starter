@@ -7,7 +7,6 @@ import TopBar from './components/TopBar.vue'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared'
 import { getFullRoutes } from '@/utils'
 import { isDark } from '@/shared/composable/dark'
-import { isMobile } from '@/shared/composable/mediaQuery'
 
 const app = useAppSettingStore()
 const route = useRoute()
@@ -23,7 +22,7 @@ const themeDrawerRef = ref<InstanceType<typeof ThemeDrawer>>()
 // Get menu settings from the app store. 从应用存储中获取菜单设置。
 const menuSetting = computed(() => app.menuSetting)
 
-console.log(menuSetting.value, isMobile.value, 'isMobile')
+console.log(menuSetting.value, app.isMobile, 'isMobile')
 
 /** Whether the menu is in the top bar layout. 是否顶栏菜单布局。 */
 const isTopBar = computed(() => menuSetting.value.menuPosition === MenuPositionEnum.TOP_BAR)
@@ -56,9 +55,9 @@ const restoreSubMenu = useDebounceFn(() => {
       return
     if (!menuSetting.value.subMenu.collapsed) {
       // 刷新主栏菜单
-      if (!isMobile && !isTopBar.value)
+      if (!app.isMobile && !isTopBar.value)
         mainSidebarRef.value?.refreshMainMenu()
-      else if (!isMobile)
+      else if (!app.isMobile)
         topBarRef.value?.refreshTopMenu()
     }
   }, 700)
@@ -105,7 +104,7 @@ const handleAction = (op: string, _val: any) => {
 <template>
   <n-layout has-sider position="absolute" class="layout-default">
     <!-- Sidebar (Desktop). 侧边栏(电脑端)。 -->
-    <template v-if="!isMobile">
+    <template v-if="!app.isMobile">
       <!-- Sidebar (Desktop): Main Sidebar. 侧边栏(电脑端):主栏。 -->
       <MainSidebar
         v-if="!isTopBar" ref="mainSidebarRef" @key-change="handleMainMenuKeyChange"
@@ -143,10 +142,10 @@ const handleAction = (op: string, _val: any) => {
     </n-layout>
 
     <!-- Drawer (Mobile). 抽屉栏(手机端)。 -->
-    <MobileDrawer v-if="isMobile" ref="mobileDrawerRef" />
+    <MobileDrawer v-if="app.isMobile" ref="mobileDrawerRef" />
 
     <!-- Theme settings drawer. 主题设置抽屉栏。 -->
-    <ThemeDrawer v-if="!isMobile && app.hasMenuButton(MenuButtonEnum.ThemeDrawer)" ref="themeDrawerRef" />
+    <ThemeDrawer v-if="!app.isMobile && app.hasMenuButton(MenuButtonEnum.ThemeDrawer)" ref="themeDrawerRef" />
   </n-layout>
 </template>
 

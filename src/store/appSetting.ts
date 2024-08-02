@@ -79,6 +79,9 @@ export const useAppSettingStore = defineStore('appSetting', () => {
     }
   })
 
+  /** Is dark mode. 是否深色模式 */
+  const isMobile = computed(() => useMediaQuery('(max-width: 768px)'))
+
   /** Set theme-scheme 设置主题方案 */
   function setDarkScheme(val: DarkSchemeEnum) {
     typedLocalStorage.setItem(APP_DARK_SCHEMA_KEY, val)
@@ -109,6 +112,7 @@ export const useAppSettingStore = defineStore('appSetting', () => {
     localeSetting,
     menuSetting,
     themeOverride,
+    isMobile,
     setDarkScheme,
     setLocaleSetting,
     setMenuSetting,
