@@ -1,5 +1,5 @@
 // Built-in pages 内置的页面
-const builtInViews: Record<string, () => Promise<Recordable>> = import.meta.glob('@/layout/built-in/**/*.{vue,tsx}')
+const builtInViews: Record<string, () => Promise<Recordable>> = import.meta.glob('@/layouts/built-in/**/*.{vue,tsx}')
 
 // Dynamic import of view modules 动态导入视图模块
 const userViews: Record<string, () => Promise<Recordable>> = import.meta.glob('@/views/**/*.{vue,tsx}')

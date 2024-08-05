@@ -1,6 +1,6 @@
 <script setup lang="ts" name="Layout-MainSidebar">
 import type { MenuInst } from 'naive-ui'
-import Logo from '@/layout/components/Logo.vue'
+import Logo from '@/layouts/components/Logo.vue'
 import { mapRoutesMain } from '@/utils/menuUtil'
 import { getFullRoutes } from '@/utils'
 

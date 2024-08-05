@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
         ],
         dts: 'src/auto-import.d.ts', // 路径下自动生成文件夹存放全局指令
         dirs: [
-          'src/shared/composable',
+          'src/shared/hooks',
           'src/store',
         ],
       }),
@@ -54,7 +54,6 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src'),
-        '/#/': resolve(__dirname, 'types'),
       },
       // 要忽略的后缀
       extensions: ['.ts', '.js', '.jsx', '.tsx', '.json'],

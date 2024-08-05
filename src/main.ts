@@ -3,7 +3,7 @@ import { createApp } from 'vue'
 import chalk from 'chalk'
 import { router, setupRouter } from './router'
 import App from './App.vue'
-import type { UserModule } from './shared/types'
+import type { UserModule } from './shared/schemas'
 
 import '@unocss/reset/tailwind.css'
 import '@/assets/styles/main.scss'

@@ -1,7 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { GlobalThemeOverrides } from 'naive-ui'
-import type { LocaleSetting, MenuButtonEnum, MenuSetting, ThemeOverride } from '@/shared'
-import { DarkSchemeEnum, MenuPositionEnum } from '@/shared'
+import type { DeepPartial, LocaleSetting, MenuButtonEnum, MenuSetting, ThemeOverride } from '@/shared/schemas'
+import { DarkSchemeEnum, MenuPositionEnum } from '@/shared/schemas'
 import {
   darkScheme as darkSchemeDefault,
   localeSetting as localDefault,
@@ -9,8 +9,7 @@ import {
   themeOverride as themeOverrideDefault,
 } from '@/setting/appSetting'
 import { deepMergeObjects, typedLocalStorage } from '@/utils'
-import type { DeepPartial } from '@/shared/types'
-import { toggleDark } from '@/shared/composable/dark'
+import { toggleDark } from '@/shared/hooks/dark'
 import { availableLocales } from '@/modules/i18n'
 
 export const useAppStore = defineStore('app', () => {

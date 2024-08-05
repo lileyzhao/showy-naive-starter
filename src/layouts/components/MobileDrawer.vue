@@ -1,6 +1,6 @@
 <script setup lang="ts" name="Layout-MobileDrawer">
 import { type MenuInst, darkTheme } from 'naive-ui'
-import Logo from '@/layout/components/Logo.vue'
+import Logo from '@/layouts/components/Logo.vue'
 import { mapRoutes } from '@/utils/menuUtil'
 import { getFullRoutes } from '@/utils'
 

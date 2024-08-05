@@ -1,7 +1,6 @@
 import type { Locale } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
-import type { UserModule } from '@/shared/types'
-import type { LocaleSetting } from '@/shared'
+import type { LocaleSetting, UserModule } from '@/shared/schemas'
 import { typedLocalStorage } from '@/utils'
 
 // Create an i18n instance. 创建一个 i18n 实例。

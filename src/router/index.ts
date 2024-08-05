@@ -25,7 +25,7 @@ export const RootRoute: RouteRecordRaw = {
   // 语言代码为可选参数，仅支持'zh-CN', 'zh-TW' 两段式语言代码
   path: `${LOCALE_PARAM}/`,
   name: 'root',
-  component: () => import('@/layout/default.vue'),
+  component: () => import('@/layouts/default.vue'),
   meta: { title: 'Root' },
   redirect: '/project',
   children: [],
@@ -47,7 +47,7 @@ export const PublicRoutes: RouteRecordRaw[] = [
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: () => import('@/layout/built-in/404.vue'),
+    component: () => import('@/layouts/built-in/404.vue'),
   },
 ]
 
@@ -55,7 +55,7 @@ export const PublicRoutes: RouteRecordRaw[] = [
 export const NotFoundRoute: RouteRecordRaw = {
   path: '/:pathMatch(.*)*',
   name: 'NotFound',
-  component: () => import('@/layout/built-in/404.vue'),
+  component: () => import('@/layouts/built-in/404.vue'),
 }
 
 /**

@@ -5,9 +5,9 @@ import SubSidebar from './components/SubSidebar.vue'
 import ThemeDrawer from './components/ThemeDrawer.vue'
 import MobileDrawer from './components/MobileDrawer.vue'
 import TopBar from './components/TopBar.vue'
-import { MenuButtonEnum, MenuPositionEnum } from '@/shared'
+import { MenuButtonEnum, MenuPositionEnum } from '@/shared/schemas'
 import { getFullRoutes } from '@/utils'
-import { isDark } from '@/shared/composable/dark'
+import { isDark } from '@/shared/hooks/dark'
 
 const app = useAppStore()
 const route = useRoute()
