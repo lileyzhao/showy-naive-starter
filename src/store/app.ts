@@ -7,7 +7,7 @@ import {
   localeSetting as localDefault,
   menuSetting as menuDefault,
   themeOverride as themeOverrideDefault,
-} from '@/setting/appSetting'
+} from '@/shared/setting/appSetting'
 import { deepMergeObjects, typedLocalStorage } from '@/utils'
 import { toggleDark } from '@/shared/hooks/dark'
 import { availableLocales } from '@/modules/i18n'

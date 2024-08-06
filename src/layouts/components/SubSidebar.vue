@@ -83,24 +83,24 @@ defineExpose({ refreshSubMenu })
 
 <template>
   <!-- Sidebar (desktop): Sub-sidebar 侧边栏(电脑端):副栏 -->
-  <n-layout-sider
+  <NLayoutSider
     v-if="subMenuRoutes.length > 0" collapse-mode="width" :width="menuSetting.subMenu.width"
     :collapsed-width="0" :collapsed="collSubMenu"
     :show-trigger="menuSetting.buttons.includes(MenuButtonEnum.SubMenuStatus) && app.menuSetting.menuPosition === MenuPositionEnum.SIDEBAR ? 'arrow-circle' : false"
     :bordered="!collSubMenu" content-class="of-x-hidden!" z-2 @collapse="handleToggleSub(true)"
     @expand="handleToggleSub(false)"
   >
-    <n-layout-header bordered>
+    <NLayoutHeader bordered>
       <Logo
         v-if="app.menuSetting.menuPosition === MenuPositionEnum.TOP_BAR && app.menuSetting.topMenu.showSubMenu"
         flex-y-center p-l-5
       />
       <Logo v-else hide-logo :hide-title="!menuSetting.mainMenu.collapsed" flex-y-center p-l-5 />
-    </n-layout-header>
+    </NLayoutHeader>
     <!-- Sub-menu 副栏菜单 -->
-    <n-menu
+    <NMenu
       ref="subMenuRef" v-model:value="subMenuKey" :options="subMenuOptions" :collapsed-icon-size="16" :indent="16"
       :icon-size="16" accordion
     />
-  </n-layout-sider>
+  </NLayoutSider>
 </template>

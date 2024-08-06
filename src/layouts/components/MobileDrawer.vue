@@ -53,9 +53,9 @@ defineExpose({ show })
 </script>
 
 <template>
-  <n-config-provider :theme="theme">
-    <n-drawer v-model:show="drawerActive" :width="menuSetting.mainMenu.widthMobile" placement="left">
-      <n-drawer-content
+  <NConfigProvider :theme="theme">
+    <NDrawer v-model:show="drawerActive" :width="menuSetting.mainMenu.widthMobile" placement="left">
+      <NDrawerContent
         :native-scrollbar="false" body-class="p-0!" body-content-class="p-0!" header-class="p-0!"
         footer-class="p-0!"
       >
@@ -64,10 +64,10 @@ defineExpose({ show })
         </template>
         <template #footer>
           <div w-full>
-            <n-button>Footer</n-button>
+            <NButton>Footer</NButton>
           </div>
         </template>
-        <n-menu
+        <NMenu
           ref="mobileMenuRef" v-model:value="mobileMenuKey" :options="mobileMenuOptions" :indent="16"
           :icon-size="16" accordion @update:value="handleMobileMenuKeyChange"
         />
@@ -77,7 +77,7 @@ defineExpose({ show })
             cursor-pointer text-18px @click="mainMenuInverted = !mainMenuInverted"
           />
         </div>
-      </n-drawer-content>
-    </n-drawer>
-  </n-config-provider>
+      </NDrawerContent>
+    </NDrawer>
+  </NConfigProvider>
 </template>

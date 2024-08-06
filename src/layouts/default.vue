@@ -101,7 +101,7 @@ const handleAction = (op: string, _val: any) => {
 </script>
 
 <template>
-  <n-layout has-sider position="absolute" class="layout-default">
+  <NLayout has-sider position="absolute" class="layout-default">
     <!-- Sidebar (Desktop). 侧边栏(电脑端)。 -->
     <template v-if="!app.isMobile">
       <!-- Sidebar (Desktop): Main Sidebar. 侧边栏(电脑端):主栏。 -->
@@ -117,35 +117,35 @@ const handleAction = (op: string, _val: any) => {
     </template>
 
     <!-- Right main area. 右侧主体区。 -->
-    <n-layout content-class="flex flex-col">
+    <NLayout content-class="flex flex-col">
       <!-- Top bar area. 头部横栏区。 -->
       <TopBar
         ref="topBarRef" @action="handleAction" @key-change="handleMainMenuKeyChange"
         @mouseenter="cancelRestoreSubMenu" @mouseleave="stopTimeout = false"
       />
       <!-- Content area. 内容区。 -->
-      <n-layout has-sider @mouseenter="restoreSubMenu">
-        <n-layout-content :native-scrollbar="false" flex-1 :style="isDark ? 'background-color: #18181c;' : ''">
+      <NLayout has-sider @mouseenter="restoreSubMenu">
+        <NLayoutContent :native-scrollbar="false" flex-1 :style="isDark ? 'background-color: #18181c;' : ''">
           <div p-8px :style="{ backgroundColor: isDark ? '#26262a' : '#f7fafc' }">
-            <router-view v-slot="{ Component, route: r }">
-              <transition name="fade">
-                <keep-alive :max="25">
+            <RouterView v-slot="{ Component, route: r }">
+              <Transition name="fade">
+                <KeepAlive :max="25">
                   <component :is="Component" :key="r.fullPath" />
-                </keep-alive>
-              </transition>
-            </router-view>
+                </KeepAlive>
+              </Transition>
+            </RouterView>
           </div>
-          <n-back-top :right="40" />
-        </n-layout-content>
-      </n-layout>
-    </n-layout>
+          <NBackTop :right="40" />
+        </NLayoutContent>
+      </NLayout>
+    </NLayout>
 
     <!-- Drawer (Mobile). 抽屉栏(手机端)。 -->
     <MobileDrawer v-if="app.isMobile" ref="mobileDrawerRef" />
 
     <!-- Theme settings drawer. 主题设置抽屉栏。 -->
     <ThemeDrawer v-if="!app.isMobile && app.hasMenuButton(MenuButtonEnum.ThemeDrawer)" ref="themeDrawerRef" />
-  </n-layout>
+  </NLayout>
 </template>
 
 <style scoped>

@@ -141,7 +141,7 @@ pnpm preview
 .
 ├── public/               # 公共资源
 ├── src/                  # 源代码
-│   ├── apis/             # 后端接口
+│   ├── api-services/     # 后端接口
 │   ├── assets/           # 静态资源
 │   ├── layouts/          # 布局
 │   ├── modules/          # 模块

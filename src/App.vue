@@ -9,20 +9,20 @@ console.log(navigator.language)
 </script>
 
 <template>
-  <n-config-provider
+  <NConfigProvider
     :theme="theme" :locale="naiveLocale.locale" :date-locale="naiveLocale.dateLocale"
     :theme-overrides="app.themeOverride" inline-theme-disabled
   >
-    <n-theme-editor>
-      <n-modal-provider>
-        <n-dialog-provider>
-          <n-notification-provider>
-            <n-message-provider>
-              <router-view />
-            </n-message-provider>
-          </n-notification-provider>
-        </n-dialog-provider>
-      </n-modal-provider>
-    </n-theme-editor>
-  </n-config-provider>
+    <NThemeEditor>
+      <NModalProvider>
+        <NDialogProvider>
+          <NNotificationProvider>
+            <NMessageProvider>
+              <RouterView />
+            </NMessageProvider>
+          </NNotificationProvider>
+        </NDialogProvider>
+      </NModalProvider>
+    </NThemeEditor>
+  </NConfigProvider>
 </template>

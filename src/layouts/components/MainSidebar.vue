@@ -58,17 +58,17 @@ defineExpose({ refreshMainMenu })
 
 <template>
   <!-- Sidebar (Desktop): Main Column 侧边栏(电脑端):主栏 -->
-  <n-layout-sider
+  <NLayoutSider
     collapse-mode="width"
     :width="app.menuSetting.subMenu.collapsed ? app.menuSetting.mainMenu.widthSingle : app.menuSetting.mainMenu.width"
     :collapsed-width="app.menuSetting.mainMenu.widthColl" :collapsed="collMainMenu" bordered
     :inverted="mainMenuInverted" style="box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);z-index:1"
   >
-    <n-layout-header bordered :inverted="mainMenuInverted" :class="logoClass">
+    <NLayoutHeader bordered :inverted="mainMenuInverted" :class="logoClass">
       <Logo w-full :hide-title="collMainMenu" />
-    </n-layout-header>
+    </NLayoutHeader>
     <!-- Main Menu 主栏菜单 -->
-    <n-menu
+    <NMenu
       ref="mainMenuRef" v-model:value="mainMenuKey" :options="mainMenuOptions"
       :collapsed-width="app.menuSetting.mainMenu.widthColl" :collapsed="collMainMenu"
       :collapsed-icon-size="app.menuSetting.mainMenu.showLabel ? 20 : 22" :indent="16" :icon-size="16" accordion
@@ -81,7 +81,7 @@ defineExpose({ refreshMainMenu })
         cursor-pointer text-18px @click="mainMenuInverted = !mainMenuInverted"
       />
     </div>
-  </n-layout-sider>
+  </NLayoutSider>
 </template>
 
 <style scoped lang="scss">

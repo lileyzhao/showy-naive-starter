@@ -110,7 +110,7 @@ defineExpose({ refreshTopMenu })
 
 <template>
   <!-- Left section of the top bar 头部左侧区 -->
-  <n-layout-header bordered z-1>
+  <NLayoutHeader bordered z-1>
     <div h-header flex-right-center gap-x-4>
       <!-- Left section of the top bar 头部左侧区 -->
       <div
@@ -124,7 +124,7 @@ defineExpose({ refreshTopMenu })
       <Logo v-if="isTopBarLayout && !app.menuSetting.topMenu.showSubMenu" flex-nowrap b-r-1 px-28px />
       <!-- Top menu 顶栏菜单 -->
       <div flex-1>
-        <n-menu
+        <NMenu
           v-if="!app.isMobile && isTopBarLayout" ref="topMenuRef" v-model:value="topMenuKey" mode="horizontal"
           :options="topMenuOptions" :icon-size="20.5" responsive :indent="16" @update:value="onTopMenuKeyChange"
         />
@@ -145,22 +145,22 @@ defineExpose({ refreshTopMenu })
           :icon="`i-line-md:${app.isDark ? 'sunny-filled' : 'moon-filled '}`" hover-class-dark="text-yellow!"
           @click="app.toggleDarkMode"
         />
-        <n-dropdown
+        <NDropdown
           v-if="app.localeSetting.showButton" trigger="click" :options="langs" :show-arrow="true"
           @select="(key: string) => toggleLanguage(key)"
         >
           <div>
             <SyIconButton button icon="i-carbon:language" />
           </div>
-        </n-dropdown>
+        </NDropdown>
         <SyIconButton
           v-if="!app.isMobile && app.menuSetting.buttons.includes(MenuButtonEnum.ThemeDrawer)" button
           icon="i-carbon:cookie" @click="toggleThemeDrawer"
         />
-        <n-dropdown :options="profileOptions" trigger="click" @select="profileSelect">
+        <NDropdown :options="profileOptions" trigger="click" @select="profileSelect">
           <SyIconButton button icon="i-carbon:user-avatar" size="1.3em" style="font-size:16px !important;" :text="t('author')" />
-        </n-dropdown>
+        </NDropdown>
       </div>
     </div>
-  </n-layout-header>
+  </NLayoutHeader>
 </template>

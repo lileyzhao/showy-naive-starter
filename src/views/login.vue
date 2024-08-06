@@ -12,14 +12,14 @@ const onLogin = () => router.push('/')
 
 <template>
   <div mx-auto mt-30 w-380px>
-    <n-card :title="t('login.title')">
-      <n-form :model="model">
-        <n-form-item path="account" label="账号">
-          <n-input v-model="model.account" placeholder="请输入账号" @keydown.enter.prevent />
-        </n-form-item>
-        <n-form-item path="password" label="密码">
-          <n-input v-model="model.password" type="password" placeholder="请输入密码" @keydown.enter.prevent />
-        </n-form-item>
+    <NCard :title="t('login.title')">
+      <NForm :model="model">
+        <NFormItem path="account" label="账号">
+          <NInput v-model="model.account" placeholder="请输入账号" @keydown.enter.prevent />
+        </NFormItem>
+        <NFormItem path="password" label="密码">
+          <NInput v-model="model.password" type="password" placeholder="请输入密码" @keydown.enter.prevent />
+        </NFormItem>
         <div flex items-center justify-between>
           <div flex-right-center gap-x-5>
             <SyIconButton
@@ -28,11 +28,11 @@ const onLogin = () => router.push('/')
             />
             <SyIconButton v-if="app.localeSetting.showButton" i-carbon-language @click="app.toggleLanguage" />
           </div>
-          <n-button type="primary" style="width: 120px" @click="onLogin">
+          <NButton type="primary" style="width: 120px" @click="onLogin">
             登 录
-          </n-button>
+          </NButton>
         </div>
-      </n-form>
-    </n-card>
+      </NForm>
+    </NCard>
   </div>
 </template>
