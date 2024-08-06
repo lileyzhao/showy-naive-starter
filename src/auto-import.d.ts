@@ -11,18 +11,18 @@ declare global {
   const APP_STORE_VERSION: typeof import('./shared/constants/storeKeys')['APP_STORE_VERSION']
   const APP_THEME_OVERRIDE_KEY: typeof import('./shared/constants/storeKeys')['APP_THEME_OVERRIDE_KEY']
   const BeautifyLog: typeof import('./shared/hooks/beautifyLog')['BeautifyLog']
-  const DarkSchemeEnum: typeof import('./shared/schemas/darkSchemeDefine')['DarkSchemeEnum']
+  const DarkSchemeEnum: typeof import('./shared/typings/darkSchemeDefine')['DarkSchemeEnum']
   const EffectScope: typeof import('vue')['EffectScope']
-  const LocaleEnum: typeof import('./shared/schemas/localeDefine')['LocaleEnum']
+  const LocaleEnum: typeof import('./shared/typings/localeDefine')['LocaleEnum']
   const MAIN_MENU_KEY: typeof import('./shared/constants/symbols')['MAIN_MENU_KEY']
-  const MENU_STATE_TEXT: typeof import('./shared/schemas/menuDefine')['MENU_STATE_TEXT']
-  const MenuButtonEnum: typeof import('./shared/schemas/menuDefine')['MenuButtonEnum']
-  const MenuPositionEnum: typeof import('./shared/schemas/menuDefine')['MenuPositionEnum']
-  const MenuStateEnum: typeof import('./shared/schemas/menuDefine')['MenuStateEnum']
-  const SCREEN_MAP: typeof import('./shared/schemas/breakpointDefine')['SCREEN_MAP']
+  const MENU_STATE_TEXT: typeof import('./shared/typings/menuDefine')['MENU_STATE_TEXT']
+  const MenuButtonEnum: typeof import('./shared/typings/menuDefine')['MenuButtonEnum']
+  const MenuPositionEnum: typeof import('./shared/typings/menuDefine')['MenuPositionEnum']
+  const MenuStateEnum: typeof import('./shared/typings/menuDefine')['MenuStateEnum']
+  const SCREEN_MAP: typeof import('./shared/typings/breakpointDefine')['SCREEN_MAP']
   const SUB_MENU_KEY: typeof import('./shared/constants/symbols')['SUB_MENU_KEY']
-  const ScreenEnum: typeof import('./shared/schemas/breakpointDefine')['ScreenEnum']
-  const SizeEnum: typeof import('./shared/schemas/breakpointDefine')['SizeEnum']
+  const ScreenEnum: typeof import('./shared/typings/breakpointDefine')['ScreenEnum']
+  const SizeEnum: typeof import('./shared/typings/breakpointDefine')['SizeEnum']
   const activateLanguage: typeof import('./shared/hooks/locale')['activateLanguage']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
@@ -323,16 +323,4 @@ declare global {
   // @ts-ignore
   export type { Component, ComponentPublicInstance, ComputedRef, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, VNode, WritableComputedRef } from 'vue'
   import('vue')
-  // @ts-ignore
-  export type { SizeEnum, ScreenEnum } from './shared/schemas/breakpointDefine'
-  import('./shared/schemas/breakpointDefine')
-  // @ts-ignore
-  export type { DarkSchemeEnum } from './shared/schemas/darkSchemeDefine'
-  import('./shared/schemas/darkSchemeDefine')
-  // @ts-ignore
-  export type { LocaleEnum } from './shared/schemas/localeDefine'
-  import('./shared/schemas/localeDefine')
-  // @ts-ignore
-  export type { MenuButtonEnum, MenuPositionEnum, MenuStateEnum } from './shared/schemas/menuDefine'
-  import('./shared/schemas/menuDefine')
 }

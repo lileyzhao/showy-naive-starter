@@ -2,9 +2,9 @@
 import type { MenuInst, MenuOption } from 'naive-ui'
 import type { RouteRecordRaw } from 'vue-router'
 import Logo from '@/layouts/components/Logo.vue'
-import { MenuButtonEnum, MenuPositionEnum } from '@/shared/schemas/menuDefine'
+import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menuDefine'
 import { mapRoutes } from '@/shared/utilities/menuUtil'
-import { getFullRoutes } from '@/shared/utilities'
+import { getFullRoutes } from '@/shared/utilities/routeUtil'
 
 const props = defineProps({ parentMenuKey: { type: String, required: false } })
 

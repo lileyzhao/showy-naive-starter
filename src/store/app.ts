@@ -1,19 +1,21 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { GlobalThemeOverrides } from 'naive-ui'
-import type { MenuButtonEnum, MenuSetting } from '@/shared/schemas/menuDefine'
-import { MenuPositionEnum } from '@/shared/schemas/menuDefine'
+import type { MenuButtonEnum, MenuSetting } from '@/shared/typings/menuDefine'
+import { MenuPositionEnum } from '@/shared/typings/menuDefine'
 import {
   darkScheme as darkSchemeDefault,
   localeSetting as localDefault,
   menuSetting as menuDefault,
   themeOverride as themeOverrideDefault,
 } from '@/shared/settings/appSetting'
-import { deepMergeObjects, typedLocalStorage } from '@/shared/utilities'
 import { toggleDark } from '@/shared/hooks/dark'
 import { availableLocales } from '@/modules/i18n'
-import type { ThemeOverride } from '@/shared/schemas/themeOverrideDefine'
-import type { LocaleSetting } from '@/shared/schemas/localeDefine'
-import type { DeepPartial } from '@/shared/schemas/types'
+import { DarkSchemeEnum } from '@/shared/typings/darkSchemeDefine'
+import type { ThemeOverride } from '@/shared/typings/themeOverrideDefine'
+import type { LocaleSetting } from '@/shared/typings/localeDefine'
+import type { DeepPartial } from '@/shared/typings/app'
+import { typedLocalStorage } from '@/shared/utilities/typedLocalStorage'
+import { deepMergeObjects } from '@/shared/utilities/objectUtil'
 
 export const useAppStore = defineStore('app', () => {
   /** Dark scheme: Includes light, dark, and auto. 主题方案：包括 light、dark 和 auto。 builtin */

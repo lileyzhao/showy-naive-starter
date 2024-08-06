@@ -1,6 +1,6 @@
 import type { MenuOption } from 'naive-ui'
 import { type RouteRecordNormalized, type RouteRecordRaw, RouterLink } from 'vue-router'
-import type { MenuSetting } from '@/shared/schemas/menuDefine'
+import type { MenuSetting } from '@/shared/typings/menuDefine'
 
 /**
  * Map routes to menu items

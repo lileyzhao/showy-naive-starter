@@ -1,6 +1,6 @@
 import type { Router } from 'vue-router'
 import { availableLocales } from '@/modules/i18n'
-import { LocaleEnum } from '@/shared/schemas/localeDefine'
+import { LocaleEnum } from '@/shared/typings/localeDefine'
 
 export function createRouterGuards(router: Router) {
   const app = useAppStore()
