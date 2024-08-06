@@ -7,13 +7,13 @@ import {
   localeSetting as localDefault,
   menuSetting as menuDefault,
   themeOverride as themeOverrideDefault,
-} from '@/shared/setting/appSetting'
-import { deepMergeObjects, typedLocalStorage } from '@/utils'
+} from '@/shared/settings/appSetting'
+import { deepMergeObjects, typedLocalStorage } from '@/shared/utilities'
 import { toggleDark } from '@/shared/hooks/dark'
 import { availableLocales } from '@/modules/i18n'
 
 export const useAppStore = defineStore('app', () => {
-  /** Dark scheme: Includes light, dark, and auto. 主题方案：包括 light、dark 和 auto。 */
+  /** Dark scheme: Includes light, dark, and auto. 主题方案：包括 light、dark 和 auto。 builtin */
   const darkScheme = ref<DarkSchemeEnum>(typedLocalStorage.getItem<DarkSchemeEnum>(APP_DARK_SCHEME_KEY) || darkSchemeDefault)
 
   /**

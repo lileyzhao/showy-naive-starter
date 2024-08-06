@@ -1,8 +1,8 @@
 <script setup lang="ts" name="Layout-MainSidebar">
 import type { MenuInst } from 'naive-ui'
 import Logo from '@/layouts/components/Logo.vue'
-import { mapRoutesMain } from '@/utils/menuUtil'
-import { getFullRoutes } from '@/utils'
+import { mapRoutesMain } from '@/shared/utilities/menuUtil'
+import { getFullRoutes } from '@/shared/utilities'
 
 const emit = defineEmits(['keyChange'])
 

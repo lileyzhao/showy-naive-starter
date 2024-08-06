@@ -1,8 +1,8 @@
 <script setup lang="ts" name="Layout-MobileDrawer">
 import { type MenuInst, darkTheme } from 'naive-ui'
 import Logo from '@/layouts/components/Logo.vue'
-import { mapRoutes } from '@/utils/menuUtil'
-import { getFullRoutes } from '@/utils'
+import { mapRoutes } from '@/shared/utilities/menuUtil'
+import { getFullRoutes } from '@/shared/utilities'
 
 // Variables 变量
 const { t } = useI18n()

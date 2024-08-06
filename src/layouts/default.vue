@@ -6,7 +6,7 @@ import ThemeDrawer from './components/ThemeDrawer.vue'
 import MobileDrawer from './components/MobileDrawer.vue'
 import TopBar from './components/TopBar.vue'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared/schemas'
-import { getFullRoutes } from '@/utils'
+import { getFullRoutes } from '@/shared/utilities'
 import { isDark } from '@/shared/hooks/dark'
 
 const app = useAppStore()

@@ -1,7 +1,7 @@
 import type { Locale } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
 import type { LocaleSetting, UserModule } from '@/shared/schemas'
-import { typedLocalStorage } from '@/utils'
+import { typedLocalStorage } from '@/shared/utilities'
 
 // Create an i18n instance. 创建一个 i18n 实例。
 export const i18n = createI18n({ legacy: false, locale: '', messages: {}, fallbackWarn: false, missingWarn: false })
