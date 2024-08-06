@@ -73,9 +73,9 @@ export default defineConfig({
         // the default
         /\.(vue|svelte|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/,
         // 从指定文件中提取图标，参考：https://unocss.dev/guide/extracting#extracting-from-build-tools-pipeline
-        'src/router/index.ts',
         'src/api-services/menuData.json',
-        'src/utils/menuUtil.ts',
+        'src/router/index.ts',
+        'src/shared/utilities/menuUtil.ts',
       ],
       // exclude files
       // exclude: []
