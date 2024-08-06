@@ -1,5 +1,5 @@
 // Built-in pages 内置的页面
-const builtInViews: Record<string, () => Promise<Recordable>> = import.meta.glob('@/layouts/built-in/**/*.{vue,tsx}')
+const builtInViews: Record<string, () => Promise<Recordable>> = import.meta.glob('@/shared/_builtin_views_/**/*.{vue,tsx}')
 
 // Dynamic import of view modules 动态导入视图模块
 const userViews: Record<string, () => Promise<Recordable>> = import.meta.glob('@/views/**/*.{vue,tsx}')
@@ -7,7 +7,7 @@ const userViews: Record<string, () => Promise<Recordable>> = import.meta.glob('@
 // Merge built-in views into dynamic view 合并内置页面到动态视图
 export const dynamicViews = { ...builtInViews, ...userViews }
 
-console.log('%c 组件表 ', 'color:white;background-color:blue;', dynamicViews)
+console.log('%c 动态View表 ', 'color:white;background-color:blue;', dynamicViews)
 
 // Cache the matching results 缓存匹配结果
 const matchCache = new Map<string, () => Promise<Record<string, any>>>()
@@ -22,12 +22,12 @@ export const dynamicImport = (component: string) => {
   // Normalize the path and filter matching keys 处理路径并过滤匹配项
   const normalizedComponent = component
     .replace(/.*?(views\/)/, '')
-    .replace(/.*?(layout\/built-in\/)/, '')
+    .replace(/.*?(shared\/_builtin_views_\/)/, '')
     .replace(/(\.vue|\.tsx)$/, '')
   const matchKeys = Object.keys(dynamicViews).filter((key) => {
     const normalizedKey = key
       .replace(/.*?(views\/)/, '')
-      .replace(/.*?(layout\/built-in\/)/, '')
+      .replace(/.*?(shared\/_builtin_views_\/)/, '')
       .replace(/(\.vue|\.tsx)$/, '')
     return normalizedKey === normalizedComponent
   })
