@@ -1,7 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { GlobalThemeOverrides } from 'naive-ui'
-import type { MenuButtonEnum, MenuSetting } from '@/shared/typings/menuDefine'
-import { MenuPositionEnum } from '@/shared/typings/menuDefine'
+import type { MenuButtonEnum, MenuSetting } from '@/shared/typings/menu'
+import { MenuPositionEnum } from '@/shared/typings/menu'
 import {
   darkScheme as darkSchemeDefault,
   localeSetting as localDefault,
@@ -10,9 +10,9 @@ import {
 } from '@/shared/settings/appSetting'
 import { toggleDark } from '@/shared/hooks/dark'
 import { availableLocales } from '@/modules/i18n'
-import { DarkSchemeEnum } from '@/shared/typings/darkSchemeDefine'
-import type { ThemeOverride } from '@/shared/typings/themeOverrideDefine'
-import type { LocaleSetting } from '@/shared/typings/localeDefine'
+import { DarkSchemeEnum } from '@/shared/typings/darkScheme'
+import type { ThemeOverride } from '@/shared/typings/themeOverride'
+import type { LocaleSetting } from '@/shared/typings/locale'
 import type { DeepPartial } from '@/shared/typings/app'
 import { typedLocalStorage } from '@/shared/utilities/typedLocalStorage'
 import { deepMergeObjects } from '@/shared/utilities/objectUtil'

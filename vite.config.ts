@@ -11,7 +11,7 @@ import UnoCSS from 'unocss/vite'
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   // eslint-disable-next-line node/prefer-global/process
-  const env = loadEnv(mode, process.cwd())
+  const env = loadEnv(mode, process.cwd(), '')
   const buildTime = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`
   return {
     plugins: [

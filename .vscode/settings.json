@@ -8,7 +8,6 @@
     "*.env": "$(capture).env.*",
     "package.json": "package-lock.json,pnpm-*.yaml,LICENSE,.gitattributes,.gitignore,.gitpod.yml,CNAME,README*,.npmrc,.browserslistrc,CHANGELOG*",
     ".editorconfig": ".eslintignore,.prettierignore,.stylelintignore,.commitlintrc.*,.prettierrc.*,.stylelintrc.*,eslint.config.*,commitlint.config.*",
-    "auto-import.d.ts": "components.d.ts,vite-env.d.ts",
     "tsconfig.json": "tsconfig.node.json",
     "dockerfile": ".dockerignore,netlify.*"
   },

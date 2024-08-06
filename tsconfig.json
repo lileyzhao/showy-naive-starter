@@ -8,7 +8,7 @@
     "module": "ESNext",
     /* Bundler mode */
     "moduleResolution": "bundler",
-    "paths": { "@/*": ["src/*"], "/#/*": ["types/*"] }, /* 路径映射 */
+    "paths": { "@/*": ["src/*"], "#/*": ["src/shared/typings/*"] }, /* 路径映射 */
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
     /* Linting */
@@ -21,6 +21,6 @@
     "skipLibCheck": true
   },
   "references": [{ "path": "./tsconfig.node.json" }],
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "env.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "env.d.ts", "vite-env.d.ts"],
   "exclude": ["dist", "node_modules"]
 }
