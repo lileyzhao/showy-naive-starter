@@ -1,6 +1,6 @@
 import type { Router } from 'vue-router'
 import { availableLocales } from '@/modules/i18n'
-import { LocaleEnum } from '@/shared/schemas'
+import { LocaleEnum } from '@/shared/schemas/localeDefine'
 
 export function createRouterGuards(router: Router) {
   const app = useAppStore()
@@ -18,7 +18,7 @@ export function createRouterGuards(router: Router) {
 
     // Is an exception language (not displayed in the route)
     // 是否例外的语言(不显示在路由中)
-    const inLocaleExcludes = app.localeSetting.inRouteExclude.some(item => item.toLowerCase() === lang.toLowerCase())
+    const inLocaleExcludes = app.localeSetting.inRouteExclude.some((item: any) => item.toLowerCase() === lang.toLowerCase())
 
     // Correctness of route path 处理路由路径的准确性
     let validPath = to.path.replace(new RegExp(`^/${lang}`, 'gi'), '')

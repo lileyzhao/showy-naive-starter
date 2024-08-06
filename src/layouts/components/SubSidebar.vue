@@ -2,7 +2,7 @@
 import type { MenuInst, MenuOption } from 'naive-ui'
 import type { RouteRecordRaw } from 'vue-router'
 import Logo from '@/layouts/components/Logo.vue'
-import { MenuButtonEnum, MenuPositionEnum } from '@/shared/schemas'
+import { MenuButtonEnum, MenuPositionEnum } from '@/shared/schemas/menuDefine'
 import { mapRoutes } from '@/shared/utilities/menuUtil'
 import { getFullRoutes } from '@/shared/utilities'
 

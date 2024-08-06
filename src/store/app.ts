@@ -1,7 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { GlobalThemeOverrides } from 'naive-ui'
-import type { DeepPartial, LocaleSetting, MenuButtonEnum, MenuSetting, ThemeOverride } from '@/shared/schemas'
-import { DarkSchemeEnum, MenuPositionEnum } from '@/shared/schemas'
+import type { MenuButtonEnum, MenuSetting } from '@/shared/schemas/menuDefine'
+import { MenuPositionEnum } from '@/shared/schemas/menuDefine'
 import {
   darkScheme as darkSchemeDefault,
   localeSetting as localDefault,
@@ -11,6 +11,9 @@ import {
 import { deepMergeObjects, typedLocalStorage } from '@/shared/utilities'
 import { toggleDark } from '@/shared/hooks/dark'
 import { availableLocales } from '@/modules/i18n'
+import type { ThemeOverride } from '@/shared/schemas/themeOverrideDefine'
+import type { LocaleSetting } from '@/shared/schemas/localeDefine'
+import type { DeepPartial } from '@/shared/schemas/types'
 
 export const useAppStore = defineStore('app', () => {
   /** Dark scheme: Includes light, dark, and auto. 主题方案：包括 light、dark 和 auto。 builtin */

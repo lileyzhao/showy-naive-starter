@@ -324,15 +324,15 @@ declare global {
   export type { Component, ComponentPublicInstance, ComputedRef, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, VNode, WritableComputedRef } from 'vue'
   import('vue')
   // @ts-ignore
-  export type { SizeEnum, ScreenEnum, SizeEnum, ScreenEnum } from './shared/schemas/breakpointDefine'
+  export type { SizeEnum, ScreenEnum } from './shared/schemas/breakpointDefine'
   import('./shared/schemas/breakpointDefine')
   // @ts-ignore
-  export type { DarkSchemeEnum, DarkSchemeEnum } from './shared/schemas/darkSchemeDefine'
+  export type { DarkSchemeEnum } from './shared/schemas/darkSchemeDefine'
   import('./shared/schemas/darkSchemeDefine')
   // @ts-ignore
-  export type { LocaleEnum, LocaleEnum } from './shared/schemas/localeDefine'
+  export type { LocaleEnum } from './shared/schemas/localeDefine'
   import('./shared/schemas/localeDefine')
   // @ts-ignore
-  export type { MenuButtonEnum, MenuPositionEnum, MenuStateEnum, MenuButtonEnum, MenuPositionEnum, MenuStateEnum } from './shared/schemas/menuDefine'
+  export type { MenuButtonEnum, MenuPositionEnum, MenuStateEnum } from './shared/schemas/menuDefine'
   import('./shared/schemas/menuDefine')
 }

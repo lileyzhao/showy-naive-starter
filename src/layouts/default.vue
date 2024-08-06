@@ -5,7 +5,7 @@ import SubSidebar from './components/SubSidebar.vue'
 import ThemeDrawer from './components/ThemeDrawer.vue'
 import MobileDrawer from './components/MobileDrawer.vue'
 import TopBar from './components/TopBar.vue'
-import { MenuButtonEnum, MenuPositionEnum } from '@/shared/schemas'
+import { MenuButtonEnum, MenuPositionEnum } from '@/shared/schemas/menuDefine'
 import { getFullRoutes } from '@/shared/utilities'
 import { isDark } from '@/shared/hooks/dark'
 

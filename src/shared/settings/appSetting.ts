@@ -1,5 +1,7 @@
-import { DarkSchemeEnum, MenuButtonEnum, MenuPositionEnum } from '@/shared/schemas'
-import type { LocaleSetting, MenuSetting, ThemeOverride } from '@/shared/schemas'
+import type { ThemeOverride } from '../schemas/themeOverrideDefine'
+import type { LocaleSetting } from '../schemas/localeDefine'
+import { MenuButtonEnum, MenuPositionEnum } from '@/shared/schemas/menuDefine'
+import type { MenuSetting } from '@/shared/schemas/menuDefine'
 
 /** Default dark-scheme 默认主题方案 */
 export const darkScheme = DarkSchemeEnum.AUTO
