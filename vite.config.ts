@@ -29,6 +29,8 @@ export default defineConfig(({ mode }) => {
         dts: 'src/auto-import.d.ts', // 路径下自动生成文件夹存放全局指令
         dirs: [
           'src/shared/hooks',
+          'src/shared/constants',
+          'src/shared/schemas',
           'src/store',
         ],
       }),

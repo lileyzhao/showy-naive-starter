@@ -3,8 +3,6 @@ import { dateEnUS, dateJaJP, dateKoKR, dateZhCN, dateZhTW, enUS, jaJP, koKR, zhC
 import { i18n, setOrLoadLanguageAsync } from '@/modules/i18n'
 import { router } from '@/router'
 
-export const APP_LOCALE_KEY = 'app-locale-setting'
-
 /**
  * Define return type.
  * 定义返回类型

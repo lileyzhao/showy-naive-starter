@@ -14,7 +14,7 @@ import { availableLocales } from '@/modules/i18n'
 
 export const useAppStore = defineStore('app', () => {
   /** Dark scheme: Includes light, dark, and auto. 主题方案：包括 light、dark 和 auto。 */
-  const darkScheme = ref<DarkSchemeEnum>(typedLocalStorage.getItem<DarkSchemeEnum>(APP_DARK_SCHEMA_KEY) || darkSchemeDefault)
+  const darkScheme = ref<DarkSchemeEnum>(typedLocalStorage.getItem<DarkSchemeEnum>(APP_DARK_SCHEME_KEY) || darkSchemeDefault)
 
   /**
    * Dark mode: Excludes "auto". When theme-scheme is set to "auto", it will return the theme-mode of the operating system.
@@ -92,7 +92,7 @@ export const useAppStore = defineStore('app', () => {
   /** Set theme-scheme 设置主题方案 */
   function setDarkScheme(val: DarkSchemeEnum) {
     darkScheme.value = val // STATE UPDATE
-    typedLocalStorage.setItem(APP_DARK_SCHEMA_KEY, val)
+    typedLocalStorage.setItem(APP_DARK_SCHEME_KEY, val)
   }
 
   /** Toggle dark mode 切换深色模式 */

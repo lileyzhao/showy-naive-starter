@@ -47,7 +47,7 @@ export const PublicRoutes: RouteRecordRaw[] = [
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: () => import('@/layouts/built-in/404.vue'),
+    component: () => import('@/shared/_built_in_views_/404.vue'),
   },
 ]
 
@@ -55,7 +55,7 @@ export const PublicRoutes: RouteRecordRaw[] = [
 export const NotFoundRoute: RouteRecordRaw = {
   path: '/:pathMatch(.*)*',
   name: 'NotFound',
-  component: () => import('@/layouts/built-in/404.vue'),
+  component: () => import('@/shared/_built_in_views_/404.vue'),
 }
 
 /**

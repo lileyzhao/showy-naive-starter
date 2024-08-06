@@ -1,2 +1,2 @@
-export const mainMenuKey = Symbol('mainMenuKey')
-export const subMenuKey = Symbol('subMenuKey')
+export const MAIN_MENU_KEY = Symbol('mainMenuKey')
+export const SUB_MENU_KEY = Symbol('subMenuKey')
