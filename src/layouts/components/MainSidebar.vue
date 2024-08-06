@@ -2,7 +2,7 @@
 import type { MenuInst } from 'naive-ui'
 import Logo from '@/layouts/components/Logo.vue'
 import { mapRoutesMain } from '@/shared/utilities/menuUtil'
-import { getFullRoutes } from '@/shared/utilities'
+import { getFullRoutes } from '@/shared/utilities/routeUtil'
 
 const emit = defineEmits(['keyChange'])
 

@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
             'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar'],
           },
         ],
-        dts: 'src/auto-import.d.ts', // 路径下自动生成文件夹存放全局指令
+        dts: 'src/shared/typings/auto-import.d.ts', // 路径下自动生成文件夹存放全局指令
         dirs: [
           'src/shared/hooks',
           'src/shared/constants',
@@ -36,7 +36,7 @@ export default defineConfig(({ mode }) => {
       }),
       Components({
         resolvers: [NaiveUiResolver()],
-        dts: 'src/components.d.ts', // 路径下自动生成文件夹存放全局指令
+        dts: 'src/shared/typings/components.d.ts', // 路径下自动生成文件夹存放全局指令
       }),
       // https://github.com/antfu/unocss
       UnoCSS(),

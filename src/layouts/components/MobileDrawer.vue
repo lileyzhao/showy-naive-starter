@@ -2,7 +2,7 @@
 import { type MenuInst, darkTheme } from 'naive-ui'
 import Logo from '@/layouts/components/Logo.vue'
 import { mapRoutes } from '@/shared/utilities/menuUtil'
-import { getFullRoutes } from '@/shared/utilities'
+import { getFullRoutes } from '@/shared/utilities/routeUtil'
 
 // Variables 变量
 const { t } = useI18n()
