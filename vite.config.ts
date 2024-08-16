@@ -27,12 +27,7 @@ export default defineConfig(({ mode }) => {
           },
         ],
         dts: 'src/shared/typings/auto-import.d.ts', // 路径下自动生成文件夹存放全局指令
-        dirs: [
-          'src/shared/hooks',
-          'src/shared/constants',
-          'src/shared/schemas',
-          'src/store',
-        ],
+        dirs: ['src/shared/hooks', 'src/shared/constants', 'src/shared/schemas', 'src/store'],
       }),
       Components({
         resolvers: [NaiveUiResolver()],
@@ -55,10 +50,12 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
+        '~': resolve(__dirname),
         '@': resolve(__dirname, 'src'),
+        '#': resolve(__dirname, 'src/shared/typings'),
       },
       // 要忽略的后缀
-      extensions: ['.ts', '.js', '.jsx', '.tsx', '.json'],
+      extensions: ['.ts', '.d.ts', '.js', '.jsx', '.tsx', '.json'],
     },
     build: {
       target: 'esnext',

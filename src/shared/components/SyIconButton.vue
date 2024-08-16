@@ -1,4 +1,4 @@
-<script setup lang="ts" name="SyIconButton2">
+<script setup lang="ts" name="SyIconButton">
 import { useThemeVars } from 'naive-ui'
 
 const props = defineProps({

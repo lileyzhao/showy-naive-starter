@@ -33,7 +33,7 @@ const theme = computed(() => mainMenuInverted.value ? darkTheme : null)
 /** Main menu options 主栏菜单项 */
 const mobileMenuOptions = computed(() => {
   const routers = fullRoutes.filter(route => route.meta.parentName === 'root').filter(route => !route.meta?.hidden) ?? []
-  return routers.map(route => mapRoutes(route, fullRoutes, t, true))
+  return routers.map(route => mapRoutes(route, fullRoutes, t))
 })
 
 /** Handle mobile menu key change 处理移动菜单键更改 */

@@ -8,7 +8,7 @@ login:
   title: Login
 menu:
   project:
-    title: Project
+    title: Project Project
     hello: Hello
     world: World
     surprise: Surprise

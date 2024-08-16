@@ -12,3 +12,7 @@ html[data-theme='dark'] {
   background-color: #121212;
   color-scheme: dark;
 }
+
+.n-popover.n-tooltip.n-menu-tooltip {
+  display: none !important;
+}

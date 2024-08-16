@@ -3,7 +3,7 @@ import type { MenuInst } from 'naive-ui'
 import Logo from '@/layouts/components/Logo.vue'
 import { MENU_STATE_TEXT, MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu'
 import SyIconButton from '@/shared/components/SyIconButton.vue'
-import { mapRoutes } from '@/shared/utilities/menuUtil'
+import { findRootRouteName, mapRoutes } from '@/shared/utilities/menuUtil'
 import { availableLocales } from '@/modules/i18n'
 import { getFullRoutes } from '@/shared/utilities/routeUtil'
 import { renderProfileHeader, renderUnoIcon } from '@/shared/utilities/componentUtil'
@@ -32,7 +32,7 @@ const topMenuKey = ref<string>()
 /** Top menu items 顶栏菜单项 */
 const topMenuOptions = computed(() => {
   const routers = fullRoutes.filter(route => route.meta.parentName === 'root').filter(route => !route.meta?.hidden) ?? []
-  return routers.map(route => mapRoutes(route, fullRoutes, t, !app.menuSetting.topMenu.showSubMenu))
+  return routers.map(route => mapRoutes(route, fullRoutes, t))
 })
 
 /** Menu state switch icon 菜单状态切换图标 */
@@ -64,7 +64,8 @@ const toggleLanguage = (lang: string) => {
 }
 
 const onTopMenuKeyChange = (key: string) => {
-  emit('keyChange', key)
+  const mainMenuRootKey = findRootRouteName(key, fullRoutes) ?? key
+  emit('keyChange', mainMenuRootKey)
 }
 
 const profileOptions = computed(() => [
@@ -118,8 +119,9 @@ defineExpose({ refreshTopMenu })
         v-if="(!isTopBarLayout && showMainMenuStatusButton) || app.isMobile" h-full flex flex-1 items-center gap-x-4
         p-l-4
       >
-        <div :class="menuStateIcon" cursor-pointer text-5 @click="toggleMainMenu" />
-        <span v-if="!app.isMobile" font-size-3 text-gray>←{{ t(MENU_STATE_TEXT[app.menuSetting.menuState!]) }}</span>
+        <SyIconButton button :icon="menuStateIcon" @click="toggleMainMenu" />
+        <span v-if="!app.isMobile" of-hidden text-nowrap font-size-3 text-gray>←{{
+          t(MENU_STATE_TEXT[app.menuSetting.menuState!]) }}</span>
       </div>
       <!-- Top logo 顶栏Logo -->
       <Logo v-if="isTopBarLayout && !app.menuSetting.topMenu.showSubMenu" flex-nowrap b-r-1 px-28px />
@@ -159,7 +161,10 @@ defineExpose({ refreshTopMenu })
           icon="i-carbon:cookie" @click="toggleThemeDrawer"
         />
         <NDropdown :options="profileOptions" trigger="click" @select="profileSelect">
-          <SyIconButton button icon="i-carbon:user-avatar" size="1.3em" style="font-size:16px !important;" :text="t('author')" />
+          <SyIconButton
+            button icon="i-carbon:user-avatar" size="1.3em" style="font-size:16px !important;"
+            :text="t('author')"
+          />
         </NDropdown>
       </div>
     </div>

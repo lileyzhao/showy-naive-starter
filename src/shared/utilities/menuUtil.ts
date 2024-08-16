@@ -9,14 +9,15 @@ import type { MenuSetting } from '@/shared/typings/menu'
  * @param route The route object 路由对象
  * @param fullRoutes All routes 所有路由
  * @param t Internationalization function 国际化函数
- * @param loadChild Whether to load child menus 是否加载子菜单
+ * @param menuSetting Menu Setting 菜单配置
  * @returns Mapped menu option 映射的菜单项
  */
 export function mapRoutes(
   route: RouteRecordRaw,
   fullRoutes: RouteRecordNormalized[],
   t: (x: string) => string,
-  loadChild: boolean = true,
+  menuSetting?: MenuSetting,
+  mainMenuRootKey?: string,
 ): MenuOption {
   const menu: MenuOption = {
     key: route.name as string,
@@ -25,7 +26,7 @@ export function mapRoutes(
 
   const childRoutes = fullRoutes.filter(r => r.meta.parentName === menu.key)
 
-  if (childRoutes.length > 0 && loadChild)
+  if (childRoutes.length > 0 && (menu.key !== mainMenuRootKey || menuSetting?.subMenu.collapsed))
     menu.children = childRoutes.map(childRoute => mapRoutes(childRoute, fullRoutes, t))
 
   // If there are child menus, make it non-clickable (no RouterLink wrapper)
@@ -42,35 +43,13 @@ export function mapRoutes(
       )
   }
 
-  return menu
-}
-
-/**
- * Map routes to main menu items
- * 将路由映射为菜单项（主菜单）
- *
- * @param route The route object 路由对象
- * @param fullRoutes All routes 所有路由
- * @param t Internationalization function 国际化函数
- * @param loadChild Whether to load child menus 是否加载子菜单
- * @param mainMenuSetting Main menu settings 主菜单配置
- * @returns Mapped main menu option 映射的主菜单项
- */
-export function mapRoutesMain(
-  route: RouteRecordRaw,
-  fullRoutes: RouteRecordNormalized[],
-  t: (x: string) => string,
-  loadChild: boolean = true,
-  mainMenuSetting: MenuSetting['mainMenu'],
-): MenuOption {
-  const menu = mapRoutes(route, fullRoutes, t, loadChild)
-  if (mainMenuSetting.collapsed) {
+  if (menuSetting && menuSetting.mainMenu.collapsed) {
     menu.icon = () =>
       h('div', { class: 'flex flex-col items-center' }, [
         // Menu icon 菜单图标
-        h('div', { class: `${route.meta?.icon} ${mainMenuSetting.showLabel ? 'mt-6px' : ''}` }),
+        h('div', { class: `${route.meta?.icon} ${menuSetting.mainMenu.showLabel ? 'mt-6px' : ''}` }),
         // Icon title 图标下方标题
-        mainMenuSetting.showLabel && route.path.split('/').filter(p => p).length <= 1
+        menuSetting.mainMenu.showLabel && route.path.split('/').filter(p => p).length <= 1
           ? h(
             'div',
             { class: 'font-size-3.4 w-48px text-center of-hidden whitespace-nowrap mb-2px' },
@@ -83,4 +62,17 @@ export function mapRoutesMain(
   }
 
   return menu
+}
+
+export function findRootRoute(routeName: string, fullRoutes: RouteRecordNormalized[]): RouteRecordNormalized | undefined {
+  const route = fullRoutes.find(r => r.name === routeName)
+  if (!route)
+    return undefined
+  else if (route.meta.parentName === 'root')
+    return route
+  else return findRootRoute(route.meta.parentName as string, fullRoutes)
+}
+
+export function findRootRouteName(routeName: string, fullRoutes: RouteRecordNormalized[]): string | undefined {
+  return findRootRoute(routeName, fullRoutes)?.name as string
 }

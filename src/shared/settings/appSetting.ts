@@ -1,6 +1,6 @@
-import type { ThemeOverride } from '../typings/themeOverride'
-import type { LocaleSetting } from '../typings/locale'
-import { DarkSchemeEnum } from '../typings/darkScheme'
+import type { ThemeOverride } from '@/shared/typings/themeOverride'
+import type { LocaleSetting } from '@/shared/typings/locale'
+import { DarkSchemeEnum } from '@/shared/typings/darkScheme'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu'
 import type { MenuSetting } from '@/shared/typings/menu'
 
