@@ -6,7 +6,7 @@
 <br>
 
 <p align='center'>
-<a href="https://showy-naive-template.netlify.app">Online Demo</a> | <a href="#">Online Document</a>
+<a href="https://showy-naive-starter.netlify.app">Online Demo</a> | <a href="#">Online Document</a>
 </p>
 
 <br>
@@ -78,14 +78,14 @@ This is merely a template project for an admin dashboard and does not implement 
 
 ### GitHub Template
 
-[Create a repository using this template](https://github.com/lileyzhao/showy-naive-template/generate).
+[Create a repository using this template](https://github.com/lileyzhao/showy-naive-starter/generate).
 
 ### Clone to local
 
 If you prefer a cleaner git history, you can do it manually:
 
 ```bash
-npx degit lileyzhao/showy-naive-template your-vue-admin-template
+npx degit lileyzhao/showy-naive-starter your-vue-admin-template
 cd your-vue-admin-template
 pnpm i # If you haven't installed pnpm, run: npm install -g pnpm
 ```

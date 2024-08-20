@@ -34,7 +34,6 @@ declare module 'vue' {
     NTabs: typeof import('naive-ui')['NTabs']
     NTag: typeof import('naive-ui')['NTag']
     NText: typeof import('naive-ui')['NText']
-    NThemeEditor: typeof import('naive-ui')['NThemeEditor']
     NTimePicker: typeof import('naive-ui')['NTimePicker']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

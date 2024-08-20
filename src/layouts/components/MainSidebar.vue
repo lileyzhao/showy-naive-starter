@@ -34,7 +34,6 @@ const mainMenuOptions = ref<MenuOption[]>()
 
 /** Handle main menu key change 处理主菜单键变化 */
 const handleMainMenuKeyChange = (key: string) => {
-  console.log('handleMainMenuKeyChange', key, app.menuSetting.subMenu.collapsed)
   const mainMenuRootKey = findRootRouteName(key, fullRoutes) ?? key
   mainMenuOptions.value = mainMenuRoutes.map(route => mapRoutes(route, fullRoutes, t, app.menuSetting, mainMenuRootKey))
   emit('keyChange', mainMenuRootKey)

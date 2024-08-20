@@ -17,7 +17,7 @@ const subMenuRoutes = ref<RouteRecordRaw[]>([])
 // Reference to component 组件引用
 const subMenuRef = ref<MenuInst | null>()
 /** Selected Item in sub-menu 副栏菜单选中项 */
-const subMenuKey = computed<string>(() => route.name as string)
+const subMenuKey = computed<string>({ get: () => route.name as string, set: () => { } })
 
 /** Collapsed State of sub-menu 副栏菜单收缩状态 */
 const collSubMenu = computed({

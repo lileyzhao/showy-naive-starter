@@ -1,5 +1,5 @@
 {
-  "name": "showy-naive-template",
+  "name": "showy-naive-starter",
   "type": "module",
   "version": "0.1.0-alpha",
   "private": true,
@@ -7,12 +7,12 @@
   "description": "An admin dashboard UI template based on Vue 3, Vite, Naive UI, and UnoCSS. 基于 Vue 3、Vite、Naive UI 和 UnoCSS 的管理后台UI模板。",
   "author": "lileyzhao@gmail.com",
   "license": "MIT",
-  "homepage": "https://github.com/lileyzhao/showy-naive-template",
+  "homepage": "https://github.com/lileyzhao/showy-naive-starter",
   "repository": {
-    "url": "https://github.com/lileyzhao/showy-naive-template.git"
+    "url": "https://github.com/lileyzhao/showy-naive-starter.git"
   },
   "bugs": {
-    "url": "https://github.com/lileyzhao/showy-naive-template/issues"
+    "url": "https://github.com/lileyzhao/showy-naive-starter/issues"
   },
   "engines": {
     "node": ">=20.0.0"

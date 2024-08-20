@@ -6,7 +6,7 @@
 <br>
 
 <p align='center'>
-<a href="https://showy-naive-template.netlify.app">在线 Demo</a> | <a href="#">在线文档</a>
+<a href="https://showy-naive-starter.netlify.app">在线 Demo</a> | <a href="#">在线文档</a>
 </p>
 
 <br>
@@ -78,14 +78,14 @@
 
 ### GitHub 模板
 
-[使用这个模板创建仓库](https://github.com/lileyzhao/showy-naive-template/generate).
+[使用这个模板创建仓库](https://github.com/lileyzhao/showy-naive-starter/generate).
 
 ### 克隆到本地
 
 如果您更喜欢使用更干净的 git 历史记录手动执行此操作
 
 ```bash
-npx degit lileyzhao/showy-naive-template your-vue-admin-template
+npx degit lileyzhao/showy-naive-starter your-vue-admin-template
 cd your-vue-admin-template
 pnpm i # 如果你没装过 pnpm, 可以先运行: npm install -g pnpm
 ```
