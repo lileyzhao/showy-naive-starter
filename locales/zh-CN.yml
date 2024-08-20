@@ -18,11 +18,6 @@ menu:
     project: 项目
   profile: 个人
   settings: 设置
-tips:
-  menuState:
-    normal: 点击隐藏图标下方标题
-    iconLabel: 点击展开主栏菜单
-    onlyIcon: 点击收缩主栏菜单
 theme:
   themeDrawerTitle: 主题与布局
   darkMode:

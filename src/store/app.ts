@@ -8,7 +8,6 @@ import {
   menuSetting as menuDefault,
   themeOverride as themeOverrideDefault,
 } from '@/shared/settings/appSetting'
-import { toggleDark } from '@/shared/hooks/dark'
 import { availableLocales } from '@/modules/i18n'
 import { DarkSchemeEnum } from '@/shared/typings/darkScheme'
 import type { ThemeOverride } from '@/shared/typings/themeOverride'
@@ -103,6 +102,9 @@ export const useAppStore = defineStore('app', () => {
   /** Toggle dark mode 切换深色模式 */
   function toggleDarkMode() {
     toggleDark()
+    nextTick(() => {
+      darkScheme.value = typedLocalStorage.getItem<DarkSchemeEnum>(APP_DARK_SCHEME_KEY) || darkSchemeDefault
+    })
   }
 
   /** Set locale settings 设置本地化设置 */

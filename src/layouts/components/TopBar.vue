@@ -1,7 +1,7 @@
 <script setup lang="ts" name="Layout-TopBar">
 import type { MenuInst } from 'naive-ui'
 import Logo from '@/layouts/components/Logo.vue'
-import { MENU_STATE_TEXT, MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu'
+import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu'
 import SyIconButton from '@/shared/components/SyIconButton.vue'
 import { findRootRouteName, mapRoutes } from '@/shared/utilities/menuUtil'
 import { availableLocales } from '@/modules/i18n'
@@ -108,29 +108,41 @@ const langs = computed(() => availableLocales.map(locale => ({ label: getLanguag
 
 /** Exposes 公开对象 */
 defineExpose({ refreshTopMenu })
+
+const logoProps = computed(() => {
+  return {
+    hideLogo: app.menuSetting.menuPosition !== MenuPositionEnum.TOP_BAR,
+    // hideTitle: app.menuSetting.menuPosition !== MenuPositionEnum.TOP_BAR && !app.menuSetting.mainMenu.collapsed,
+    // flexYCenter: true,
+    // paddingLeft: 5,
+    class: app.menuSetting.menuPosition !== MenuPositionEnum.TOP_BAR ? 'b-r-1' : '',
+    style: app.menuSetting.menuPosition !== MenuPositionEnum.TOP_BAR ? `width:${app.menuSetting.subMenu.width}px` : `width:${app.menuSetting.subMenu.width - 30}px`,
+  }
+})
 </script>
 
 <template>
   <!-- Left section of the top bar 头部左侧区 -->
-  <NLayoutHeader bordered z-1>
+  <NLayoutHeader bordered>
     <div h-header flex-right-center gap-x-4>
+      <!-- Top logo 顶栏Logo -->
+      <Logo
+        v-if="isTopBarLayout || (!app.menuSetting.subMenu.collapsed && app.menuSetting.mainMenu.collapsed)"
+        v-bind="logoProps" flex-nowrap
+      />
+      <!-- Top menu 顶栏菜单 -->
+      <div v-if="!app.isMobile && isTopBarLayout" flex-1>
+        <NMenu
+          ref="topMenuRef" v-model:value="topMenuKey" mode="horizontal"
+          :options="topMenuOptions" :icon-size="20.5" responsive :indent="16" @update:value="onTopMenuKeyChange"
+        />
+      </div>
       <!-- Left section of the top bar 头部左侧区 -->
       <div
         v-if="(!isTopBarLayout && showMainMenuStatusButton) || app.isMobile" h-full flex flex-1 items-center gap-x-4
-        p-l-4
+        :class="isTopBarLayout || (!app.menuSetting.subMenu.collapsed && app.menuSetting.mainMenu.collapsed) ? '' : 'pl-2'"
       >
         <SyIconButton button :icon="menuStateIcon" @click="toggleMainMenu" />
-        <span v-if="!app.isMobile" of-hidden text-nowrap font-size-3 text-gray>←{{
-          t(MENU_STATE_TEXT[app.menuSetting.menuState!]) }}</span>
-      </div>
-      <!-- Top logo 顶栏Logo -->
-      <Logo v-if="isTopBarLayout && !app.menuSetting.topMenu.showSubMenu" flex-nowrap b-r-1 px-28px />
-      <!-- Top menu 顶栏菜单 -->
-      <div flex-1>
-        <NMenu
-          v-if="!app.isMobile && isTopBarLayout" ref="topMenuRef" v-model:value="topMenuKey" mode="horizontal"
-          :options="topMenuOptions" :icon-size="20.5" responsive :indent="16" @update:value="onTopMenuKeyChange"
-        />
       </div>
       <!-- Right section of the top bar 头部右侧区 -->
       <div h-full flex-right-center gap-1.5 p-r-3>

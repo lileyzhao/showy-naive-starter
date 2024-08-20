@@ -1,7 +1,6 @@
 <script setup lang="ts" name="Layout-SubSidebar">
 import type { MenuInst, MenuOption } from 'naive-ui'
 import type { RouteRecordRaw } from 'vue-router'
-import Logo from '@/layouts/components/Logo.vue'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu'
 import { mapRoutes } from '@/shared/utilities/menuUtil'
 import { getFullRoutes } from '@/shared/utilities/routeUtil'
@@ -71,16 +70,7 @@ const subSidebarProps = computed(() => {
     onCollapse: () => handleToggleSub(true),
     onExpand: () => handleToggleSub(false),
     bordered: !collSubMenu.value,
-    contentClass: 'of-x-hidden! z-2',
-  }
-})
-
-const logoProps = computed(() => {
-  return {
-    hideLogo: app.menuSetting.menuPosition !== MenuPositionEnum.TOP_BAR,
-    hideTitle: app.menuSetting.menuPosition !== MenuPositionEnum.TOP_BAR && !app.menuSetting.mainMenu.collapsed,
-    flexYCenter: true,
-    paddingLeft: 5,
+    contentClass: 'of-x-hidden!',
   }
 })
 </script>
@@ -88,9 +78,6 @@ const logoProps = computed(() => {
 <template>
   <!-- Sidebar (desktop): Sub-sidebar 侧边栏(电脑端):副栏 -->
   <NLayoutSider v-if="subMenuRoutes.length > 0" v-bind="subSidebarProps">
-    <NLayoutHeader bordered>
-      <Logo v-bind="logoProps" flex-y-center p-l-5 />
-    </NLayoutHeader>
     <!-- Sub-menu 副栏菜单 -->
     <NMenu
       ref="subMenuRef" v-model:value="subMenuKey" :options="subMenuOptions" :collapsed-icon-size="16" :indent="16"

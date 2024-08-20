@@ -94,7 +94,7 @@ const logoClass = computed(() => !app.isDark && app.menuSetting.mainMenu.inverte
 
 <template>
   <!-- Sidebar (Desktop): Main Column 侧边栏(电脑端):主栏 -->
-  <NLayoutSider v-bind="mainSidebarProps" style="box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);z-index:1">
+  <NLayoutSider v-bind="mainSidebarProps">
     <NLayoutHeader bordered :inverted="mainMenuInverted" :class="logoClass">
       <Logo w-full :hide-title="mainSidebarProps.collapsed" />
     </NLayoutHeader>

@@ -48,8 +48,6 @@ const handleAction = (op: string, _val: any) => {
     <template v-if="!app.isMobile">
       <!-- Sidebar (Desktop): Main Sidebar. 侧边栏(电脑端):主栏。 -->
       <MainSidebar v-if="!isTopBar" ref="mainSidebarRef" @key-change="handleMainMenuKeyChange" />
-      <!-- Sidebar (Desktop): Sub Sidebar. 侧边栏(电脑端):副栏。 -->
-      <SubSidebar v-if="!isTopBar || app.menuSetting.topMenu.showSubMenu" :parent-menu-key="mainMenuRootKey" />
     </template>
 
     <!-- Right main area. 右侧主体区。 -->
@@ -58,6 +56,8 @@ const handleAction = (op: string, _val: any) => {
       <TopBar ref="topBarRef" @action="handleAction" @key-change="handleMainMenuKeyChange" />
       <!-- Content area. 内容区。 -->
       <NLayout has-sider>
+        <!-- Sidebar (Desktop): Sub Sidebar. 侧边栏(电脑端):副栏。 -->
+        <SubSidebar v-if="!isTopBar || app.menuSetting.topMenu.showSubMenu" :parent-menu-key="mainMenuRootKey" />
         <NLayoutContent :native-scrollbar="false" flex-1 :style="isDark ? 'background-color: #18181c;' : ''">
           <div p-8px :style="{ backgroundColor: isDark ? '#26262a' : '#f7fafc' }">
             <RouterView v-slot="{ Component, route: r }">

@@ -18,11 +18,6 @@ menu:
     project: Project
   profile: Profile
   settings: Settings
-tips:
-  menuState:
-    normal: Click to hide the title below the icon
-    iconLabel: Click to expand the main menu
-    onlyIcon: Click to collapse the main menu
 theme:
   themeDrawerTitle: Theme & Layout
   darkMode:

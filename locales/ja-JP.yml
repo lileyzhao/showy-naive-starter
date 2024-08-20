@@ -40,11 +40,6 @@ theme:
     system: システムに従ってください
     title: テーマモード
   themeDrawerTitle: テーマとレイアウト
-tips:
-  menuState:
-    iconLabel: クリックしてメインメニューを展開します
-    normal: 非表示アイコンの下にあるタイトルをクリックします
-    onlyIcon: クリックしてメイン列メニューを縮小します
 welcome:
   morning: こんにちは、元気な若者です
   night: おやすみ、マカバカ

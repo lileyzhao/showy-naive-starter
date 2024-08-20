@@ -40,11 +40,6 @@ theme:
     system: 시스템을 따르세요
     title: 테마 모드
   themeDrawerTitle: 테마 및 레이아웃
-tips:
-  menuState:
-    iconLabel: 클릭하면 메인 메뉴가 펼쳐집니다
-    normal: 숨기기 아이콘 아래의 제목을 클릭하세요.
-    onlyIcon: 메인 열 메뉴를 축소하려면 클릭하세요.
 welcome:
   morning: 좋은 하루, 활력 넘치는 청년
   night: 잘 자, 마카바카

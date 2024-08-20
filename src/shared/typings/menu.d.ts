@@ -109,12 +109,3 @@ export interface MenuSetting {
    */
   menuState?: MenuStateEnum
 }
-
-/**
- * @constant Menu State Text 菜单状态文本
- */
-export const MENU_STATE_TEXT: { [key: string]: string } = {
-  1: 'tips.menuState.normal',
-  2: 'tips.menuState.iconLabel',
-  3: 'tips.menuState.onlyIcon',
-}
