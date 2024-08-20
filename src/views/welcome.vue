@@ -57,7 +57,7 @@ onMounted(() => {
         </NButton>
       </NSpace>
     </div>
-    <div class="h-60vh flex flex-col items-center justify-end pb-4 text-4">
+    <div class="h-60vh flex flex-col items-center justify-end p-4 text-4">
       ... {{ t('intro') }} ...
     </div>
     <NModal v-model:show="showModal" preset="card">

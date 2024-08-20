@@ -25,12 +25,11 @@
           "path": "surprise",
           "name": "surprise",
           "title": "menu.project.surprise",
-          "component": "@/views/welcome",
           "icon": "i-carbon:face-cool",
           "children": [
-            { "path": "403", "name": "403", "title": "menu.project.surprise", "component": "403", "icon": "i-carbon:face-cool" },
-            { "path": "404", "name": "404", "title": "menu.project.surprise", "component": "404", "icon": "i-carbon:face-cool" },
-            { "path": "500", "name": "500", "title": "menu.project.surprise", "component": "500", "icon": "i-carbon:face-cool" }
+            { "path": "403", "name": "403", "title": "403", "component": "403", "icon": "i-carbon:face-cool" },
+            { "path": "404", "name": "404", "title": "404", "component": "404", "icon": "i-carbon:face-cool" },
+            { "path": "500", "name": "500", "title": "500", "component": "500", "icon": "i-carbon:face-cool" }
           ]
         }
       ]
@@ -39,12 +38,11 @@
       "path": "surprise2",
       "name": "surprise2",
       "title": "menu.project.surprise",
-      "component": "@/views/welcome",
       "icon": "i-carbon:face-cool",
       "children": [
-        { "path": "403-2", "name": "403-2", "title": "menu.project.surprise", "component": "403", "icon": "i-carbon:face-cool" },
-        { "path": "404-2", "name": "404-2", "title": "menu.project.surprise", "component": "404", "icon": "i-carbon:face-cool" },
-        { "path": "500-2", "name": "500-2", "title": "menu.project.surprise", "component": "500", "icon": "i-carbon:face-cool" }
+        { "path": "403-2", "name": "403-2", "title": "403", "component": "403", "icon": "i-carbon:face-cool" },
+        { "path": "404-2", "name": "404-2", "title": "404", "component": "404", "icon": "i-carbon:face-cool" },
+        { "path": "500-2", "name": "500-2", "title": "500", "component": "500", "icon": "i-carbon:face-cool" }
       ]
     },
     {

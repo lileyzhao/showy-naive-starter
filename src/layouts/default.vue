@@ -57,7 +57,7 @@ const handleAction = (op: string, _val: any) => {
       <!-- Content area. 内容区。 -->
       <NLayout has-sider>
         <!-- Sidebar (Desktop): Sub Sidebar. 侧边栏(电脑端):副栏。 -->
-        <SubSidebar v-if="!isTopBar || app.menuSetting.topMenu.showSubMenu" :parent-menu-key="mainMenuRootKey" />
+        <SubSidebar v-if="!app.isMobile && (!isTopBar || app.menuSetting.topMenu.showSubMenu)" :parent-menu-key="mainMenuRootKey" />
         <NLayoutContent :native-scrollbar="false" flex-1 :style="isDark ? 'background-color: #18181c;' : ''">
           <div p-8px :style="{ backgroundColor: isDark ? '#26262a' : '#f7fafc' }">
             <RouterView v-slot="{ Component, route: r }">
