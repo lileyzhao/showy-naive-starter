@@ -1,45 +1,47 @@
-author: 슈유
-intro: 사탄의 딸은 감동을 받아 떠날 때 눈이 붉어졌습니다. 그녀는 흰 셔츠를 입은 소년과 사랑에 빠졌고, 인간이 되는 꿈은 금기였습니다.
-team: 시장 슈유
-common:
-  backToHome: 홈페이지로 돌아가기
+welcome:
+  morning: 좋은 아침, 활기찬 소년
+  night: 좋은 밤, 마카바카
+author: 수우
+team: 서강수우
+intro: 사탄의 딸이 마음을 움직였고, 떠날 때 눈이 붉어졌으며, 흰 셔츠를 입은 소년을 사랑하게 되었고, 인간이 되고 싶어 하는 금지된 꿈을 꾸었다.
 login:
   title: 로그인
 menu:
-  profile: 개인의
-  settings: 설정
+  start:
+    title: 시작
+    welcome: 환영합니다
+    components: 컴포넌트
+    builtin-pages: 내장 페이지
+  guide: 가이드
   about:
-    author: 작가
+    title: 정보
+    author: 저자
     project: 프로젝트
-    title: ~에 대한
-  project:
-    hello: 안녕하세요
-    surprise: 놀라다
-    title: 프로젝트
-    world: 세계
-page:
-  about:
-    devDep: 개발 종속성
-    introduction: 수 놓은 비
-    prdDep: 생산 의존성
-    title: ~에 대한
-    projectInfo:
-      githubLink: 프로젝트 주소
-      latestBuildTime: 빌드 시간
-      previewLink: 미리보기 주소
-      title: 프로젝트 정보
-      version: 현재 버전
-profileMenu:
-  logout: 그만두다
-  profile: 개인 정보
+  github: Github
+  profile: 프로필
   settings: 설정
 theme:
-  darkMode:
-    dark: 어두운
-    light: 밝은 색
-    system: 시스템을 따르세요
-    title: 테마 모드
   themeDrawerTitle: 테마 및 레이아웃
-welcome:
-  morning: 좋은 하루, 활력 넘치는 청년
-  night: 잘 자, 마카바카
+  darkMode:
+    title: 테마 모드
+    light: 라이트
+    dark: 다크
+    system: 시스템을 따름
+page:
+  about:
+    title: 정보
+    introduction: 수우
+    projectInfo:
+      title: 프로젝트 정보
+      version: 현재 버전
+      latestBuildTime: 빌드 시간
+      githubLink: 프로젝트 링크
+      previewLink: 미리보기 링크
+    prdDep: 프로덕션 의존성
+    devDep: 개발 의존성
+profileMenu:
+  profile: 프로필
+  settings: 설정
+  logout: 로그아웃
+common:
+  backToHome: 홈으로 돌아가기

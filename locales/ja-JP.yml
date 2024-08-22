@@ -1,45 +1,47 @@
-author: シウユ
-intro: サタンの娘は感動し、帰り際に目を赤くしました。彼女は白いシャツを着た少年に恋をしました。人間になることを夢見ることはタブーでした。
-team: 西江秀宇
-common:
-  backToHome: ホームページに戻る
+welcome:
+  morning: おはよう、元気な少年
+  night: おやすみ、マカバカ
+author: 秀雨
+team: 西江绣雨
+intro: サタンの娘が心を動かし、去る時に目を赤くし、白いシャツを着た少年に恋をして、人間になりたいと禁じられた願いを抱く。
 login:
   title: ログイン
 menu:
-  profile: 個人的
-  settings: 設定
+  start:
+    title: 開始
+    welcome: ようこそ
+    components: コンポーネント
+    builtin-pages: 組み込みページ
+  guide: ガイド
   about:
+    title: について
     author: 著者
     project: プロジェクト
-    title: について
-  project:
-    hello: こんにちは
-    surprise: 驚き
-    title: プロジェクト
-    world: 世界
-page:
-  about:
-    devDep: 開発の依存関係
-    introduction: 刺繍された雨
-    prdDep: 生産依存性
-    title: について
-    projectInfo:
-      githubLink: プロジェクトアドレス
-      latestBuildTime: ビルド時間
-      previewLink: プレビューアドレス
-      title: プロジェクト情報
-      version: 現行版
-profileMenu:
-  logout: やめる
-  profile: 個人情報
+  github: Github
+  profile: プロフィール
   settings: 設定
 theme:
-  darkMode:
-    dark: 暗い
-    light: 明色
-    system: システムに従ってください
-    title: テーマモード
   themeDrawerTitle: テーマとレイアウト
-welcome:
-  morning: こんにちは、元気な若者です
-  night: おやすみ、マカバカ
+  darkMode:
+    title: テーマモード
+    light: ライト
+    dark: ダーク
+    system: システムに従う
+page:
+  about:
+    title: について
+    introduction: 绣雨
+    projectInfo:
+      title: プロジェクト情報
+      version: 現在のバージョン
+      latestBuildTime: ビルド時間
+      githubLink: プロジェクトリンク
+      previewLink: プレビューリンク
+    prdDep: プロダクション依存
+    devDep: 開発依存
+profileMenu:
+  profile: プロフィール
+  settings: 設定
+  logout: ログアウト
+common:
+  backToHome: ホームに戻る
