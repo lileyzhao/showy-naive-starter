@@ -26,7 +26,7 @@ export const RootRoute: RouteRecordRaw = {
   name: 'root',
   component: () => import('@/layouts/default.vue'),
   meta: { title: 'Root' },
-  redirect: '/start',
+  redirect: '',
   children: [],
 }
 
@@ -137,12 +137,17 @@ async function setDynamicRoutes() {
   const rootRoutes = transformJsonRoutes(Array.isArray(menuData) ? menuData : menuData.rootRoutes, 'root')
   rootRoutes.forEach((route: RouteRecordRaw) => router.addRoute('root', route))
 
+  // Set the redirect for the "root" route (if not set)
+  // 为 "root" 路由设置重定向(如果没有设置的话)
+  const rootRoute = router.getRoutes().find(route => route.name === 'root')
+  if (rootRoute && rootRoutes.length > 0 && !rootRoute.redirect)
+    rootRoute.redirect = rootRoutes[0].path.startsWith('/') ? rootRoutes[0].path : `/${rootRoutes[0].path}`
+
   // Transform public route data and add to router.
   // 转换 public 路由数据并添加至路由器。
   const publicRoutes = transformJsonRoutes(Array.isArray(menuData) ? [] : menuData.publicRoutes ?? [])
   publicRoutes.forEach((route: RouteRecordRaw) => router.addRoute(route))
 
-  console.log(router.getRoutes())
   // Return Vue Router instance. 返回 Vue Router 实例。
   return router
 }
