@@ -66,7 +66,7 @@ export const menuSetting: MenuSetting = {
     collapsed: true,
     width: 120,
     widthColl: 70,
-    widthSingle: 160,
+    widthSingle: 180,
     widthMobile: 200,
     inverted: true,
     showLabel: true,

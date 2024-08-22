@@ -7,15 +7,17 @@ intro: 撒旦的女儿动了心，走的时候也红了眼，爱上了那个穿�
 login:
   title: 登录
 menu:
-  project:
-    title: 项目
-    hello: 你好
-    world: 世界
-    surprise: 惊喜
+  start:
+    title: 开始
+    welcome: 欢迎
+    components: 组件
+    builtin-pages: 内置页面
+  guide: 指南
   about:
     title: 关于
     author: 作者
     project: 项目
+  github: Github
   profile: 个人
   settings: 设置
 theme:

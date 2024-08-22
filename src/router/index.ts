@@ -26,7 +26,7 @@ export const RootRoute: RouteRecordRaw = {
   name: 'root',
   component: () => import('@/layouts/default.vue'),
   meta: { title: 'Root' },
-  redirect: '/project',
+  redirect: '/start',
   children: [],
 }
 

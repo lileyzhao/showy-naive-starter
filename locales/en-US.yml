@@ -7,15 +7,17 @@ intro: Satan's daughter fell in love, tears in her eyes as she left. She loved t
 login:
   title: Login
 menu:
-  project:
-    title: Project
-    hello: Hello
-    world: World
-    surprise: Surprise
+  start:
+    title: Start
+    welcome: Welcome
+    components: Components
+    builtin-pages: BuiltinPages
+  guide: Guide
   about:
     title: About
     author: Author
     project: Project
+  github: Github
   profile: Profile
   settings: Settings
 theme:
