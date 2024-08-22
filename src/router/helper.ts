@@ -29,8 +29,9 @@ export const dynamicImport = (component: string) => {
       .replace(/.*?(views\/)/, '')
       .replace(/.*?(shared\/_builtin_views_\/)/, '')
       .replace(/(\.vue|\.tsx)$/, '')
-    return normalizedKey === normalizedComponent
+    return normalizedKey.toLowerCase() === normalizedComponent.toLowerCase()
   })
+  console.log('%c 匹配项 ', 'color:white;background-color:blue;', matchKeys, normalizedComponent)
 
   // Cache and return the import function if a unique match is found
   // 如果找到匹配项，缓存并返回对应的导入函数
@@ -51,8 +52,8 @@ export const dynamicImport = (component: string) => {
   else {
     // Issue a warning if no match is found 如果没有找到匹配项，发出警告
     console.warn(
-      `Cannot find \`${component}.vue\` or \`${component}.tsx\` under src/views/, please create it yourself! `
-      + `在src/views/下找不到\`${component}.vue\` 或 \`${component}.tsx\`, 请自行创建!`,
+      `Cannot find \`${component}.vue\` or \`${component}.tsx\` under src/views/ and shared/_builtin_views, please create it yourself! `
+      + `在src/views/和shared/_builtin_views下找不到\`${component}.vue\` 或 \`${component}.tsx\`, 请自行创建!`,
     )
     const matchedModule = dynamicViews.MISSING
     matchCache.set(component, matchedModule)
