@@ -1,6 +1,5 @@
 <script setup lang="ts" name="Layout-SubSidebar">
 import type { MenuInst, MenuOption } from 'naive-ui'
-import type { RouteRecordRaw } from 'vue-router'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu'
 import { mapRoutes } from '@/shared/utilities/menuUtil'
 import { getFullRoutes } from '@/shared/utilities/routeUtil'
@@ -12,7 +11,10 @@ const { t } = useI18n()
 const app = useAppStore()
 const route = useRoute()
 const fullRoutes = getFullRoutes()
-const subMenuRoutes = ref<RouteRecordRaw[]>([])
+
+// Inject the number of sub-menu items 注入副栏菜单项数量
+const subMenuCount = inject(SUB_MENU_COUNT, ref(0))
+const updateSubMenuCount = inject(UPDATE_SUB_MENU_COUNT, (_: number) => { })
 
 // Reference to component 组件引用
 const subMenuRef = ref<MenuInst | null>()
@@ -36,10 +38,10 @@ const getSubMenuOptions = (mainMenuKey: string) => {
 
 /** Refresh the sub-menu 刷新副栏菜单 */
 const refreshSubMenu = (mainMenuRootKey?: string) => {
-  subMenuRoutes.value = fullRoutes.filter(r => r.meta.parentName === (mainMenuRootKey || route.matched[1].name))
+  updateSubMenuCount(fullRoutes.filter(r => r.meta.parentName === (mainMenuRootKey || route.matched[1].name)).length)
 
   // 更新副栏菜单 Update the sub-menu
-  if (!collSubMenu.value && subMenuRoutes.value.length > 0) {
+  if (!collSubMenu.value && subMenuCount.value > 0) {
     subMenuOptions.value = getSubMenuOptions(mainMenuRootKey || route.matched[1].name as string)
   }
   else { subMenuOptions.value = [] }
@@ -77,7 +79,7 @@ const subSidebarProps = computed(() => {
 
 <template>
   <!-- Sidebar (desktop): Sub-sidebar 侧边栏(电脑端):副栏 -->
-  <NLayoutSider v-if="subMenuRoutes.length > 0" v-bind="subSidebarProps">
+  <NLayoutSider v-if="subMenuCount > 0" v-bind="subSidebarProps">
     <!-- Sub-menu 副栏菜单 -->
     <NMenu
       ref="subMenuRef" v-model:value="subMenuKey" :options="subMenuOptions" :collapsed-icon-size="16" :indent="16"

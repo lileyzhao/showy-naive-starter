@@ -23,6 +23,16 @@ const isTopBar = computed(() => app.menuSetting.menuPosition === MenuPositionEnu
 
 /** Selected item in the main menu. 主栏菜单选中项。 */
 const mainMenuRootKey = ref<string>()
+const subMenuCount = ref(0)
+
+/** Update the number of sub-menu items. 更新副栏菜单项数量的函数。 */
+function updateSubMenuCount(count: number) {
+  subMenuCount.value = count
+}
+
+// Provide the number of sub-menu items. 提供副栏菜单项数量。
+provide(SUB_MENU_COUNT, subMenuCount)
+provide(UPDATE_SUB_MENU_COUNT, updateSubMenuCount)
 
 /**
  * Main menu selected item changed. 主栏菜单选中项改变。
@@ -57,7 +67,10 @@ const handleAction = (op: string, _val: any) => {
       <!-- Content area. 内容区。 -->
       <NLayout has-sider>
         <!-- Sidebar (Desktop): Sub Sidebar. 侧边栏(电脑端):副栏。 -->
-        <SubSidebar v-if="!app.isMobile && (!isTopBar || app.menuSetting.topMenu.showSubMenu)" :parent-menu-key="mainMenuRootKey" />
+        <SubSidebar
+          v-if="!app.isMobile && (!isTopBar || app.menuSetting.topMenu.showSubMenu)"
+          :parent-menu-key="mainMenuRootKey"
+        />
         <NLayoutContent :native-scrollbar="false" flex-1 :style="isDark ? 'background-color: #18181c;' : ''">
           <div p-8px :style="{ backgroundColor: isDark ? '#26262a' : '#f7fafc' }">
             <RouterView v-slot="{ Component, route: r }">

@@ -17,6 +17,9 @@ const router = useRouter()
 const route = useRoute()
 const fullRoutes = getFullRoutes()
 
+// Inject the number of sub-menu items 注入副栏菜单项数量
+const subMenuCount = inject(SUB_MENU_COUNT, ref(0))
+
 // Component references 组件引用
 const topMenuRef = ref<MenuInst | null>()
 
@@ -112,9 +115,6 @@ defineExpose({ refreshTopMenu })
 const logoProps = computed(() => {
   return {
     hideLogo: app.menuSetting.menuPosition !== MenuPositionEnum.TOP_BAR,
-    // hideTitle: app.menuSetting.menuPosition !== MenuPositionEnum.TOP_BAR && !app.menuSetting.mainMenu.collapsed,
-    // flexYCenter: true,
-    // paddingLeft: 5,
     class: app.menuSetting.menuPosition !== MenuPositionEnum.TOP_BAR ? 'b-r-1' : '',
     style: app.menuSetting.menuPosition !== MenuPositionEnum.TOP_BAR ? `width:${app.menuSetting.subMenu.width}px` : `width:${app.menuSetting.subMenu.width - 30}px`,
   }
@@ -127,20 +127,20 @@ const logoProps = computed(() => {
     <div h-header flex-right-center gap-x-4>
       <!-- Top logo 顶栏Logo -->
       <Logo
-        v-if="isTopBarLayout || (!app.menuSetting.subMenu.collapsed && app.menuSetting.mainMenu.collapsed)"
+        v-if="isTopBarLayout || (!app.menuSetting.subMenu.collapsed && app.menuSetting.mainMenu.collapsed && subMenuCount > 0)"
         v-bind="logoProps" flex-nowrap
       />
       <!-- Top menu 顶栏菜单 -->
       <div v-if="!app.isMobile && isTopBarLayout" flex-1>
         <NMenu
-          ref="topMenuRef" v-model:value="topMenuKey" mode="horizontal"
-          :options="topMenuOptions" :icon-size="20.5" responsive :indent="16" @update:value="onTopMenuKeyChange"
+          ref="topMenuRef" v-model:value="topMenuKey" mode="horizontal" :options="topMenuOptions" :icon-size="20.5"
+          responsive :indent="16" @update:value="onTopMenuKeyChange"
         />
       </div>
       <!-- Left section of the top bar 头部左侧区 -->
       <div
         v-if="(!isTopBarLayout && showMainMenuStatusButton) || app.isMobile" h-full flex flex-1 items-center gap-x-4
-        :class="isTopBarLayout || (!app.menuSetting.subMenu.collapsed && app.menuSetting.mainMenu.collapsed) ? '' : 'pl-2'"
+        :class="isTopBarLayout || (!app.menuSetting.subMenu.collapsed && app.menuSetting.mainMenu.collapsed && subMenuCount > 0) ? '' : 'pl-2'"
       >
         <SyIconButton button :icon="menuStateIcon" @click="toggleMainMenu" />
       </div>
