@@ -9,11 +9,14 @@ export const dynamicViews = { ...builtInViews, ...userViews }
 
 console.log('%c 动态View表 ', 'color:white;background-color:blue;', dynamicViews)
 
+const viewMissing = dynamicViews['/src/shared/_builtin_views_/MISSING.vue']
+
 // Cache the matching results 缓存匹配结果
 const matchCache = new Map<string, () => Promise<Record<string, any>>>()
 
 /** Dynamic import component function 动态导入组件函数 */
 export const dynamicImport = (component: string) => {
+  console.log('%c 动态导入组件 ', 'color:white;background-color:blue;', component)
   // Check the cache 检查缓存
   if (matchCache.has(component)) {
     return matchCache.get(component)
@@ -55,7 +58,7 @@ export const dynamicImport = (component: string) => {
       `Cannot find \`${component}.vue\` or \`${component}.tsx\` under src/views/ and shared/_builtin_views, please create it yourself! `
       + `在src/views/和shared/_builtin_views下找不到\`${component}.vue\` 或 \`${component}.tsx\`, 请自行创建!`,
     )
-    const matchedModule = dynamicViews.MISSING
+    const matchedModule = viewMissing
     matchCache.set(component, matchedModule)
     return matchedModule
   }
