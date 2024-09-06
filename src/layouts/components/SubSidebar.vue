@@ -1,8 +1,8 @@
 <script setup lang="ts" name="Layout-SubSidebar">
 import type { MenuInst, MenuOption } from 'naive-ui'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
-import { mapRoutes } from '@/shared/utilities/menuUtil'
-import { getFullRoutes } from '@/shared/utilities/routeUtil'
+import { mapRoutes } from '~/src/shared/utils/menuUtil'
+import { getFullRoutes } from '~/src/shared/utils/routeUtil'
 
 const props = defineProps({ parentMenuKey: { type: String, required: false } })
 

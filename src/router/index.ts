@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { i18n } from '../modules/i18n'
 import { createRouterGuards } from './guard'
 import { dynamicImport } from './helper'
-import { type MenuRecord, getMenuData } from '@/api-services/menuApi'
+import { type MenuRecord, getMenuData } from '~/src/api/menuApi'
 
 /** 路由Path中的区域参数 */
 export const LOCALE_PARAM = '/:lang([a-z]{2}-[A-Za-z]{2})?'

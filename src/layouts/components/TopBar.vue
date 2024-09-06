@@ -3,10 +3,10 @@ import type { MenuInst } from 'naive-ui'
 import Logo from '@/layouts/components/Logo.vue'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
 import SyIconButton from '@/shared/components/SyIconButton.vue'
-import { findRootRouteName, mapRoutes } from '@/shared/utilities/menuUtil'
+import { findRootRouteName, mapRoutes } from '~/src/shared/utils/menuUtil'
 import { availableLocales } from '@/modules/i18n'
-import { getFullRoutes } from '@/shared/utilities/routeUtil'
-import { renderProfileHeader, renderUnoIcon } from '@/shared/utilities/componentUtil'
+import { getFullRoutes } from '~/src/shared/utils/routeUtil'
+import { renderProfileHeader, renderUnoIcon } from '~/src/shared/utils/componentUtil'
 
 const emit = defineEmits(['action', 'keyChange'])
 

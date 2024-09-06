@@ -1,6 +1,6 @@
 import type { Locale } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
-import { typedLocalStorage } from '@/shared/utilities/typedLocalStorage'
+import { typedLocalStorage } from '~/src/shared/utils/typedLocalStorage'
 import type { UserModule } from '@/shared/typings/app.d'
 import type { LocaleSetting } from '@/shared/typings/locale.d'
 

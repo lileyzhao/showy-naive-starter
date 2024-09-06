@@ -10,10 +10,14 @@ declare global {
   const APP_MENU_KEY: typeof import('../constants/storeKeys')['APP_MENU_KEY']
   const APP_STORE_VERSION: typeof import('../constants/storeKeys')['APP_STORE_VERSION']
   const APP_THEME_OVERRIDE_KEY: typeof import('../constants/storeKeys')['APP_THEME_OVERRIDE_KEY']
+  const DarkSchemeEnum: typeof import('../constants/darkScheme')['DarkSchemeEnum']
   const EffectScope: typeof import('vue')['EffectScope']
   const MAIN_MENU_KEY: typeof import('../constants/symbols')['MAIN_MENU_KEY']
+  const SCREEN_MAP: typeof import('../constants/breakpoint')['SCREEN_MAP']
   const SUB_MENU_COUNT: typeof import('../constants/symbols')['SUB_MENU_COUNT']
   const SUB_MENU_KEY: typeof import('../constants/symbols')['SUB_MENU_KEY']
+  const ScreenEnum: typeof import('../constants/breakpoint')['ScreenEnum']
+  const SizeEnum: typeof import('../constants/breakpoint')['SizeEnum']
   const UPDATE_SUB_MENU_COUNT: typeof import('../constants/symbols')['UPDATE_SUB_MENU_COUNT']
   const activateLanguage: typeof import('../hooks/locale')['activateLanguage']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -126,7 +130,7 @@ declare global {
   const until: typeof import('@vueuse/core')['until']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
-  const useAppStore: typeof import('../../store/app')['useAppStore']
+  const useAppStore: typeof import('../../store/modules/app')['useAppStore']
   const useArrayDifference: typeof import('@vueuse/core')['useArrayDifference']
   const useArrayEvery: typeof import('@vueuse/core')['useArrayEvery']
   const useArrayFilter: typeof import('@vueuse/core')['useArrayFilter']
@@ -313,4 +317,10 @@ declare global {
   // @ts-ignore
   export type { Component, ComponentPublicInstance, ComputedRef, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, VNode, WritableComputedRef } from 'vue'
   import('vue')
+  // @ts-ignore
+  export type { SizeEnum, ScreenEnum } from '../constants/breakpoint'
+  import('../constants/breakpoint')
+  // @ts-ignore
+  export type { DarkSchemeEnum } from '../constants/darkScheme'
+  import('../constants/darkScheme')
 }

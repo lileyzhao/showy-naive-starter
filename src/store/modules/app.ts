@@ -9,12 +9,12 @@ import {
   themeOverride as themeOverrideDefault,
 } from '@/shared/settings/appSetting'
 import { availableLocales } from '@/modules/i18n'
-import { DarkSchemeEnum } from '@/shared/typings/darkScheme.d'
+import { DarkSchemeEnum } from '@/shared/constants/darkScheme'
 import type { ThemeOverride } from '@/shared/typings/themeOverride.d'
 import type { LocaleSetting } from '@/shared/typings/locale.d'
 import type { DeepPartial } from '@/shared/typings/app.d'
-import { typedLocalStorage } from '@/shared/utilities/typedLocalStorage'
-import { deepMergeObjects } from '@/shared/utilities/objectUtil'
+import { typedLocalStorage } from '~/src/shared/utils/typedLocalStorage'
+import { deepMergeObjects } from '~/src/shared/utils/objectUtil'
 
 export const useAppStore = defineStore('app', () => {
   /** Dark scheme: Includes light, dark, and auto. 主题方案：包括 light、dark 和 auto。 builtin */

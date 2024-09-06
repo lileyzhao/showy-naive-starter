@@ -141,7 +141,7 @@ Go to [Netlify](https://app.netlify.com/start) and select your repository. Follo
 .
 ├── public/               # Public resources
 ├── src/                  # Source code
-│   ├── api-services/     # Backend APIs
+│   ├── api/     # Backend APIs
 │   ├── assets/           # Static assets
 │   ├── layouts/          # Layouts
 │   ├── modules/          # Modules
