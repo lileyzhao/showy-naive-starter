@@ -1,5 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { GlobalThemeOverrides } from 'naive-ui'
+import { useMediaQuery, useNavigatorLanguage } from '@vueuse/core'
+import { APP_DARK_SCHEME_KEY, APP_LOCALE_KEY, APP_MENU_KEY, APP_THEME_OVERRIDE_KEY } from '../shared/constants/storeKeys'
 import type { MenuButtonEnum, MenuSetting } from '@/shared/typings/menu.d'
 import { MenuPositionEnum } from '@/shared/typings/menu.d'
 import {

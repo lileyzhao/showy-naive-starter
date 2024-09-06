@@ -1,5 +1,6 @@
 <script setup lang="ts" name="Layout-Default">
 import chalk from 'chalk'
+import { SUB_MENU_COUNT, UPDATE_SUB_MENU_COUNT } from '../shared/constants/symbols'
 import MainSidebar from './components/MainSidebar.vue'
 import SubSidebar from './components/SubSidebar.vue'
 import ThemeDrawer from './components/ThemeDrawer.vue'

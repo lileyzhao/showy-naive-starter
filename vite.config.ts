@@ -1,4 +1,4 @@
-import { resolve } from 'node:path'
+import { URL, fileURLToPath } from 'node:url'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -16,23 +16,6 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       vue(),
-      AutoImport({
-        imports: [
-          'vue',
-          'vue-router',
-          'vue-i18n',
-          '@vueuse/core',
-          {
-            'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar'],
-          },
-        ],
-        dts: 'src/shared/typings/auto-import.d.ts', // 路径下自动生成文件夹存放全局指令
-        dirs: ['src/shared/hooks', 'src/shared/constants', 'src/shared/schemas', 'src/store/modules'],
-      }),
-      Components({
-        resolvers: [NaiveUiResolver()],
-        dts: 'src/shared/typings/components.d.ts', // 路径下自动生成文件夹存放全局指令
-      }),
       // https://github.com/antfu/unocss
       UnoCSS(),
       // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
@@ -40,7 +23,23 @@ export default defineConfig(({ mode }) => {
         runtimeOnly: true,
         compositionOnly: true,
         fullInstall: true,
-        include: [resolve(__dirname, 'locales/**')],
+        include: [fileURLToPath(new URL('./locales/**', import.meta.url))],
+      }),
+      AutoImport({
+        dts: 'src/shared/typings/auto-import.d.ts', // 路径下自动生成文件夹存放全局指令
+        imports: [
+          'vue',
+          'vue-router',
+          'vue-i18n',
+          {
+            'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar'],
+          },
+        ],
+        dirs: ['src/shared/hooks', 'src/store'],
+      }),
+      Components({
+        dts: 'src/shared/typings/components.d.ts', // 路径下自动生成文件夹存放全局指令
+        resolvers: [NaiveUiResolver()],
       }),
       // https://github.com/webfansplz/vite-plugin-vue-devtools
       VueDevTools(),
@@ -50,9 +49,8 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
-        '~': resolve(__dirname),
-        '@': resolve(__dirname, 'src'),
-        '#': resolve(__dirname, 'src/shared/typings'),
+        '~': fileURLToPath(new URL('./', import.meta.url)),
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
       // 要忽略的后缀
       extensions: ['.ts', '.js', '.jsx', '.tsx', '.json'],

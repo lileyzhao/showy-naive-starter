@@ -7,6 +7,7 @@ import { findRootRouteName, mapRoutes } from '~/src/shared/utils/menuUtil'
 import { availableLocales } from '@/modules/i18n'
 import { getFullRoutes } from '~/src/shared/utils/routeUtil'
 import { renderProfileHeader, renderUnoIcon } from '~/src/shared/utils/componentUtil'
+import { SUB_MENU_COUNT } from '~/src/shared/constants/symbols'
 
 const emit = defineEmits(['action', 'keyChange'])
 

@@ -1,5 +1,6 @@
 import type { NDateLocale, NLocale } from 'naive-ui'
 import { dateEnUS, dateJaJP, dateKoKR, dateZhCN, dateZhTW, enUS, jaJP, koKR, zhCN, zhTW } from 'naive-ui'
+import { useNavigatorLanguage } from '@vueuse/core'
 import { i18n, setOrLoadLanguageAsync } from '@/modules/i18n'
 import { router } from '@/router'
 
@@ -128,7 +129,7 @@ export const browserLanguage = useNavigatorLanguage()
  * Update the locale setting.
  * 更新区域设置。
  *
- * @param setting - The locale setting to apply. 区域设置。
+ * @param locale - The locale setting to apply. 区域设置。
  */
 export async function activateLanguage(locale?: string) {
   const lang = getLanguageName(locale ?? browserLanguage.language.value)
