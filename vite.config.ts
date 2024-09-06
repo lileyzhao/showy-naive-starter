@@ -55,7 +55,7 @@ export default defineConfig(({ mode }) => {
         '#': resolve(__dirname, 'src/shared/typings'),
       },
       // 要忽略的后缀
-      extensions: ['.ts', '.d.ts', '.js', '.jsx', '.tsx', '.json'],
+      extensions: ['.ts', '.js', '.jsx', '.tsx', '.json'],
     },
     build: {
       target: 'esnext',

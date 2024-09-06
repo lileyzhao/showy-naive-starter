@@ -5,7 +5,7 @@ import SubSidebar from './components/SubSidebar.vue'
 import ThemeDrawer from './components/ThemeDrawer.vue'
 import MobileDrawer from './components/MobileDrawer.vue'
 import TopBar from './components/TopBar.vue'
-import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu'
+import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
 import { isDark } from '@/shared/hooks/dark'
 
 const app = useAppStore()

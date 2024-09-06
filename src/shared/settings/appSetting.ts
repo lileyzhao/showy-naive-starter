@@ -1,8 +1,8 @@
-import type { ThemeOverride } from '@/shared/typings/themeOverride'
-import type { LocaleSetting } from '@/shared/typings/locale'
-import { DarkSchemeEnum } from '@/shared/typings/darkScheme'
-import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu'
-import type { MenuSetting } from '@/shared/typings/menu'
+import type { ThemeOverride } from '@/shared/typings/themeOverride.d'
+import type { LocaleSetting } from '@/shared/typings/locale.d'
+import { DarkSchemeEnum } from '@/shared/typings/darkScheme.d'
+import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
+import type { MenuSetting } from '@/shared/typings/menu.d'
 
 /** Default dark-scheme 默认主题方案 */
 export const darkScheme = DarkSchemeEnum.AUTO

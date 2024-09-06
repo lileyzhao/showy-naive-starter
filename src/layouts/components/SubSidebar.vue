@@ -1,6 +1,6 @@
 <script setup lang="ts" name="Layout-SubSidebar">
 import type { MenuInst, MenuOption } from 'naive-ui'
-import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu'
+import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
 import { mapRoutes } from '@/shared/utilities/menuUtil'
 import { getFullRoutes } from '@/shared/utilities/routeUtil'
 
