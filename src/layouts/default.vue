@@ -1,5 +1,4 @@
 <script setup lang="ts" name="Layout-Default">
-import chalk from 'chalk'
 import { SUB_MENU_COUNT, UPDATE_SUB_MENU_COUNT } from '../shared/constants/symbols'
 import MainSidebar from './components/MainSidebar.vue'
 import SubSidebar from './components/SubSidebar.vue'
@@ -15,9 +14,6 @@ const mainSidebarRef = ref<InstanceType<typeof MainSidebar>>()
 const topBarRef = ref<InstanceType<typeof TopBar>>()
 const mobileDrawerRef = ref<InstanceType<typeof MobileDrawer>>()
 const themeDrawerRef = ref<InstanceType<typeof ThemeDrawer>>()
-
-console.log(chalk.bgBlue.black.bold(' DefaultLayout ') + chalk.bgCyan.black(' MenuSetting: '), app.menuSetting)
-console.log(chalk.bgBlue.black.bold(' DefaultLayout ') + chalk.bgCyan.black(' isMobile: '), app.isMobile)
 
 /** Whether the menu is in the top bar layout. 是否顶栏菜单布局。 */
 const isTopBar = computed(() => app.menuSetting.menuPosition === MenuPositionEnum.TOP_BAR)

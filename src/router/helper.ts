@@ -1,3 +1,5 @@
+import pc from 'picocolors'
+
 // Built-in pages 内置的页面
 const builtInViews: Record<string, () => Promise<Recordable>> = import.meta.glob('@/shared/_builtin_views_/**/*.{vue,tsx}')
 
@@ -7,7 +9,7 @@ const userViews: Record<string, () => Promise<Recordable>> = import.meta.glob('@
 // Merge built-in views into dynamic view 合并内置页面到动态视图
 export const dynamicViews = { ...builtInViews, ...userViews }
 
-console.log('%c 动态View表 ', 'color:white;background-color:blue;', dynamicViews)
+console.log(pc.bgBlue(pc.white(' 动态View表 ')), dynamicViews)
 
 const viewMissing = dynamicViews['/src/shared/_builtin_views_/MISSING.vue']
 
@@ -16,7 +18,6 @@ const matchCache = new Map<string, () => Promise<Record<string, any>>>()
 
 /** Dynamic import component function 动态导入组件函数 */
 export const dynamicImport = (component: string) => {
-  console.log('%c 动态导入组件 ', 'color:white;background-color:blue;', component)
   // Check the cache 检查缓存
   if (matchCache.has(component)) {
     return matchCache.get(component)
@@ -34,7 +35,6 @@ export const dynamicImport = (component: string) => {
       .replace(/(\.vue|\.tsx)$/, '')
     return normalizedKey.toLowerCase() === normalizedComponent.toLowerCase()
   })
-  console.log('%c 匹配项 ', 'color:white;background-color:blue;', matchKeys, normalizedComponent)
 
   // Cache and return the import function if a unique match is found
   // 如果找到匹配项，缓存并返回对应的导入函数

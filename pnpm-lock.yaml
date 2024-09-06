@@ -14,9 +14,6 @@ importers:
       '@vueuse/core':
         specifier: ^11.0.3
         version: 11.0.3(vue@3.5.1(typescript@5.5.4))
-      chalk:
-        specifier: ^5.3.0
-        version: 5.3.0
       pinia:
         specifier: ^2.2.2
         version: 2.2.2(typescript@5.5.4)(vue@3.5.1(typescript@5.5.4))
@@ -81,6 +78,9 @@ importers:
       naive-ui:
         specifier: ^2.39.0
         version: 2.39.0(vue@3.5.1(typescript@5.5.4))
+      picocolors:
+        specifier: ^1.1.0
+        version: 1.1.0
       sass:
         specifier: ^1.78.0
         version: 1.78.0
@@ -99,6 +99,9 @@ importers:
       vite:
         specifier: ^5.4.3
         version: 5.4.3(@types/node@22.5.4)(less@4.2.0)(sass@1.78.0)(terser@5.30.3)
+      vite-plugin-progress:
+        specifier: ^0.0.7
+        version: 0.0.7(vite@5.4.3(@types/node@22.5.4)(less@4.2.0)(sass@1.78.0)(terser@5.30.3))
       vite-plugin-vue-devtools:
         specifier: ^7.4.4
         version: 7.4.4(rollup@4.21.0)(vite@5.4.3(@types/node@22.5.4)(less@4.2.0)(sass@1.78.0)(terser@5.30.3))(vue@3.5.1(typescript@5.5.4))
@@ -875,6 +878,9 @@ packages:
 
   '@types/mdast@3.0.15':
     resolution: {integrity: sha512-LnwD+mUEfxWMa1QpDraczIn6k0Ee3SMicuYSSzS6ZYl2gKS09EClnJYGd8Du6rfc5r/GZEk5o1mRb8TaTj03sQ==}
+
+  '@types/node@10.17.60':
+    resolution: {integrity: sha512-F0KIgDJfy2nA3zMLmWGKxcH2ZVEtCZXHHdOQs2gSaQ27+lNeEfGxzkIw90aXswATX7AZ33tahPbzy6KAfUreVw==}
 
   '@types/node@22.5.4':
     resolution: {integrity: sha512-FDuKUJQm/ju9fT/SeX/6+gBzoPzlVCzfzmGkwKvRHQVxi4BntVbyIwf6a4Xn62mrvndLiml6z/UBXIdEVjQLXg==}
@@ -2593,12 +2599,6 @@ packages:
   perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
 
-  picocolors@1.0.0:
-    resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
-
-  picocolors@1.0.1:
-    resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
-
   picocolors@1.1.0:
     resolution: {integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==}
 
@@ -2673,6 +2673,10 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
+  progress@2.0.3:
+    resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}
+    engines: {node: '>=0.4.0'}
+
   prr@1.0.1:
     resolution: {integrity: sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==}
 
@@ -2682,6 +2686,9 @@ packages:
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
+
+  rd@2.0.1:
+    resolution: {integrity: sha512-/XdKU4UazUZTXFmI0dpABt8jSXPWcEyaGdk340KdHnsEOdkTctlX23aAK7ChQDn39YGNlAJr1M5uvaKt4QnpNw==}
 
   read-pkg-up@7.0.1:
     resolution: {integrity: sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==}
@@ -3136,6 +3143,12 @@ packages:
       '@nuxt/kit':
         optional: true
 
+  vite-plugin-progress@0.0.7:
+    resolution: {integrity: sha512-zyvKdcc/X+6hnw3J1HVV1TKrlFKC4Rh8GnDnWG/2qhRXjqytTcM++xZ+SAPnoDsSyWl8O93ymK0wZRgHAoglEQ==}
+    engines: {node: '>=14', pnpm: '>=7.0.0'}
+    peerDependencies:
+      vite: '>2.0.0-0'
+
   vite-plugin-vue-devtools@7.4.4:
     resolution: {integrity: sha512-lJ7Vr6gznv1nf2S75XJTpXl4XcwnHfyvqJQ7szOvTUfumQALDGo772TEH69wx8gkY/ZWZQea4DZR5IQZMOZKUA==}
     engines: {node: '>=v14.21.3'}
@@ -3374,7 +3387,7 @@ snapshots:
   '@babel/code-frame@7.24.7':
     dependencies:
       '@babel/highlight': 7.24.7
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   '@babel/compat-data@7.25.2': {}
 
@@ -3520,7 +3533,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       chalk: 2.4.2
       js-tokens: 4.0.0
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   '@babel/parser@7.24.0':
     dependencies:
@@ -3961,7 +3974,7 @@ snapshots:
       js-yaml: 4.1.0
       json5: 2.2.3
       pathe: 1.1.2
-      picocolors: 1.0.0
+      picocolors: 1.1.0
       source-map-js: 1.1.0
       unplugin: 1.10.0
     optionalDependencies:
@@ -4111,6 +4124,8 @@ snapshots:
   '@types/mdast@3.0.15':
     dependencies:
       '@types/unist': 2.0.10
+
+  '@types/node@10.17.60': {}
 
   '@types/node@22.5.4':
     dependencies:
@@ -6070,10 +6085,6 @@ snapshots:
 
   perfect-debounce@1.0.0: {}
 
-  picocolors@1.0.0: {}
-
-  picocolors@1.0.1: {}
-
   picocolors@1.1.0: {}
 
   picomatch@2.3.1: {}
@@ -6121,19 +6132,19 @@ snapshots:
   postcss@8.4.36:
     dependencies:
       nanoid: 3.3.7
-      picocolors: 1.0.1
+      picocolors: 1.1.0
       source-map-js: 1.1.0
 
   postcss@8.4.41:
     dependencies:
       nanoid: 3.3.7
-      picocolors: 1.0.1
+      picocolors: 1.1.0
       source-map-js: 1.2.0
 
   postcss@8.4.45:
     dependencies:
       nanoid: 3.3.7
-      picocolors: 1.0.1
+      picocolors: 1.1.0
       source-map-js: 1.2.0
 
   prelude-ls@1.2.1: {}
@@ -6144,12 +6155,18 @@ snapshots:
 
   prettier@3.3.2: {}
 
+  progress@2.0.3: {}
+
   prr@1.0.1:
     optional: true
 
   punycode@2.3.1: {}
 
   queue-microtask@1.2.3: {}
+
+  rd@2.0.1:
+    dependencies:
+      '@types/node': 10.17.60
 
   read-pkg-up@7.0.1:
     dependencies:
@@ -6594,7 +6611,7 @@ snapshots:
     dependencies:
       browserslist: 4.23.2
       escalade: 3.1.2
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   uri-js@4.4.1:
     dependencies:
@@ -6625,12 +6642,19 @@ snapshots:
       fs-extra: 11.2.0
       open: 10.1.0
       perfect-debounce: 1.0.0
-      picocolors: 1.0.1
+      picocolors: 1.1.0
       sirv: 2.0.4
       vite: 5.4.3(@types/node@22.5.4)(less@4.2.0)(sass@1.78.0)(terser@5.30.3)
     transitivePeerDependencies:
       - rollup
       - supports-color
+
+  vite-plugin-progress@0.0.7(vite@5.4.3(@types/node@22.5.4)(less@4.2.0)(sass@1.78.0)(terser@5.30.3)):
+    dependencies:
+      picocolors: 1.1.0
+      progress: 2.0.3
+      rd: 2.0.1
+      vite: 5.4.3(@types/node@22.5.4)(less@4.2.0)(sass@1.78.0)(terser@5.30.3)
 
   vite-plugin-vue-devtools@7.4.4(rollup@4.21.0)(vite@5.4.3(@types/node@22.5.4)(less@4.2.0)(sass@1.78.0)(terser@5.30.3))(vue@3.5.1(typescript@5.5.4)):
     dependencies:

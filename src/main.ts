@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 
-import chalk from 'chalk'
+import pc from 'picocolors'
 import { router, setupRouter } from './router'
 import App from './App.vue'
 import type { UserModule } from './shared/typings/app.d'
@@ -10,7 +10,7 @@ import '@/assets/styles/main.scss'
 import 'virtual:uno.css'
 
 async function bootstrap() {
-  console.log(chalk.bgGreen.black(' DevTeam ') + chalk.bgMagenta.white(' Showy '))
+  console.log(pc.bgGreen(pc.black(' DevTeam ')) + pc.bgMagenta(pc.white(' Showy ')))
 
   // Create a new Vue application instance
   // 创建一个新的 Vue 应用实例
@@ -18,7 +18,9 @@ async function bootstrap() {
 
   // Install all modules from the `modules/` directory
   // 安装目录`modules/`下的所有模块
-  Object.values(import.meta.glob<{ install: UserModule }>('./modules/*.ts', { eager: true })).forEach(async i => await i.install?.(app))
+  Object.values(import.meta.glob<{ install: UserModule }>('./modules/*.ts', { eager: true })).forEach(
+    async i => await i.install?.(app),
+  )
 
   // Set up the router 挂载路由
   await setupRouter(app)

@@ -6,6 +6,8 @@ import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import VueDevTools from 'vite-plugin-vue-devtools'
+import progress from 'vite-plugin-progress'
+import pc from 'picocolors'
 import UnoCSS from 'unocss/vite'
 
 // https://vitejs.dev/config/
@@ -43,6 +45,9 @@ export default defineConfig(({ mode }) => {
       }),
       // https://github.com/webfansplz/vite-plugin-vue-devtools
       VueDevTools(),
+      progress({
+        format: `${pc.green(pc.bold('Building'))} ${pc.yellowBright('[:bar]')} :percent`,
+      }),
     ],
     define: {
       BUILD_TIME: JSON.stringify(buildTime),
