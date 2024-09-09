@@ -1,3 +1,6 @@
+// eslint documentation: https://eslint.org/docs/latest/
+// @antfu/eslint-config: https://github.com/antfu/eslint-config
+
 import showy from '@antfu/eslint-config'
 
 export default showy(

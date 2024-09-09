@@ -1,3 +1,5 @@
+// unocss documentation: https://unocss.dev/guide/
+
 import presetRemToPx from '@unocss/preset-rem-to-px'
 import {
   defineConfig,
@@ -10,7 +12,6 @@ import {
   transformerVariantGroup,
 } from 'unocss'
 
-// 教程：https://www.pipipi.net/34243.html/amp
 export default defineConfig({
   presets: [
     // Uno默认预设，参考https://unocss.dev/presets/uno

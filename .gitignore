@@ -1,3 +1,5 @@
+# gitignore documentation: https://git-scm.com/docs/gitignore
+
 # Logs
 logs
 *.log

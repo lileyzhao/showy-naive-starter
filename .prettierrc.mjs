@@ -1,3 +1,5 @@
+// prettierrc documentation: https://prettier.io/docs/en/
+
 /** @type {import("prettier").Config} */
 export default {
   // 每行代码的长度限制

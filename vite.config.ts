@@ -1,3 +1,5 @@
+// vite.config documentation: https://vitejs.dev/config/
+
 import process from 'node:process'
 import { fileURLToPath, URL } from 'node:url'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
