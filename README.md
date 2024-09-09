@@ -138,26 +138,42 @@ Go to [Netlify](https://app.netlify.com/start) and select your repository. Follo
 ## Project Structure
 
 ```plaintext
-.
-├── public/               # Public resources
-├── src/                  # Source code
-│   ├── api/     # Backend APIs
-│   ├── assets/           # Static assets
-│   ├── layouts/          # Layouts
-│   ├── modules/          # Modules
-│   ├── router/           # Router
-│   ├── setting/          # Configuration files
-│   ├── shared/           # Shared classes
-│   ├── store/            # State management
-│   ├── utils/            # Utility functions
-│   ├── views/            # Views
-│   ├── App.vue           # Root component
-│   └── main.ts           # Entry file
-├── index.html            # Main HTML file
-├── package.json          # Project information
-├── vite.config.ts        # Vite configuration
-├── uno.config            # UnoCSS configuration
-└── tsconfig.json         # TypeScript configuration
+ROOT
+├── .husky                   # Husky configuration files for Git hooks
+├── .vscode                  # VSCode configuration folder
+├── deploy                   # Deployment-related files
+├── dist                     # Build output directory
+├── locales                  # Internationalization resources
+├── public                   # Public static assets
+├── src                      # Source code directory
+│   ├── api                  # API request-related code
+│   ├── assets               # Static assets (images, fonts, styles, etc.)
+│   ├── layouts              # Layout components
+│   ├── modules              # Modularized code
+│   ├── router               # Routing-related code
+│   ├── shared               # Shared code and resources
+│   │   ├── _builtin_views_  # Built-in view components
+│   │   ├── components       # Common components
+│   │   ├── constants        # Constants definitions (including enums, etc.)
+│   │   ├── directives       # Custom directives
+│   │   ├── hooks            # Custom hooks
+│   │   ├── plugins          # Plugins
+│   │   ├── settings         # Configuration and settings
+│   │   ├── typings          # TypeScript type definitions
+│   │   ├── utils            # Utility functions
+│   ├── store                # State management
+│   ├── views                # View components
+│   ├── App.vue              # Root component
+│   ├── main.ts              # Entry file
+│   ├── permission.ts        # Permission control logic
+├── .editorconfig            # Code format configuration file
+├── .env                     # Environment variable configuration file
+├── dockerfile               # Docker configuration file
+├── index.html               # Entry HTML file
+├── package.json             # Project configuration and dependency management
+├── tsconfig.json            # TypeScript configuration file
+├── uno.config.ts            # UnoCSS configuration file
+├── vite.config.ts           # Vite configuration file
 ```
 
 ---

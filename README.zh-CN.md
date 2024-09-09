@@ -138,24 +138,40 @@ pnpm preview
 ## 项目结构
 
 ```plaintext
-.
-├── public/               # 公共资源
-├── src/                  # 源代码
-│   ├── api/     # 后端接口
-│   ├── assets/           # 静态资源
-│   ├── layouts/          # 布局
-│   ├── modules/          # 模块
-│   ├── router/           # 路由
-│   ├── setting/          # 配置文件
-│   ├── shared/           # 公共类
-│   ├── store/            # 状态管理
-│   ├── utils/            # 常用工具封装
-│   ├── views/            # 页面
-│   ├── App.vue           # 根组件
-│   └── main.ts           # 入口文件
-├── index.html            # 主 HTML 文件
-├── package.json          # 项目信息
-├── vite.config.ts        # Vite 配置
-├── uno.config            # Unocss 配置
-└── tsconfig.json         # TypeScript 配置
+ROOT
+├── .husky                   # Husky 配置文件，用于 Git hooks
+├── .vscode                  # VSCode 配置文件夹
+├── deploy                   # 部署相关文件
+├── dist                     # 构建输出目录
+├── locales                  # 国际化资源
+├── public                   # 公共静态资源
+├── src                      # 源代码目录
+│   ├── api                  # API 请求相关代码
+│   ├── assets               # 静态资源（图片、字体、样式文件等）
+│   ├── layouts              # 布局组件
+│   ├── modules              # 模块化代码
+│   ├── router               # 路由相关代码
+│   ├── shared               # 共享的代码和资源
+│   │   ├── _builtin_views_  # 内置视图组件
+│   │   ├── components       # 公共组件
+│   │   ├── constants        # 常量定义（含枚举等）
+│   │   ├── directives       # 自定义指令
+│   │   ├── hooks            # 自定义 hooks
+│   │   ├── plugins          # 插件
+│   │   ├── settings         # 配置和设置
+│   │   ├── typings          # TypeScript 类型定义
+│   │   ├── utils            # 工具函数
+│   ├── store                # 状态管理
+│   ├── views                # 视图组件
+│   ├── App.vue              # 根组件
+│   ├── main.ts              # 入口文件
+│   ├── permission.ts        # 权限控制逻辑
+├── .editorconfig            # 代码格式配置文件
+├── .env                     # 环境变量配置文件
+├── dockerfile               # Docker 配置文件
+├── index.html               # 入口 HTML 文件
+├── package.json             # 项目配置文件和依赖管理
+├── tsconfig.json            # TypeScript 配置文件
+├── uno.config.ts            # UnoCSS 配置文件
+├── vite.config.ts           # Vite 配置文件
 ```
