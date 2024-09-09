@@ -1,6 +1,0 @@
-ports:
-  - port: 4318
-    onOpen: open-preview
-tasks:
-  - init: pnpm run install
-    command: pnpm run dev
