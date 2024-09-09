@@ -1,12 +1,12 @@
 <script setup lang="ts" name="Layout-Default">
+import { isDark } from '@/shared/hooks/dark'
+import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
 import { SUB_MENU_COUNT, UPDATE_SUB_MENU_COUNT } from '../shared/constants/symbols'
 import MainSidebar from './components/MainSidebar.vue'
+import MobileDrawer from './components/MobileDrawer.vue'
 import SubSidebar from './components/SubSidebar.vue'
 import ThemeDrawer from './components/ThemeDrawer.vue'
-import MobileDrawer from './components/MobileDrawer.vue'
 import TopBar from './components/TopBar.vue'
-import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
-import { isDark } from '@/shared/hooks/dark'
 
 const app = useAppStore()
 

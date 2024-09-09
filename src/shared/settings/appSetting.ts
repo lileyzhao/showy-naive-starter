@@ -1,8 +1,8 @@
-import type { ThemeOverride } from '@/shared/typings/themeOverride.d'
-import type { LocaleSetting } from '@/shared/typings/locale.d'
 import { DarkSchemeEnum } from '@/shared/constants/darkScheme'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
+import type { LocaleSetting } from '@/shared/typings/locale.d'
 import type { MenuSetting } from '@/shared/typings/menu.d'
+import type { ThemeOverride } from '@/shared/typings/themeOverride.d'
 
 /** Default dark-scheme 默认主题方案 */
 export const darkScheme = DarkSchemeEnum.AUTO

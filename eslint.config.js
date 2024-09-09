@@ -5,7 +5,7 @@ export default showy(
     vue: true,
     unocss: true,
     formatters: true,
-    ignores: ['dist', 'node_modules', 'public', 'README.md', 'README.*.md', 'LICENSE'],
+    ignores: ['dist', 'node_modules', 'public', 'tsconfig.json', 'README.md', 'README.*.md', 'LICENSE'],
   },
   {
     rules: {

@@ -1,10 +1,10 @@
+import { createRouter, createWebHistory } from 'vue-router'
 import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
-import { createRouter, createWebHistory } from 'vue-router'
+import { getMenuData, type MenuRecord } from '~/src/api/menuApi'
 import { i18n } from '../modules/i18n'
 import { createRouterGuards } from './guard'
 import { dynamicImport } from './helper'
-import { type MenuRecord, getMenuData } from '~/src/api/menuApi'
 
 /** 路由Path中的区域参数 */
 export const LOCALE_PARAM = '/:lang([a-z]{2}-[A-Za-z]{2})?'

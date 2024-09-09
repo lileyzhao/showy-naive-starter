@@ -1,8 +1,8 @@
-import type { NDateLocale, NLocale } from 'naive-ui'
-import { dateEnUS, dateJaJP, dateKoKR, dateZhCN, dateZhTW, enUS, jaJP, koKR, zhCN, zhTW } from 'naive-ui'
-import { useNavigatorLanguage } from '@vueuse/core'
 import { i18n, setOrLoadLanguageAsync } from '@/modules/i18n'
 import { router } from '@/router'
+import { useNavigatorLanguage } from '@vueuse/core'
+import { dateEnUS, dateJaJP, dateKoKR, dateZhCN, dateZhTW, enUS, jaJP, koKR, zhCN, zhTW } from 'naive-ui'
+import type { NDateLocale, NLocale } from 'naive-ui'
 
 /**
  * Define return type.

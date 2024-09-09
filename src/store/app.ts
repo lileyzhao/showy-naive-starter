@@ -1,22 +1,22 @@
-import { acceptHMRUpdate, defineStore } from 'pinia'
-import type { GlobalThemeOverrides } from 'naive-ui'
-import { useMediaQuery, useNavigatorLanguage } from '@vueuse/core'
-import { APP_DARK_SCHEME_KEY, APP_LOCALE_KEY, APP_MENU_KEY, APP_THEME_OVERRIDE_KEY } from '../shared/constants/storeKeys'
-import type { MenuButtonEnum, MenuSetting } from '@/shared/typings/menu.d'
-import { MenuPositionEnum } from '@/shared/typings/menu.d'
+import { availableLocales } from '@/modules/i18n'
+import { DarkSchemeEnum } from '@/shared/constants/darkScheme'
 import {
   darkScheme as darkSchemeDefault,
   localeSetting as localDefault,
   menuSetting as menuDefault,
   themeOverride as themeOverrideDefault,
 } from '@/shared/settings/appSetting'
-import { availableLocales } from '@/modules/i18n'
-import { DarkSchemeEnum } from '@/shared/constants/darkScheme'
-import type { ThemeOverride } from '@/shared/typings/themeOverride.d'
-import type { LocaleSetting } from '@/shared/typings/locale.d'
+import { MenuPositionEnum } from '@/shared/typings/menu.d'
+import { useMediaQuery, useNavigatorLanguage } from '@vueuse/core'
+import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { DeepPartial } from '@/shared/typings/app.d'
-import { typedLocalStorage } from '~/src/shared/utils/typedLocalStorage'
+import type { LocaleSetting } from '@/shared/typings/locale.d'
+import type { MenuButtonEnum, MenuSetting } from '@/shared/typings/menu.d'
+import type { ThemeOverride } from '@/shared/typings/themeOverride.d'
+import type { GlobalThemeOverrides } from 'naive-ui'
 import { deepMergeObjects } from '~/src/shared/utils/objectUtil'
+import { typedLocalStorage } from '~/src/shared/utils/typedLocalStorage'
+import { APP_DARK_SCHEME_KEY, APP_LOCALE_KEY, APP_MENU_KEY, APP_THEME_OVERRIDE_KEY } from '../shared/constants/storeKeys'
 
 export const useAppStore = defineStore('app', () => {
   /** Dark scheme: Includes light, dark, and auto. 主题方案：包括 light、dark 和 auto。 builtin */

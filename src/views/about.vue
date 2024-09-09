@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useThemeVars } from 'naive-ui'
 import pkg from '@/../package.json'
+import { useThemeVars } from 'naive-ui'
+import { computed } from 'vue'
 
 const app = useAppStore()
 const themeVars = useThemeVars() // Get theme variables 获取主题变量

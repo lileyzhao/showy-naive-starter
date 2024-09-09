@@ -1,3 +1,4 @@
+import presetRemToPx from '@unocss/preset-rem-to-px'
 import {
   defineConfig,
   presetAttributify,
@@ -8,7 +9,6 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-import presetRemToPx from '@unocss/preset-rem-to-px'
 
 // 教程：https://www.pipipi.net/34243.html/amp
 export default defineConfig({

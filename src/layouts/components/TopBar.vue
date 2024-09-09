@@ -1,13 +1,13 @@
 <script setup lang="ts" name="Layout-TopBar">
-import type { MenuInst } from 'naive-ui'
 import Logo from '@/layouts/components/Logo.vue'
-import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
-import SyIconButton from '@/shared/components/SyIconButton.vue'
-import { findRootRouteName, mapRoutes } from '~/src/shared/utils/menuUtil'
 import { availableLocales } from '@/modules/i18n'
-import { getFullRoutes } from '~/src/shared/utils/routeUtil'
-import { renderProfileHeader, renderUnoIcon } from '~/src/shared/utils/componentUtil'
+import SyIconButton from '@/shared/components/SyIconButton.vue'
+import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
+import type { MenuInst } from 'naive-ui'
 import { SUB_MENU_COUNT } from '~/src/shared/constants/symbols'
+import { renderProfileHeader, renderUnoIcon } from '~/src/shared/utils/componentUtil'
+import { findRootRouteName, mapRoutes } from '~/src/shared/utils/menuUtil'
+import { getFullRoutes } from '~/src/shared/utils/routeUtil'
 
 const emit = defineEmits(['action', 'keyChange'])
 

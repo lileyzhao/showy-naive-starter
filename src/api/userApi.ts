@@ -1,5 +1,5 @@
-import type { MenuRecord } from './menuApi'
 import userData from './menuData.json'
+import type { MenuRecord } from './menuApi'
 
 /**
  * Login 账号登录
