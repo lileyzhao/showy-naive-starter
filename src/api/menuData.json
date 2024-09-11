@@ -18,7 +18,7 @@
           "path": "components",
           "name": "components",
           "title": "menu.start.components",
-          "component": "@/views/welcome",
+          "component": "@/views/components",
           "icon": "i-carbon:volume-block-storage"
         },
         {
@@ -30,7 +30,7 @@
             { "path": "403", "name": "403", "title": "403", "component": "403", "icon": "i-carbon:number-3" },
             { "path": "404", "name": "404", "title": "404", "component": "404", "icon": "i-carbon:number-4" },
             { "path": "500", "name": "500", "title": "500", "component": "500", "icon": "i-carbon:number-5" },
-            { "path": "missing", "name": "missing", "title": "NOTFOUND", "component": "", "icon": "i-carbon:face-dissatisfied" }
+            { "path": "missing", "name": "missing", "title": "NOTFOUND", "component": "lost-component", "icon": "i-carbon:face-dissatisfied" }
           ]
         }
       ]
