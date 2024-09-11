@@ -1,11 +1,9 @@
 <script setup lang="ts">
-defineOptions({
-  name: 'BlankLayout',
-})
+defineOptions({ name: 'BlankLayout' })
 </script>
 
 <template>
-  <div>blank layout</div>
+  <LayoutContent />
 </template>
 
 <style scoped></style>

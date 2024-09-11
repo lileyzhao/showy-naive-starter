@@ -2,6 +2,8 @@
 import FloatingGhost from '~/src/shared/components/cartoon/FloatingGhost.vue'
 import Jigglypuff from '~/src/shared/components/cartoon/Jigglypuff.vue'
 
+defineOptions({ name: 'Welcome' })
+
 const { t } = useI18n()
 const app = useAppStore()
 

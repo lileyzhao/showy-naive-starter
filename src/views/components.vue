@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Type } from 'naive-ui/es/button/src/interface'
 
+defineOptions({ name: 'Components' })
+
 const currentTime = ref('00:00:00')
 
 const updateTime = () => {

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import SyIconButton from '@/shared/components/SyIconButton.vue'
 
+defineOptions({ name: 'Login' })
+
 const { t } = useI18n()
 const router = useRouter()
 const app = useAppStore()

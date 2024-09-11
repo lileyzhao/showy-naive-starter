@@ -1,8 +1,10 @@
-<script setup lang="ts" name="Layout-MobileDrawer">
-import Logo from '@/layouts/components/Logo.vue'
+<script setup lang="ts">
 import { darkTheme, type MenuInst } from 'naive-ui'
+import LayoutLogo from '~/src/layouts/components/LayoutLogo.vue'
 import { mapRoutes } from '~/src/shared/utils/menuUtil'
 import { getFullRoutes } from '~/src/shared/utils/routeUtil'
+
+defineOptions({ name: 'MobileDrawer' })
 
 // Variables 变量
 const { t } = useI18n()
@@ -60,7 +62,7 @@ defineExpose({ show })
         footer-class="p-0!"
       >
         <template #header>
-          <Logo flex-nowrap px-28px />
+          <LayoutLogo flex-nowrap px-28px />
         </template>
         <template #footer>
           <div w-full>

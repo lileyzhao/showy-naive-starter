@@ -1,12 +1,15 @@
-<script setup lang="ts" name="Layout-Default">
+<script setup lang="ts">
 import { isDark } from '@/shared/hooks/dark'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
 import { SUB_MENU_COUNT, UPDATE_SUB_MENU_COUNT } from '../shared/constants/symbols'
+import LayoutContent from './components/LayoutContent.vue'
 import MainSidebar from './components/MainSidebar.vue'
 import MobileDrawer from './components/MobileDrawer.vue'
 import SubSidebar from './components/SubSidebar.vue'
 import ThemeDrawer from './components/ThemeDrawer.vue'
 import TopBar from './components/TopBar.vue'
+
+defineOptions({ name: 'DefaultLayout' })
 
 const app = useAppStore()
 
@@ -69,15 +72,7 @@ const handleAction = (op: string, _val: any) => {
           :parent-menu-key="mainMenuRootKey"
         />
         <NLayoutContent :native-scrollbar="false" flex-1 :style="isDark ? 'background-color: #18181c;' : ''">
-          <div p-8px :style="{ backgroundColor: isDark ? '#26262a' : '#f7fafc' }">
-            <RouterView v-slot="{ Component, route: r }">
-              <Transition name="fade">
-                <KeepAlive :max="25">
-                  <component :is="Component" :key="r.fullPath" />
-                </KeepAlive>
-              </Transition>
-            </RouterView>
-          </div>
+          <LayoutContent />
           <NBackTop :right="40" />
         </NLayoutContent>
       </NLayout>

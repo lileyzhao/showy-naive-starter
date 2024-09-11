@@ -1,3 +1,7 @@
+<script setup lang="ts">
+defineOptions({ name: 'CartoonFloatingGhost' })
+</script>
+
 <template>
   <div class="ghost">
     <div class="body">

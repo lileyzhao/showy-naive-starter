@@ -1,7 +1,5 @@
-<script>
-export default {
-  name: 'MissingComponent',
-}
+<script setup lang="ts">
+defineOptions({ name: 'ExceptionMissing' })
 </script>
 
 <template>
@@ -11,7 +9,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .error {
   color: red;
   text-align: center;

@@ -1,4 +1,6 @@
-<script setup lang="ts" name="VIEWS-BUILTIN-403">
+<script setup lang="ts">
+defineOptions({ name: 'Exception403' })
+
 const router = useRouter()
 
 const handleBackToHome = () => router.push({ path: '/' })

@@ -1,8 +1,10 @@
-<script setup lang="ts" name="Layout-MainSidebar">
-import Logo from '@/layouts/components/Logo.vue'
+<script setup lang="ts">
 import type { MenuInst, MenuOption } from 'naive-ui'
+import LayoutLogo from '~/src/layouts/components/LayoutLogo.vue'
 import { findRootRouteName, mapRoutes } from '~/src/shared/utils/menuUtil'
 import { getFullRoutes } from '~/src/shared/utils/routeUtil'
+
+defineOptions({ name: 'MainSidebar' })
 
 const emit = defineEmits(['keyChange'])
 
@@ -95,7 +97,7 @@ const logoClass = computed(() => !app.isDark && app.menuSetting.mainMenu.inverte
   <!-- Sidebar (Desktop): Main Column 侧边栏(电脑端):主栏 -->
   <NLayoutSider v-bind="mainSidebarProps">
     <NLayoutHeader bordered :inverted="mainMenuInverted" :class="logoClass">
-      <Logo w-full :hide-title="mainSidebarProps.collapsed" />
+      <LayoutLogo w-full :hide-title="mainSidebarProps.collapsed" />
     </NLayoutHeader>
     <!-- Main Menu 主栏菜单 -->
     <NMenu ref="mainMenuRef" v-model:value="mainMenuKey" :options="mainMenuOptions" v-bind="mainMenuProps" />

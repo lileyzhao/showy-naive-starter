@@ -1,5 +1,7 @@
-<script setup lang="ts" name="Layout-ThemeDrawer">
+<script setup lang="ts">
 import { DarkSchemeEnum } from '@/shared/constants/darkScheme'
+
+defineOptions({ name: 'ThemeDrawer' })
 
 const { t } = useI18n()
 const app = useAppStore()

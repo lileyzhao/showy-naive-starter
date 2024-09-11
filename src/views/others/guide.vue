@@ -1,7 +1,5 @@
-<script>
-export default {
-  name: 'MissingComponent',
-}
+<script setup lang="ts">
+defineOptions({ name: 'Guide' })
 </script>
 
 <template>

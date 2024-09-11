@@ -1,5 +1,7 @@
-<script setup lang="ts" name="Layout-Logo">
+<script setup lang="ts">
 import { useThemeVars } from 'naive-ui'
+
+defineOptions({ name: 'LayoutLogo' })
 
 const props = defineProps({ hideLogo: Boolean, hideTitle: Boolean })
 

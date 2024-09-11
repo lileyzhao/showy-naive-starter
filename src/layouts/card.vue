@@ -1,11 +1,9 @@
 <script setup lang="ts">
-defineOptions({
-  name: 'CardLayout',
-})
+defineOptions({ name: 'CardLayout' })
 </script>
 
 <template>
-  <div>card layout</div>
+  <LayoutContent />
 </template>
 
 <style scoped></style>

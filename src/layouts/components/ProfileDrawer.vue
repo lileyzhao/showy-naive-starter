@@ -1,5 +1,7 @@
-<script setup lang="ts" name="Layout-ProfileDrawer">
+<script setup lang="ts">
 import { DarkSchemeEnum } from '@/shared/constants/darkScheme'
+
+defineOptions({ name: 'ProfileDrawer' })
 
 const { t } = useI18n()
 const app = useAppStore()
