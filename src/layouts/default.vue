@@ -14,6 +14,7 @@ defineOptions({ name: 'DefaultLayout' })
 const app = useAppStore()
 
 const mainSidebarRef = ref<InstanceType<typeof MainSidebar>>()
+const subSidebarRef = ref<InstanceType<typeof SubSidebar>>()
 const topBarRef = ref<InstanceType<typeof TopBar>>()
 const mobileDrawerRef = ref<InstanceType<typeof MobileDrawer>>()
 const themeDrawerRef = ref<InstanceType<typeof ThemeDrawer>>()
@@ -21,8 +22,6 @@ const themeDrawerRef = ref<InstanceType<typeof ThemeDrawer>>()
 /** Whether the menu is in the top bar layout. 是否顶栏菜单布局。 */
 const isTopBar = computed(() => app.menuSetting.menuPosition === MenuPositionEnum.TOP_BAR)
 
-/** Selected item in the main menu. 主栏菜单选中项。 */
-const mainMenuRootKey = ref<string>()
 const subMenuCount = ref(0)
 
 /** Update the number of sub-menu items. 更新副栏菜单项数量的函数。 */
@@ -34,14 +33,8 @@ function updateSubMenuCount(count: number) {
 provide(SUB_MENU_COUNT, subMenuCount)
 provide(UPDATE_SUB_MENU_COUNT, updateSubMenuCount)
 
-/**
- * Main menu selected item changed. 主栏菜单选中项改变。
- * key is the root route name of the main menu. 传入的 key 是主栏菜单的根路由名。
- */
-const handleMainMenuKeyChange = (key: string) => {
-  // key is the root route name of the main menu. 此处的 key 是主栏菜单的根路由名。
-  mainMenuRootKey.value = key
-}
+/** Main menu selected item changed. 主栏菜单选中项改变。 */
+const handleMainMenuKeyChange = (key: string) => subSidebarRef.value?.loadSubMenu(key)
 
 /** Handle various actions like toggling drawers. 处理各种操作，如切换抽屉。 */
 const handleAction = (op: string, _val: any) => {
@@ -67,10 +60,7 @@ const handleAction = (op: string, _val: any) => {
       <!-- Content area. 内容区。 -->
       <NLayout has-sider>
         <!-- Sidebar (Desktop): Sub Sidebar. 侧边栏(电脑端):副栏。 -->
-        <SubSidebar
-          v-if="!app.isMobile && (!isTopBar || app.menuSetting.topMenu.showSubMenu)"
-          :parent-menu-key="mainMenuRootKey"
-        />
+        <SubSidebar v-if="!app.isMobile && (!isTopBar || app.menuSetting.topMenu.showSubMenu)" ref="subSidebarRef" />
         <NLayoutContent :native-scrollbar="false" flex-1 :style="isDark ? 'background-color: #18181c;' : ''">
           <LayoutContent />
           <NBackTop :right="40" />

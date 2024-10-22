@@ -1,13 +1,13 @@
 <script setup lang="ts">
+import type { MenuInst } from 'naive-ui'
 import { availableLocales } from '@/modules/i18n'
 import SyIconButton from '@/shared/components/SyIconButton.vue'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
-import type { MenuInst } from 'naive-ui'
 import LayoutLogo from '~/src/layouts/components/LayoutLogo.vue'
 import { SUB_MENU_COUNT } from '~/src/shared/constants/symbols'
 import { renderProfileHeader, renderUnoIcon } from '~/src/shared/utils/componentUtil'
-import { findRootRouteName, mapRoutes } from '~/src/shared/utils/menuUtil'
-import { getFullRoutes } from '~/src/shared/utils/routeUtil'
+import { mapRoutes } from '~/src/shared/utils/menuUtil'
+import { findRootRouteName, getFullRoutes } from '~/src/shared/utils/routeUtil'
 
 defineOptions({ name: 'TopBar' })
 

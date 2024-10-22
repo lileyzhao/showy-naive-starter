@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { MenuInst, MenuOption } from 'naive-ui'
 import LayoutLogo from '~/src/layouts/components/LayoutLogo.vue'
-import { findRootRouteName, mapRoutes } from '~/src/shared/utils/menuUtil'
-import { getFullRoutes } from '~/src/shared/utils/routeUtil'
+import { mapRoutes } from '~/src/shared/utils/menuUtil'
+import { findRootRouteName, getFullRoutes } from '~/src/shared/utils/routeUtil'
 
 defineOptions({ name: 'MainSidebar' })
 
@@ -35,27 +35,24 @@ const mainMenuInverted = computed({
 const mainMenuOptions = ref<MenuOption[]>()
 
 /** Handle main menu key change 处理主菜单键变化 */
-const handleMainMenuKeyChange = (key: string) => {
-  const mainMenuRootKey = findRootRouteName(key, fullRoutes) ?? key
-  mainMenuOptions.value = mainMenuRoutes.map(route => mapRoutes(route, fullRoutes, t, app.menuSetting, mainMenuRootKey))
-  emit('keyChange', mainMenuRootKey)
-  nextTick(() => {
-    if (!app.menuSetting.subMenu.collapsed)
-      mainMenuKey.value = mainMenuRootKey
-    mainMenuRef.value?.showOption(key)
-  })
+const handleMainMenuChange = async (menuKey: string) => {
+  const rootKey = findRootRouteName(menuKey, fullRoutes) ?? menuKey
+  if (rootKey === mainMenuKey.value)
+    return
+  mainMenuOptions.value = mainMenuRoutes.map(route => mapRoutes(route, fullRoutes, t, app.menuSetting, rootKey))
+  await nextTick()
+  mainMenuKey.value = app.menuSetting.subMenu.collapsed ? menuKey : rootKey
+  emit('keyChange', menuKey)
 }
 
-onMounted(() => {
-  mainMenuKey.value = route.name as string
-  handleMainMenuKeyChange(route.name as string)
+onMounted(async () => {
+  const menuKey = route.name as string
+  await handleMainMenuChange(menuKey)
 })
 
-watch(() => app.menuSetting, (value, oldValue) => {
-  if (!oldValue.mainMenu.collapsed && value.subMenu.collapsed)
-    handleMainMenuKeyChange(route.name as string)
-  else
-    handleMainMenuKeyChange(mainMenuKey.value!)
+watch(() => app.menuSetting, () => {
+  mainMenuKey.value = undefined
+  handleMainMenuChange(route.name as string)
 })
 
 const mainSidebarProps = computed(() => {
@@ -85,7 +82,7 @@ const mainMenuProps = computed(() => {
       app.menuSetting.mainMenu.collapsed && app.menuSetting.mainMenu.showLabel ? 'main-menu-coll-label' : '',
     ],
     inverted: mainMenuInverted.value,
-    onUpdateValue: handleMainMenuKeyChange,
+    onUpdateValue: handleMainMenuChange,
   }
 })
 

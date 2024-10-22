@@ -1,6 +1,6 @@
-import { type RouteRecordNormalized, type RouteRecordRaw, RouterLink } from 'vue-router'
 import type { MenuSetting } from '@/shared/typings/menu.d'
 import type { MenuOption } from 'naive-ui'
+import { type RouteRecordNormalized, type RouteRecordRaw, RouterLink } from 'vue-router'
 
 /**
  * Map routes to menu items
@@ -62,17 +62,4 @@ export function mapRoutes(
   }
 
   return menu
-}
-
-export function findRootRoute(routeName: string, fullRoutes: RouteRecordNormalized[]): RouteRecordNormalized | undefined {
-  const route = fullRoutes.find(r => r.name === routeName)
-  if (!route)
-    return undefined
-  else if (route.meta.parentName === 'root')
-    return route
-  else return findRootRoute(route.meta.parentName as string, fullRoutes)
-}
-
-export function findRootRouteName(routeName: string, fullRoutes: RouteRecordNormalized[]): string | undefined {
-  return findRootRoute(routeName, fullRoutes)?.name as string
 }
