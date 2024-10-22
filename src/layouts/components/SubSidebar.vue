@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
 import type { MenuInst, MenuOption } from 'naive-ui'
+import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
 import { SUB_MENU_COUNT, UPDATE_SUB_MENU_COUNT } from '~/src/shared/constants/symbols'
 import { mapRoutes } from '~/src/shared/utils/menuUtil'
 import { getFullRoutes } from '~/src/shared/utils/routeUtil'
@@ -22,8 +22,11 @@ const updateSubMenuCount = inject(UPDATE_SUB_MENU_COUNT, (_: number) => { })
 // Reference to component 组件引用
 const subMenuRef = ref<MenuInst | null>()
 /** Selected Item in sub-menu 副栏菜单选中项 */
-const subMenuKey = computed<string>({ get: () => route.name as string, set: () => { } })
+const subMenuKey = ref<string>() // computed<string>({ get: () => route.name as string, set: () => { } })
 
+const handleMenuChange = (key: string, _: MenuOption) => {
+  subMenuKey.value = key
+}
 /** Collapsed State of sub-menu 副栏菜单收缩状态 */
 const collSubMenu = computed({
   get: () => app.menuSetting.subMenu.collapsed,
@@ -58,12 +61,17 @@ const handleToggleSub = (status: boolean) => {
   refreshSubMenu()
 }
 
-// Do not delete: Removing onMounted will cause the menu to be blank during hot refresh
+// Don't delete: Removing onMounted will cause the menu to be blank during hot refresh
 // 勿删：删掉onMounted会导致热刷新时菜单空白
-onMounted(async () => refreshSubMenu())
+onMounted(async () => {
+  subMenuKey.value = route.name as string
+  refreshSubMenu()
+})
 
 // 监控主菜单变化
-watch(() => props.parentMenuKey, val => refreshSubMenu(val))
+watch(() => props.parentMenuKey, (val) => {
+  refreshSubMenu(val)
+})
 
 const subSidebarProps = computed(() => {
   return {
@@ -86,7 +94,7 @@ const subSidebarProps = computed(() => {
     <!-- Sub-menu 副栏菜单 -->
     <NMenu
       ref="subMenuRef" v-model:value="subMenuKey" :options="subMenuOptions" :collapsed-icon-size="16" :indent="16"
-      :icon-size="16" accordion
+      :icon-size="16" accordion :on-update:value="handleMenuChange"
     />
   </NLayoutSider>
 </template>

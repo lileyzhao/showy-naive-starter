@@ -5,11 +5,11 @@
   "explorer.fileNesting.patterns": {
     "*.ts": "$(capture).test.ts, $(capture).test.tsx",
     "*.tsx": "$(capture).test.ts, $(capture).test.tsx",
-    "*.env": "$(capture).env.*"
-    // "package.json": "package-lock.json,pnpm-*.yaml,LICENSE,.gitattributes,.gitignore,.gitpod.yml,CNAME,README*,.npmrc,CHANGELOG*",
-    // ".editorconfig": ".eslintignore,.prettierignore,.stylelintignore,.commitlintrc.*,.prettierrc.*,.stylelintrc.*,eslint.config.*,commitlint.config.*",
-    // "tsconfig.json": "tsconfig.node.json",
-    // "dockerfile": ".dockerignore,netlify.*"
+    "*.env": "$(capture).env.*",
+    "package.json": "package-lock.json,pnpm-*.yaml,LICENSE,.gitattributes,.gitignore,.gitpod.yml,README*,CHANGELOG*",
+    ".editorconfig": ".eslintignore,.prettierignore,.stylelintignore,.commitlintrc.*,.prettierrc.*,.stylelintrc.*,eslint.config.*,commitlint.config.*",
+    "tsconfig.json": "tsconfig.*.json",
+    "dockerfile": ".dockerignore,netlify.*"
   },
   "cSpell.words": [
     "antfu",
