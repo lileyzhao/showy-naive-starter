@@ -1,7 +1,7 @@
 {
   "name": "showy-naive-starter",
   "type": "module",
-  "version": "0.1.0-alpha",
+  "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@9.12.2",
   "description": "An admin dashboard UI template based on Vue 3, Vite, Naive UI, and UnoCSS. 基于 Vue 3、Vite、Naive UI 和 UnoCSS 的管理后台UI模板。",
