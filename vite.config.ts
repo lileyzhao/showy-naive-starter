@@ -76,5 +76,12 @@ export default defineConfig(({ mode }) => {
       host: true,
       port: Number(env.VITE_APP_PORT) + 1,
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler', // or "modern", "legacy"
+        },
+      },
+    },
   }
 })
