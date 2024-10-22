@@ -24,19 +24,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <NCard class="m--8px" content-class="!p-0" :bordered="false">
-    <div flex flex-col items-center justify-center gap-y-4 pt-4>
-      <NSpace>
-        <NDatePicker type="date" w-48 />
-        <NTimePicker w-48 />
-      </NSpace>
-      <NSpace v-for="(bm, bmi) in buttonModels" :key="bmi">
-        <NButton v-for="(bt, bti) in buttonTypesShuffled[bmi]" :key="bti" :type="bt" class="w-23!" v-bind="bm">
-          {{ bt }}
-        </NButton>
-      </NSpace>
-    </div>
-  </NCard>
+  <div flex flex-col>
+    <NCard :bordered="false">
+      <div flex flex-col items-center justify-center gap-y-4 pt-4>
+        <NSpace>
+          <NDatePicker type="date" w-48 />
+          <NTimePicker w-48 />
+        </NSpace>
+        <NSpace v-for="(bm, bmi) in buttonModels" :key="bmi">
+          <NButton v-for="(bt, bti) in buttonTypesShuffled[bmi]" :key="bti" :type="bt" class="w-23!" v-bind="bm">
+            {{ bt }}
+          </NButton>
+        </NSpace>
+      </div>
+    </NCard>
+  </div>
 </template>
 
 <style scoped lang="scss">

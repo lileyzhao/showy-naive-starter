@@ -21,7 +21,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <NCard class="m--8px" content-class="!p-0" :bordered="false">
+  <NCard content-class="!p-0" :bordered="false">
     <div flex flex-col items-center justify-center gap-y-4 pt-4>
       <div
         :class="`i-line-md:${app.isDark ? 'moon-filled-loop text-purple' : 'sunny-filled-loop text-yellow'}`"

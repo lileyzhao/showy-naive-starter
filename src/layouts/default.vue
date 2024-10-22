@@ -61,10 +61,17 @@ const handleAction = (op: string, _val: any) => {
       <NLayout has-sider>
         <!-- Sidebar (Desktop): Sub Sidebar. 侧边栏(电脑端):副栏。 -->
         <SubSidebar v-if="!app.isMobile && (!isTopBar || app.menuSetting.topMenu.showSubMenu)" ref="subSidebarRef" />
-        <NLayoutContent :native-scrollbar="false" flex-1 :style="isDark ? 'background-color: #18181c;' : ''">
-          <LayoutContent />
-          <NBackTop :right="40" />
-        </NLayoutContent>
+        <NLayout content-class="flex flex-col" class="flex flex-col">
+          <NLayoutContent
+            :native-scrollbar="false" content-class="flex flex-col flex-grow min-h-full"
+            :style="`background-color:${isDark ? '#26262a' : '#f7fafc'}`"
+          >
+            <LayoutContent />
+          </NLayoutContent>
+          <n-layout-footer p-10px text-center :style="`background-color:${isDark ? '' : '#fff'}`">
+            ShowyTeam @2024
+          </n-layout-footer>
+        </NLayout>
       </NLayout>
     </NLayout>
 
