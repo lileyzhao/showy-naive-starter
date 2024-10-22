@@ -40,7 +40,7 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-@import '../assets/styles/_fonts.scss';
+@use '../assets/styles/_fonts.scss';
 
 .time-display {
   font-family: 'DSEG7ModernMini', sans-serif;
