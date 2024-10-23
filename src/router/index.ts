@@ -1,7 +1,7 @@
 import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
-import { getMenuData, type MenuRecord } from '~/src/api/menuApi'
+import { getMenuData, type MenuRecord } from '~/src/api-service/menuApi'
 import { i18n } from '../modules/i18n'
 import { createRouterGuards } from './guard'
 import { dynamicImport } from './helper'
