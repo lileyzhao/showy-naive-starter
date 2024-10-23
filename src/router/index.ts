@@ -1,6 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router'
 import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import { getMenuData, type MenuRecord } from '~/src/api/menuApi'
 import { i18n } from '../modules/i18n'
 import { createRouterGuards } from './guard'
@@ -46,7 +46,7 @@ export const PublicRoutes: RouteRecordRaw[] = [
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: () => import('@/shared/_builtin_views_/404.vue'),
+    component: () => import('@/shared/_builtin_views_/fallback/404.vue'),
   },
 ]
 
@@ -54,7 +54,7 @@ export const PublicRoutes: RouteRecordRaw[] = [
 export const NotFoundRoute: RouteRecordRaw = {
   path: '/:pathMatch(.*)*',
   name: 'NotFound',
-  component: () => import('@/shared/_builtin_views_/404.vue'),
+  component: () => import('@/shared/_builtin_views_/fallback/404.vue'),
 }
 
 /**

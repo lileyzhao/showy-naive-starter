@@ -27,22 +27,22 @@
           "title": "menu.start.builtin-pages",
           "icon": "i-carbon:page-scroll",
           "children": [
-            { "path": "403", "name": "403", "title": "403", "component": "403", "icon": "i-carbon:number-3" },
-            { "path": "404", "name": "404", "title": "404", "component": "404", "icon": "i-carbon:number-4" },
-            { "path": "500", "name": "500", "title": "500", "component": "500", "icon": "i-carbon:number-5" },
-            { "path": "offline", "name": "offline", "title": "offline", "component": "offline", "icon": "i-carbon:number-5" },
+            { "path": "403", "name": "403", "title": "403", "component": "fallback/403", "icon": "i-carbon:number-3" },
+            { "path": "404", "name": "404", "title": "404", "component": "fallback/404", "icon": "i-carbon:number-4" },
+            { "path": "500", "name": "500", "title": "500", "component": "fallback/500", "icon": "i-carbon:number-5" },
+            { "path": "offline", "name": "offline", "title": "offline", "component": "fallback/offline", "icon": "i-carbon:number-5" },
             {
               "path": "coming-soon",
               "name": "coming-soon",
               "title": "coming-soon",
-              "component": "coming-soon",
+              "component": "fallback/coming-soon",
               "icon": "i-carbon:number-5"
             },
             {
               "path": "missing",
               "name": "missing",
               "title": "missing",
-              "component": "missing",
+              "component": "fallback/component-missing",
               "icon": "i-carbon:face-dissatisfied"
             }
           ]

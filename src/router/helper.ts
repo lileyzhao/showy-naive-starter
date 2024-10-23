@@ -11,7 +11,7 @@ export const dynamicViews = { ...builtInViews, ...userViews }
 
 console.log(pc.bgBlue(pc.white(' 动态View表 ')), dynamicViews)
 
-const viewMissing = dynamicViews['/src/shared/_builtin_views_/MISSING.vue']
+const viewMissing = dynamicViews['/src/shared/_builtin_views_/fallback/component-missing.vue']
 
 // Cache the matching results 缓存匹配结果
 const matchCache = new Map<string, () => Promise<Record<string, any>>>()

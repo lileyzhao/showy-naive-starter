@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import IconMissing from './icons/icon-missing.vue'
+import IconMissing from './icons/icon-component-missing.vue'
 
-defineOptions({ name: 'ExceptionOffline' })
+defineOptions({ name: 'ExceptionComponentMissing' })
 
 const router = useRouter()
 
