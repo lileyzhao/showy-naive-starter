@@ -45,3 +45,15 @@ profileMenu:
   logout: 登出
 common:
   backToHome: 返回首頁
+fallback:
+  forbidden: 哎呀！訪問被拒絕
+  forbiddenDesc: 抱歉，您沒有權限訪問此頁面。
+  pageNotFound: 哎呀！找不到頁面
+  pageNotFoundDesc: 抱歉，您訪問的頁面不存在。
+  internalError: 哎呀！發生錯誤
+  internalErrorDesc: 抱歉，伺服器發生錯誤，請稍後再試。
+  offlineError: 哎呀！網路錯誤
+  offlineErrorDesc: 抱歉，無法連接到互聯網，請檢查您的網路並重試。
+  componentMissing: 哎呀！元件遺失
+  componentMissingDesc: 抱歉，缺少必要的元件，請聯繫支援。
+  comingSoon: 即將推出，敬請期待

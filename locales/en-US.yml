@@ -45,3 +45,15 @@ profileMenu:
   logout: Logout
 common:
   backToHome: Back to Home
+fallback:
+  forbidden: Oops! Access Denied
+  forbiddenDesc: Sorry, you don't have permission to access this page.
+  pageNotFound: Oops! Page Not Found
+  pageNotFoundDesc: Sorry, the page you are looking for does not exist.
+  internalError: Oops! Something Went Wrong
+  internalErrorDesc: Sorry, there was a server error. Please try again later.
+  offlineError: Oops! Network Error
+  offlineErrorDesc: Sorry, unable to connect to the internet. Please check your network and try again.
+  componentMissing: Oops! Component Missing
+  componentMissingDesc: Sorry, a necessary component is missing. Please contact support.
+  comingSoon: Coming Soon, Stay Tuned

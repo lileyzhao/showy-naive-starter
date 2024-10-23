@@ -45,3 +45,15 @@ profileMenu:
   logout: ログアウト
 common:
   backToHome: ホームに戻る
+fallback:
+  forbidden: おっと！アクセスが拒否されました
+  forbiddenDesc: 申し訳ありませんが、このページにアクセスする権限がありません。
+  pageNotFound: おっと！ページが見つかりません
+  pageNotFoundDesc: 申し訳ありませんが、お探しのページは存在しません。
+  internalError: おっと！問題が発生しました
+  internalErrorDesc: 申し訳ありませんが、サーバーエラーが発生しました。後でもう一度お試しください。
+  offlineError: おっと！ネットワークエラー
+  offlineErrorDesc: 申し訳ありませんが、インターネットに接続できません。ネットワークを確認して再試行してください。
+  componentMissing: おっと！コンポーネントが見つかりません
+  componentMissingDesc: 申し訳ありませんが、必要なコンポーネントが欠けています。サポートに連絡してください。
+  comingSoon: 近日公開、お楽しみに
