@@ -1,9 +1,10 @@
+import type { Router } from 'vue-router'
 import { availableLocales } from '@/modules/i18n'
 import { LocaleEnum } from '@/shared/typings/locale.d'
-import type { Router } from 'vue-router'
 
 export function createRouterGuards(router: Router) {
   const app = useAppStore()
+  const tabs = useTabsStore()
 
   router.beforeEach(async (to, _) => {
     // Get the language parameter in the route or use the default language
@@ -30,6 +31,13 @@ export function createRouterGuards(router: Router) {
         validPath = `/${lang.toLowerCase()}${validPath}`
       if (validPath !== to.path)
         return { path: validPath, query: to.query, hash: to.hash }
+    }
+
+    // 多标签
+    if (to.name && to.fullPath) {
+      console.log('addTab', to.fullPath, tabs.tabs.length)
+      tabs.addTab(to)
+      console.log('addTab Length', to.fullPath, tabs.tabs.length)
     }
   })
 }

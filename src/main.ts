@@ -1,8 +1,8 @@
+import type { UserModule } from './shared/typings/app.d'
 import pc from 'picocolors'
 import { createApp } from 'vue'
 import App from './App.vue'
 import { router, setupRouter } from './router'
-import type { UserModule } from './shared/typings/app.d'
 
 import '@unocss/reset/tailwind.css'
 import '@/assets/styles/main.scss'

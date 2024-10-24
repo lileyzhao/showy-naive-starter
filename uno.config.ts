@@ -19,8 +19,9 @@ export default defineConfig({
     // 图标预设，参考https://unocss.dev/presets/icons
     presetIcons({
       collections: {
-        'carbon': () => import('@iconify-json/carbon/icons.json').then(i => i.default),
         'line-md': () => import('@iconify-json/line-md/icons.json').then(i => i.default),
+        'carbon': () => import('@iconify-json/carbon/icons.json').then(i => i.default),
+        'lucide': () => import('@iconify-json/lucide/icons.json').then(i => i.default),
       },
     }),
     // 属性化预设，参考https://unocss.dev/presets/attributify

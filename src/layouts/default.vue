@@ -3,6 +3,7 @@ import { isDark } from '@/shared/hooks/dark'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
 import { SUB_MENU_COUNT, UPDATE_SUB_MENU_COUNT } from '../shared/constants/symbols'
 import LayoutContent from './components/LayoutContent.vue'
+import LayoutTabs from './components/LayoutTabs.vue'
 import MainSidebar from './components/MainSidebar.vue'
 import MobileDrawer from './components/MobileDrawer.vue'
 import SubSidebar from './components/SubSidebar.vue'
@@ -62,6 +63,7 @@ const handleAction = (op: string, _val: any) => {
         <!-- Sidebar (Desktop): Sub Sidebar. 侧边栏(电脑端):副栏。 -->
         <SubSidebar v-if="!app.isMobile && (!isTopBar || app.menuSetting.topMenu.showSubMenu)" ref="subSidebarRef" />
         <NLayout content-class="flex flex-col" class="flex flex-col">
+          <LayoutTabs />
           <NLayoutContent
             :native-scrollbar="false" content-class="flex flex-col flex-grow min-h-full"
             :style="`background-color:${isDark ? '#26262a' : '#f7fafc'}`"
