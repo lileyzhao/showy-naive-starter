@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import SyIconButton from '@/shared/components/SyIconButton.vue'
-import { renderUnoIcon } from '~/src/shared/utils/componentUtil'
+import { useThemeVars } from 'naive-ui'
+import { TAB_MENUS } from '~/src/shared/constants/tabControls'
 
 const { t } = useI18n()
 const router = useRouter()
+const themeVars = useThemeVars()
 
 const tabsStore = useTabsStore()
 
@@ -18,75 +20,122 @@ async function handleTabClose(tabName: string) {
   router.push(tabsStore.activeTab)
 }
 
-const menuOptions = [
-  {
-    label: '关闭',
-    key: 'closeTab',
-    icon: renderUnoIcon('i-lucide:x'),
-  },
-  {
-    label: '固定',
-    key: 'pinTab',
-    icon: renderUnoIcon('i-lucide:pin'),
-  },
-  {
-    label: '重新加载',
-    key: 'reload',
-    icon: renderUnoIcon('i-lucide:rotate-cw'),
-  },
-  {
-    label: '在新窗口打开',
-    key: 'openInNewWindow',
-    icon: renderUnoIcon('i-lucide:external-link'),
-  },
-  {
-    type: 'divider',
-    key: 'divider1',
-  },
-  {
-    label: '关闭其他',
-    key: 'closeOtherTabs',
-    icon: renderUnoIcon('i-lucide:badge-x'),
-  },
-  {
-    label: '关闭右侧标签',
-    key: 'closeRightTabs',
-    icon: renderUnoIcon('i-lucide:list-x rotate-180'),
-  },
-  {
-    label: '全部关闭',
-    key: 'closeAllTabs',
-    icon: renderUnoIcon('i-lucide:copy-x'),
-  },
-]
+const contextMenuState = reactive({ show: false, x: 0, y: 0, key: '' })
+async function handleTabContextMenu(e: MouseEvent, key: string) {
+  if (key !== tabsStore.activeTab)
+    return
+  e.preventDefault()
+  contextMenuState.show = false
+  await nextTick()
+  contextMenuState.show = true
+  contextMenuState.x = e.clientX
+  contextMenuState.y = e.clientY
+  contextMenuState.key = key
+}
+
+async function handleMenuSelect(menuKey: string | number, tabKey?: string | undefined) {
+  contextMenuState.show = false
+  switch (menuKey) {
+    case 'closeTab':
+      handleTabClose(tabKey ?? tabsStore.activeTab)
+      break
+    case 'pinTab':
+      break
+    case 'reload':
+      break
+    case 'openInNewWindow':
+      break
+    case 'closeOtherTabs':
+      tabsStore.removeOtherTabs(tabKey ?? tabsStore.activeTab)
+      break
+    case 'closeRightTabs':
+      tabsStore.removeRightTabs(tabKey ?? tabsStore.activeTab)
+      break
+    case 'closeAllTabs':
+      tabsStore.removeOtherTabs(tabKey ?? tabsStore.activeTab)
+      break
+  }
+}
+
+async function onClickoutside() {
+  contextMenuState.show = false
+}
 </script>
 
 <template>
-  <div class="pt-3px">
-    <NTabs
-      v-model:value="tabsStore.activeTab" type="card" animated closable tab-style="min-width: 80px;" size="small"
-      pane-wrapper-class="pwc" class="pwc" :on-update:value="handleTabChange" @close="handleTabClose"
-    >
-      <NTab v-for="tb in tabs" :key="tb.key" :tab="tb.meta.title as string || tb.name || tb.key" :name="tb.key">
-        {{ t(tb.meta.title as string) || tb.name }}
-      </NTab>
-      <template #suffix>
-        <NDropdown :options="menuOptions" trigger="manual">
-          <SyIconButton button icon="i-carbon:chevron-down" ml--16px />
-        </NDropdown>
-        <NDivider vertical />
-        <SyIconButton button icon="i-lucide:fullscreen" />
-      </template>
-    </NTabs>
-  </div>
+  <NLayoutHeader class="tab-container">
+    <div :style="`--border-color:${themeVars.dividerColor}`">
+      <NTabs
+        v-model:value="tabsStore.activeTab" type="card" animated closable size="small"
+        tab-style="min-width: 80px;" :on-update:value="handleTabChange" @close="handleTabClose"
+      >
+        <NTab
+          v-for="tb in tabs" :key="tb.key" :tab="tb.meta.title as string || tb.name" :name="tb.key" style="mt-3px"
+          @contextmenu="(e) => handleTabContextMenu(e, tb.key)"
+        >
+          {{ t(tb.meta.title as string) || tb.name }}
+        </NTab>
+      </NTabs>
+    </div>
+    <div>
+      <NDropdown :options="TAB_MENUS" trigger="click" @select="(key) => handleMenuSelect(key)">
+        <SyIconButton icon="i-carbon:chevron-down" button />
+      </NDropdown>
+      <SyIconButton icon="i-lucide:fullscreen" button />
+      <NDropdown
+        trigger="manual" :options="TAB_MENUS" :show="contextMenuState.show" :x="contextMenuState.x"
+        :y="contextMenuState.y" :on-clickoutside="onClickoutside"
+        @select="(key) => handleMenuSelect(key, contextMenuState.key)"
+      />
+    </div>
+  </NLayoutHeader>
 </template>
 
-<style scoped>
-:deep(.n-tabs-tab.n-tabs-tab--closable button) {
-  display: none !important;
-}
+<style scoped lang="scss">
+.tab-container {
+  --uno: flex flex-nowrap;
 
-:deep(.n-tabs-tab.n-tabs-tab--active.n-tabs-tab--closable button) {
-  display: unset !important;
+  > :not(:last-child) {
+    --uno: flex-grow;
+    width: calc(100% - 85px);
+  }
+
+  > :last-child {
+    --uno: basis-auto;
+    width: 85px;
+  }
+
+  .sy-icon-button {
+    display: inline-block;
+    height: 100%;
+    border-radius: 0;
+    border-width: 0 0 1px 1px;
+  }
+
+  :deep(.n-tabs) {
+    width: calc(100% - 3px);
+
+    .n-tabs-tab.n-tabs-tab--closable {
+      padding: 7px 16px !important;
+      margin-top: 3px;
+
+      button {
+        display: none !important;
+      }
+
+      .n-tabs-tab__label {
+        user-select: none;
+      }
+
+      &.n-tabs-tab--active {
+        padding-right: 8px !important;
+        border-bottom-color: var(--border-color) !important;
+
+        button {
+          display: unset !important;
+        }
+      }
+    }
+  }
 }
 </style>

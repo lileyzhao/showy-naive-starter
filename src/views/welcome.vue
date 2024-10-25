@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import FloatingGhost from '~/src/shared/components/cartoon/FloatingGhost.vue'
-import Jigglypuff from '~/src/shared/components/cartoon/Jigglypuff2.vue'
+import Jigglypuff from '~/src/shared/components/cartoon/Jigglypuff.vue'
 
 defineOptions({ name: 'Welcome' })
 

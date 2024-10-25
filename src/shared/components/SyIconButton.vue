@@ -21,7 +21,7 @@ const colorVars = computed(() => {
 const sizeVal = computed(() => typeof props.size === 'number' ? `${props.size}px` : props.size ?? '1.3em')
 
 const customClass = computed(() => props.class)
-const customStyle = computed(() => props.style)
+const customStyle = computed(() => `${props.style} ; border-color: ${themeVars.value.dividerColor}`)
 </script>
 
 <template>
