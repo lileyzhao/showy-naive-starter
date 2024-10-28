@@ -3,7 +3,7 @@ import type { MenuInst, MenuOption } from 'naive-ui'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
 import { SUB_MENU_COUNT, SUB_MENU_KEY, UPDATE_SUB_MENU_COUNT, UPDATE_SUB_MENU_KEY } from '~/src/shared/constants/symbols'
 import { mapRoutes } from '~/src/shared/utils/menuUtil'
-import { findRootRouteName, getFullRoutes } from '~/src/shared/utils/routeUtil'
+import { findParentNames, findRootRouteName, getFullRoutes } from '~/src/shared/utils/routeUtil'
 
 defineOptions({ name: 'SubSidebar' })
 
@@ -46,8 +46,7 @@ const loadSubMenu = (menuKey: string) => {
   }
   else { subMenuOptions.value = [] }
 
-  const routeParentName = (fullRoutes.filter(route => route.name === menuKey)[0]).meta.parentName as string
-  expandedMenuKeys.value = routeParentName ? [routeParentName] : []
+  expandedMenuKeys.value = findParentNames(menuKey, fullRoutes, rootKey)
 }
 
 /** Handle main menu key change 处理主菜单键变化 */

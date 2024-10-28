@@ -15,8 +15,7 @@ const mainMenuRoutes = fullRoutes.filter(route => route.meta.parentName === 'roo
 
 /** Reference to component 组件引用 */
 const mainMenuRef = ref<MenuInst | null>()
-/** Selected Item in main-menu 主栏菜单选中项 */
-// const mainMenuKey = ref<string>()
+const expandedMenuKeys = ref<string[]>([])
 
 // Inject the menu object 注入菜单对象
 const mainMenuKey = inject(MAIN_MENU_KEY)!
@@ -61,6 +60,11 @@ watch(() => app.menuSetting, () => {
   const menuKey = route.name as string
   const rootKey = findRootRouteName(route.name as string, fullRoutes) ?? route.name as string
   updateMainMenuKey(app.menuSetting.subMenu.collapsed ? menuKey : rootKey)
+})
+
+watch(route, (to, from) => {
+  console.log('Route changed from', from.fullPath, 'to', to.fullPath)
+  // expandedMenuKeys.value = findParentNames(route.name as string, fullRoutes)
 })
 
 // Expose the menu loading function 公开菜单加载函数
@@ -108,7 +112,10 @@ const logoClass = computed(() => !app.isDark && app.menuSetting.mainMenu.inverte
       <LayoutLogo w-full :hide-title="mainSidebarProps.collapsed" />
     </NLayoutHeader>
     <!-- Main Menu 主栏菜单 -->
-    <NMenu ref="mainMenuRef" :value="mainMenuKey" :options="mainMenuOptions" v-bind="mainMenuProps" />
+    <NMenu
+      ref="mainMenuRef" :value="mainMenuKey" :options="mainMenuOptions" v-bind="mainMenuProps"
+      :expanded-keys="expandedMenuKeys" :on-update:expanded-keys="(keys) => expandedMenuKeys = keys"
+    />
     <!-- Inverted Control 翻转控制 -->
     <div v-if="!app.isDark" absolute bottom-12px w-full flex justify-center>
       <div
