@@ -1,32 +1,26 @@
-import type { RouteLocationNormalizedGeneric, RouteMeta } from 'vue-router'
+import type { RouteLocationNormalizedGeneric } from 'vue-router'
 import { defineStore } from 'pinia'
 
-export interface Tab {
-  name: string
-  key: string
-  meta: RouteMeta
-}
-
 export const useTabsStore = defineStore('tabs', () => {
-  const tabs = ref<Tab[]>([])
+  const tabs = ref<RouteLocationNormalizedGeneric[]>([])
   const activeTab = ref('')
 
   const addTab = async (route: RouteLocationNormalizedGeneric) => {
-    if (!tabs.value.some(tab => tab.key === route.fullPath))
-      tabs.value.push({ name: route.name as string, key: route.fullPath, meta: route.meta })
+    if (!tabs.value.some(tab => tab.name === route.name))
+      tabs.value.push(route)
     await nextTick()
     activeTab.value = route.fullPath
   }
 
-  const removeTab = async (removeKey: string) => {
+  const removeTab = async (removePath: string) => {
     if (tabs.value.length === 1)
       return
-    const tabIndex = tabs.value.findIndex(tab => tab.key === removeKey)
+    const tabIndex = tabs.value.findIndex(tab => tab.fullPath === removePath)
     if (tabIndex !== -1) {
-      if (activeTab.value === removeKey) {
+      if (activeTab.value === removePath) {
         const nextTab = tabs.value[tabIndex + 1] || tabs.value[tabIndex - 1]
         if (nextTab) {
-          activeTab.value = nextTab.key
+          activeTab.value = nextTab.fullPath
         }
       }
     }
@@ -34,11 +28,11 @@ export const useTabsStore = defineStore('tabs', () => {
     tabs.value.splice(tabIndex, 1)
   }
 
-  const removeOtherTabs = async (currentKey: string) => {
-    tabs.value = tabs.value.filter(tab => tab.key === currentKey)
+  const removeOtherTabs = async (currentPath: string) => {
+    tabs.value = tabs.value.filter(tab => tab.fullPath === currentPath)
   }
-  const removeRightTabs = async (currentKey: string) => {
-    const activeIndex = tabs.value.findIndex(tab => tab.key === currentKey)
+  const removeRightTabs = async (currentPath: string) => {
+    const activeIndex = tabs.value.findIndex(tab => tab.fullPath === currentPath)
     if (activeIndex !== -1) {
       tabs.value = tabs.value.slice(0, activeIndex + 1)
     }

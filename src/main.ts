@@ -9,7 +9,7 @@ import '@/assets/styles/main.scss'
 import 'virtual:uno.css'
 
 async function bootstrap() {
-  console.log(pc.bgGreen(pc.black(' DevTeam ')) + pc.bgMagenta(pc.white(' Showy ')))
+  console.log(pc.bgGreen(pc.red(' DevTeam ')) + pc.bgMagenta(pc.white(' Showy ')))
 
   // Create a new Vue application instance
   // 创建一个新的 Vue 应用实例

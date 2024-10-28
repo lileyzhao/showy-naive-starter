@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MenuInst, MenuOption } from 'naive-ui'
 import { MenuButtonEnum, MenuPositionEnum } from '@/shared/typings/menu.d'
-import { SUB_MENU_COUNT, UPDATE_SUB_MENU_COUNT } from '~/src/shared/constants/symbols'
+import { SUB_MENU_COUNT, SUB_MENU_KEY, UPDATE_SUB_MENU_COUNT, UPDATE_SUB_MENU_KEY } from '~/src/shared/constants/symbols'
 import { mapRoutes } from '~/src/shared/utils/menuUtil'
 import { findRootRouteName, getFullRoutes } from '~/src/shared/utils/routeUtil'
 
@@ -13,14 +13,15 @@ const app = useAppStore()
 const route = useRoute()
 const fullRoutes = getFullRoutes()
 
-// Inject the number of sub-menu items 注入副栏菜单项数量
-const subMenuCount = inject(SUB_MENU_COUNT, ref(0))
-const updateSubMenuCount = inject(UPDATE_SUB_MENU_COUNT, (_: number) => { })
+// Inject the menu object 注入菜单对象
+const subMenuKey = inject(SUB_MENU_KEY)!
+const updateSubMenuKey = inject(UPDATE_SUB_MENU_KEY)!
+const subMenuCount = inject(SUB_MENU_COUNT)!
+const updateSubMenuCount = inject(UPDATE_SUB_MENU_COUNT)!
 
 /** Reference to component 组件引用 */
 const subMenuRef = ref<MenuInst | null>()
-/** Selected Item in sub-menu 副栏菜单选中项 */
-const subMenuKey = ref<string>()
+const expandedMenuKeys = ref<string[]>([])
 
 /** Collapsed State of sub-menu 副栏菜单收缩状态 */
 const collSubMenu = computed({
@@ -35,7 +36,7 @@ const collSubMenu = computed({
 const subMenuOptions = ref<MenuOption[]>([])
 
 /** Load the sub-menu 加载副栏菜单 */
-const loadSubMenu = async (menuKey: string) => {
+const loadSubMenu = (menuKey: string) => {
   const rootKey = findRootRouteName(menuKey, fullRoutes) ?? menuKey
   updateSubMenuCount(fullRoutes.filter(r => r.meta.parentName === rootKey).length)
 
@@ -44,12 +45,22 @@ const loadSubMenu = async (menuKey: string) => {
     subMenuOptions.value = fullRoutes.filter(route => route.meta.parentName === rootKey).map(route => mapRoutes(route, fullRoutes, t))
   }
   else { subMenuOptions.value = [] }
-  await nextTick()
-  subMenuKey.value = menuKey
+
+  const routeParentName = (fullRoutes.filter(route => route.name === menuKey)[0]).meta.parentName as string
+  expandedMenuKeys.value = routeParentName ? [routeParentName] : []
+}
+
+/** Handle main menu key change 处理主菜单键变化 */
+const handleSubMenuChange = (menuKey: string, _item?: MenuOption) => {
+  if (subMenuKey.value === menuKey && subMenuOptions.value.length > 0)
+    return
+  updateSubMenuKey(menuKey)
 }
 
 // Don't delete: causes sidebar menu to be blank on hot refresh. 勿删：会导致热刷新时副栏菜单空白。
-onMounted(async () => loadSubMenu(route.name as string))
+onMounted(() => {
+  handleSubMenuChange(route.name as string)
+})
 
 const subSidebarProps = computed(() => {
   return {
@@ -74,8 +85,9 @@ defineExpose({ loadSubMenu })
   <NLayoutSider v-if="subMenuCount > 0" v-bind="subSidebarProps">
     <!-- Sub-menu 副栏菜单 -->
     <NMenu
-      ref="subMenuRef" v-model:value="subMenuKey" :options="subMenuOptions" :collapsed-icon-size="16" :indent="16"
-      :icon-size="16" accordion
+      ref="subMenuRef" :value="subMenuKey" :options="subMenuOptions" :collapsed-icon-size="16" :indent="16"
+      :icon-size="16" accordion :on-update:value="handleSubMenuChange" :expanded-keys="expandedMenuKeys"
+      :on-update:expanded-keys="(keys) => expandedMenuKeys = keys"
     />
   </NLayoutSider>
 </template>

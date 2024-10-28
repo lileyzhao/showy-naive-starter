@@ -55,9 +55,9 @@
       "title": "menu.guide",
       "icon": "i-carbon:book",
       "children": [
-        { "path": "g403", "name": "g403", "title": "g403", "component": "403", "icon": "i-carbon:number-3" },
-        { "path": "g404", "name": "g404", "title": "g404", "component": "404", "icon": "i-carbon:number-4" },
-        { "path": "g500", "name": "g500", "title": "g500", "component": "500", "icon": "i-carbon:number-5" }
+        { "path": "g403", "name": "g403", "title": "g403", "component": "fallback/403", "icon": "i-carbon:number-3" },
+        { "path": "g404", "name": "g404", "title": "g404", "component": "fallback/404", "icon": "i-carbon:number-4" },
+        { "path": "g500", "name": "g500", "title": "g500", "component": "fallback/500", "icon": "i-carbon:number-5" }
       ]
     },
     {

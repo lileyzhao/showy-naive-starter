@@ -35,9 +35,7 @@ export function createRouterGuards(router: Router) {
 
     // 多标签
     if (to.name && to.fullPath) {
-      console.log('addTab', to.fullPath, tabs.tabs.length)
       tabs.addTab(to)
-      console.log('addTab Length', to.fullPath, tabs.tabs.length)
     }
   })
 }

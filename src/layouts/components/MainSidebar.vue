@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import type { MenuInst, MenuOption } from 'naive-ui'
 import LayoutLogo from '~/src/layouts/components/LayoutLogo.vue'
+import { MAIN_MENU_KEY, UPDATE_MAIN_MENU_KEY, UPDATE_SUB_MENU_KEY } from '~/src/shared/constants/symbols'
 import { mapRoutes } from '~/src/shared/utils/menuUtil'
 import { findRootRouteName, getFullRoutes } from '~/src/shared/utils/routeUtil'
 
 defineOptions({ name: 'MainSidebar' })
-
-const emit = defineEmits(['keyChange'])
 
 const { t } = useI18n()
 const app = useAppStore()
@@ -17,7 +16,12 @@ const mainMenuRoutes = fullRoutes.filter(route => route.meta.parentName === 'roo
 /** Reference to component 组件引用 */
 const mainMenuRef = ref<MenuInst | null>()
 /** Selected Item in main-menu 主栏菜单选中项 */
-const mainMenuKey = ref<string>()
+// const mainMenuKey = ref<string>()
+
+// Inject the menu object 注入菜单对象
+const mainMenuKey = inject(MAIN_MENU_KEY)!
+const updateMainMenuKey = inject(UPDATE_MAIN_MENU_KEY)!
+const updateSubMenuKey = inject(UPDATE_SUB_MENU_KEY)!
 
 /** Collapsed State of main-menu 主栏菜单收缩状态 */
 const collMainMenu = computed({
@@ -32,28 +36,35 @@ const mainMenuInverted = computed({
 })
 
 /** main-menu data 主栏菜单数据 */
-const mainMenuOptions = ref<MenuOption[]>()
+const mainMenuOptions = ref<MenuOption[]>([])
 
-/** Handle main menu key change 处理主菜单键变化 */
-const handleMainMenuChange = async (menuKey: string) => {
-  const rootKey = findRootRouteName(menuKey, fullRoutes) ?? menuKey
-  if (rootKey === mainMenuKey.value)
-    return
+/** Load the main-menu data 加载主栏菜单数据 */
+const loadMainMenu = (rootKey: string) => {
   mainMenuOptions.value = mainMenuRoutes.map(route => mapRoutes(route, fullRoutes, t, app.menuSetting, rootKey))
-  await nextTick()
-  mainMenuKey.value = app.menuSetting.subMenu.collapsed ? menuKey : rootKey
-  emit('keyChange', menuKey)
 }
 
-onMounted(async () => {
+/** Handle main menu key change 处理主菜单键变化 */
+const handleMainMenuChange = (menuKey: string) => {
+  const rootKey = findRootRouteName(menuKey, fullRoutes) ?? menuKey
+  if (mainMenuKey.value === rootKey && mainMenuOptions.value.length > 0)
+    return
+  updateMainMenuKey(app.menuSetting.subMenu.collapsed ? menuKey : rootKey)
+  updateSubMenuKey(menuKey)
+}
+
+onMounted(() => {
   const menuKey = route.name as string
-  await handleMainMenuChange(menuKey)
+  handleMainMenuChange(menuKey)
 })
 
 watch(() => app.menuSetting, () => {
-  mainMenuKey.value = undefined
-  handleMainMenuChange(route.name as string)
+  const menuKey = route.name as string
+  const rootKey = findRootRouteName(route.name as string, fullRoutes) ?? route.name as string
+  updateMainMenuKey(app.menuSetting.subMenu.collapsed ? menuKey : rootKey)
 })
+
+// Expose the menu loading function 公开菜单加载函数
+defineExpose({ loadMainMenu })
 
 const mainSidebarProps = computed(() => {
   return {
@@ -97,7 +108,7 @@ const logoClass = computed(() => !app.isDark && app.menuSetting.mainMenu.inverte
       <LayoutLogo w-full :hide-title="mainSidebarProps.collapsed" />
     </NLayoutHeader>
     <!-- Main Menu 主栏菜单 -->
-    <NMenu ref="mainMenuRef" v-model:value="mainMenuKey" :options="mainMenuOptions" v-bind="mainMenuProps" />
+    <NMenu ref="mainMenuRef" :value="mainMenuKey" :options="mainMenuOptions" v-bind="mainMenuProps" />
     <!-- Inverted Control 翻转控制 -->
     <div v-if="!app.isDark" absolute bottom-12px w-full flex justify-center>
       <div
