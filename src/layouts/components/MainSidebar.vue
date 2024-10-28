@@ -3,7 +3,7 @@ import type { MenuInst, MenuOption } from 'naive-ui'
 import LayoutLogo from '~/src/layouts/components/LayoutLogo.vue'
 import { MAIN_MENU_KEY, UPDATE_MAIN_MENU_KEY, UPDATE_SUB_MENU_KEY } from '~/src/shared/constants/symbols'
 import { mapRoutes } from '~/src/shared/utils/menuUtil'
-import { findRootRouteName, getFullRoutes } from '~/src/shared/utils/routeUtil'
+import { findParentNames, findRootRouteName, getFullRoutes } from '~/src/shared/utils/routeUtil'
 
 defineOptions({ name: 'MainSidebar' })
 
@@ -54,17 +54,14 @@ const handleMainMenuChange = (menuKey: string) => {
 onMounted(() => {
   const menuKey = route.name as string
   handleMainMenuChange(menuKey)
+  expandedMenuKeys.value = findParentNames(route.name as string, fullRoutes)
+  console.log('MainSidebar onMounted', route.name, toRaw(expandedMenuKeys.value))
 })
 
 watch(() => app.menuSetting, () => {
   const menuKey = route.name as string
   const rootKey = findRootRouteName(route.name as string, fullRoutes) ?? route.name as string
   updateMainMenuKey(app.menuSetting.subMenu.collapsed ? menuKey : rootKey)
-})
-
-watch(route, (to, from) => {
-  console.log('Route changed from', from.fullPath, 'to', to.fullPath)
-  // expandedMenuKeys.value = findParentNames(route.name as string, fullRoutes)
 })
 
 // Expose the menu loading function 公开菜单加载函数
