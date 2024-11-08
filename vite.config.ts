@@ -48,7 +48,8 @@ export default defineConfig(({ mode }) => {
       // https://github.com/webfansplz/vite-plugin-vue-devtools
       VueDevTools(),
       progress({
-        format: `${pc.green(pc.bold('Building'))} ${pc.yellowBright('[:bar]')} :percent`,
+        width: 30,
+        format: `${pc.green(pc.bold('Building'))} ${pc.yellowBright('[:bar]')} :percent | Time: :elapsed second`,
       }),
     ],
     define: {
