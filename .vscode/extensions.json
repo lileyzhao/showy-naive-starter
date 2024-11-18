@@ -17,6 +17,8 @@
     // 配合自动导入插件使用，跳转到别名定义位置
     "antfu.goto-alias",
     // 拼写检查
-    "streetsidesoftware.code-spell-checker"
+    "streetsidesoftware.code-spell-checker",
+    // 代码注释高亮
+    "aaron-bond.better-comments"
   ]
 }
